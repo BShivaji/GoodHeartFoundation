@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Events{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">{% endblock %}
+{% block body %}
+<div class="admin-layout">
+    {% include "admin/sidebar.html" %}
+    <main class="admin-content">
+        <div class="card admin-section-head">
+            <div>
+                <h1>Manage Events</h1>
+                <p>Review all published event records and confirm that dates, locations, and descriptions are up to date.</p>
+            </div>
+            <div class="admin-pill">
+                <span>Total Events</span>
+                <strong>{{ events|length }}</strong>
+            </div>
+        </div>
+        <form class="card volunteer-toolbar" method="get" action="{{ url_for('admin.manage_events') }}">
+            <label for="event-search" class="volunteer-toolbar__label">Search Events</label>
+            <div class="volunteer-toolbar__row">
+                <input
+                    id="event-search"
+                    type="search"
+                    name="q"
+                    value="{{ search_query or '' }}"
+                    class="volunteer-toolbar__input"
+                    placeholder="Search by title, date, location, description, or status"
+                >
+                <button type="submit" class="button volunteer-toolbar__button">Search</button>
+                <a href="{{ url_for('admin.manage_events') }}" class="button volunteer-toolbar__button volunteer-toolbar__button--secondary">Clear</a>
+            </div>
+            <div class="event-toolbar__action">
+                <button type="button" class="button volunteer-toolbar__button" data-open-event-modal>Add New Event</button>
+            </div>
+        </form>
+        <div class="volunteer-grid">
+            {% for event in events %}
+            <article
+                class="card event-card event-card--interactive"
+                data-event-card-open
+                data-event-id="{{ event.id }}"
+                data-event-title="{{ event.title }}"
+                data-event-date="{{ event.event_date }}"
+                data-event-location="{{ event.location }}"
+                data-event-description="{{ event.description or 'No description added.' }}"
+                data-event-status="{{ event.status }}"
+            >
+                <div class="volunteer-card__top">
+                    <div>
+                        <h2 class="volunteer-card__name">{{ event.title }}</h2>
+                        <p class="volunteer-card__meta">{{ event.event_date }} | {{ event.location }}</p>
+                    </div>
+                    <span class="event-card__badge event-card__badge--{{ event.status|lower }}">{{ event.status }}</span>
+                </div>
+                <div class="volunteer-card__details">
+                    <p><strong>Date:</strong> {{ event.event_date }}</p>
+                    <p><strong>Location:</strong> {{ event.location }}</p>
+                    <p><strong>Description:</strong> {{ event.description or 'No description added.' }}</p>
+                </div>
+            </article>
+            {% else %}
+            <div class="card">
+                <p>No events available.</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="card volunteer-empty-state" {% if events|length != 0 %}hidden{% endif %}>
+            <p>No events matched your search.</p>
+        </div>
+    </main>
+</div>
+<div class="admin-modal" data-event-details-modal hidden>
+    <div class="admin-modal__backdrop" data-close-event-details-modal></div>
+    <div class="admin-modal__dialog card" role="dialog" aria-modal="true" aria-labelledby="event-details-title">
+        <div class="admin-modal__header">
+            <div>
+                <p class="admin-sidebar__eyebrow" style="color:#8f4b1f;opacity:1;">Event Details</p>
+                <h2 id="event-details-title" class="admin-modal__title" data-event-details-title>Event</h2>
+            </div>
+            <button type="button" class="admin-modal__close" aria-label="Close event details popup" data-close-event-details-modal>&times;</button>
+        </div>
+        <div class="admin-modal__details">
+            <p><strong>Status:</strong> <span data-event-details-status></span></p>
+            <p><strong>Location:</strong> <span data-event-details-location></span></p>
+            <p><strong>Description:</strong> <span data-event-details-description></span></p>
+        </div>
+        <form method="post" class="admin-modal__form" data-event-date-form>
+            <label for="event-details-date" class="volunteer-toolbar__label">Edit Event Date</label>
+            <input id="event-details-date" name="event_date" type="date" class="volunteer-toolbar__input" required>
+
+            <div class="admin-modal__actions admin-modal__actions--split">
+                <button type="submit" class="button volunteer-toolbar__button">Save Date</button>
+                <button
+                    type="submit"
+                    class="button volunteer-toolbar__button volunteer-toolbar__button--danger"
+                    formaction=""
+                    formmethod="post"
+                    data-event-delete-button
+                >
+                    Delete Event
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="admin-modal" data-event-modal hidden>
+    <div class="admin-modal__backdrop" data-close-event-modal></div>
+    <div class="admin-modal__dialog card" role="dialog" aria-modal="true" aria-labelledby="event-modal-title">
+        <div class="admin-modal__header">
+            <div>
+                <p class="admin-sidebar__eyebrow" style="color:#8f4b1f;opacity:1;">Create Event</p>
+                <h2 id="event-modal-title" class="admin-modal__title">Add New Event</h2>
+            </div>
+            <button type="button" class="admin-modal__close" aria-label="Close add event popup" data-close-event-modal>&times;</button>
+        </div>
+        <form method="post" action="{{ url_for('admin.add_events') }}" class="admin-modal__form">
+            <label for="modal-title" class="volunteer-toolbar__label">Event Title</label>
+            <input id="modal-title" name="title" type="text" class="volunteer-toolbar__input" required>
+
+            <label for="modal-date" class="volunteer-toolbar__label">Event Date</label>
+            <input id="modal-date" name="event_date" type="date" class="volunteer-toolbar__input" required>
+
+            <label for="modal-location" class="volunteer-toolbar__label">Location</label>
+            <input id="modal-location" name="location" type="text" class="volunteer-toolbar__input" required>
+
+            <label for="modal-description" class="volunteer-toolbar__label">Description</label>
+            <textarea id="modal-description" name="description" rows="5" class="volunteer-toolbar__input admin-modal__textarea" placeholder="Describe the event goals, audience, and volunteer support needed."></textarea>
+
+            <div class="admin-modal__actions">
+                <button type="submit" class="button volunteer-toolbar__button">Create Event</button>
+                <button type="button" class="button volunteer-toolbar__button volunteer-toolbar__button--secondary" data-close-event-modal>Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,354 @@
+:root {
+    --bg: #f8f4ed;
+    --surface: #fffdf8;
+    --text: #243127;
+    --accent: #c46a2f;
+    --accent-dark: #8f4b1f;
+    --border: #e6d8c7;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    color: var(--text);
+    background: linear-gradient(180deg, #fffaf2 0%, #f5ede0 100%);
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    align-items: center;
+}
+
+.hero,
+.page-section,
+.admin-panel {
+    padding: 2rem 0;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px rgba(36, 49, 39, 0.08);
+    align-items: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.2rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.navbar-brand__logo {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.2rem;
+}
+
+.home-brand-strip {
+    padding: 2rem 0 0.5rem;
+}
+
+.home-brand-strip__card {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    background: linear-gradient(135deg, #fff7ea 0%, #f3e4cf 100%);
+    padding: 2rem;
+    min-height: 220px;
+}
+
+.home-brand-strip__brand {
+    gap: 1.25rem;
+}
+
+.home-brand-strip .navbar-brand__logo {
+    width: 200px;
+    height: 200px;
+    padding: 0.3rem;
+}
+
+.home-brand-strip__title {
+    display: block;
+    font-size: 2rem;
+    color: #203227;
+}
+
+.home-brand-strip__subtitle {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 1.05rem;
+    color: #6a6256;
+}
+
+.home-brand-strip__text {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: #3b4137;
+}
+
+.home-page,
+.home-page .card,
+.home-page .about-section__header,
+.home-page .founder-section__content,
+.home-page .hero,
+.home-page .page-section {
+    text-align: center;
+}
+
+.home-page .navbar-brand,
+.home-page .home-brand-strip__brand {
+    justify-content: center;
+}
+
+.home-page .grid,
+.home-page .home-brand-strip__card,
+.home-page .founder-section__card,
+.home-page .recent-works-carousel,
+.home-page .achievements-carousel {
+    justify-items: center;
+}
+
+.home-page .hero .card,
+.home-page .contribution-section .card,
+.home-page .about-section .card,
+.home-page .founder-section .card,
+.home-page .recent-works-section .card,
+.home-page .achievements-section .card {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-page .hero .card > div,
+.home-page .founder-section__content,
+.home-page .recent-work-slide__content,
+.home-page .achievements-carousel__caption {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home-page .hero .card > div,
+.home-page .recent-work-slide__content,
+.home-page .achievements-carousel__caption,
+.home-page .about-section__header {
+    max-width: 760px;
+}
+
+.home-page .hero .button,
+.home-page .button {
+    justify-self: center;
+}
+
+.home-page .hero [style*="display:flex"],
+.home-page .founder-section__image-wrap {
+    justify-content: center !important;
+}
+
+.contribution-section {
+    background: linear-gradient(180deg, #fffdf8 0%, #f8efe2 100%);
+}
+
+.contribution-section__grid {
+    margin-top: 0.5rem;
+}
+
+.recent-works-section {
+    background: linear-gradient(180deg, #fffdf8 0%, #f3e4cf 100%);
+}
+
+.recent-works-carousel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+}
+
+.recent-work-slide__content h3 {
+    margin: 0 0 0.45rem 0;
+    color: #203227;
+}
+
+.recent-work-slide__content p {
+    margin: 0 auto;
+    max-width: 760px;
+    line-height: 1.75;
+    color: #4f554d;
+}
+
+.achievements-section {
+    background: linear-gradient(180deg, #fffaf2 0%, #f4e2cc 100%);
+}
+
+.achievements-section__header {
+    max-width: 760px;
+    margin: 0 auto 1.5rem;
+}
+
+.achievements-carousel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    align-items: center;
+}
+
+.achievements-carousel__viewport {
+    overflow: hidden;
+}
+
+.achievements-carousel__track {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.achievements-carousel__slide {
+    min-width: 100%;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.achievements-carousel__image {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 22px;
+    border: 1px solid #e0cfbb;
+    box-shadow: 0 18px 40px rgba(36, 49, 39, 0.12);
+}
+
+.achievements-carousel__caption h3 {
+    margin: 0 0 0.35rem 0;
+    color: #203227;
+}
+
+.achievements-carousel__caption p {
+    margin: 0;
+    color: #6a6256;
+}
+
+.achievements-carousel__control {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #203227;
+    color: #fff;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(36, 49, 39, 0.18);
+}
+
+.achievements-empty-state {
+    padding: 2rem 1rem;
+    border: 1px dashed #d8ccb9;
+    border-radius: 18px;
+    background: rgba(255, 253, 248, 0.7);
+}
+
+.about-section {
+    background: linear-gradient(180deg, #fffdf8 0%, #f7efe4 100%);
+    text-align: center;
+}
+
+.about-section__header {
+    max-width: 760px;
+    margin: 0 auto 1.5rem;
+}
+
+.about-section__eyebrow {
+    margin: 0 0 0.4rem 0;
+    color: var(--accent-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+}
+
+.about-section__grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.about-section__item {
+    background: rgba(255, 255, 255, 0.78);
+    text-align: center;
+}
+
+.founder-section {
+    padding-top: 0;
+}
+
+.founder-section__card {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+    align-items: center;
+}
+
+.founder-section__image-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.founder-section__image {
+    width: min(100%, 280px);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 18px 40px rgba(36, 49, 39, 0.12);
+}
+
+.founder-section__content p {
+    line-height: 1.7;
+}
+
+nav,
+footer {
+    background: #203227;
+    color: #fff;
+}
+
+nav a,
+footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+@media (max-width: 780px) {
+    .recent-works-carousel {
+        grid-template-columns: 1fr;
+    }
+
+    .achievements-carousel {
+        grid-template-columns: 1fr;
+    }
+
+    .achievements-carousel__control {
+        justify-self: center;
+    }
+
+    .achievements-carousel__image {
+        height: 280px;
+    }
+}

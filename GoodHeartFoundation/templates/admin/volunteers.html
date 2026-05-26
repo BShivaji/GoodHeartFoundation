@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Volunteers{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">{% endblock %}
+{% block body %}
+<div class="admin-layout">
+    {% include "admin/sidebar.html" %}
+    <main class="admin-content">
+        <div class="card admin-section-head">
+            <div>
+                <h1>Volunteers</h1>
+                <p>Review recent volunteer applications, contact details, and submitted interest statements.</p>
+            </div>
+            <div class="admin-pill">
+                <span>Total Volunteers</span>
+                <strong>{{ volunteers|length }}</strong>
+            </div>
+        </div>
+        <form class="card volunteer-toolbar" method="get" action="{{ url_for('admin.manage_volunteers') }}">
+            <label for="volunteer-search" class="volunteer-toolbar__label">Search Volunteers</label>
+            <div class="volunteer-toolbar__row">
+                <input
+                    id="volunteer-search"
+                    type="search"
+                    name="q"
+                    value="{{ search_query or '' }}"
+                    class="volunteer-toolbar__input"
+                    placeholder="Search by name, place, phone, area, or gender"
+                    data-volunteer-search
+                >
+                <button type="submit" class="button volunteer-toolbar__button">Search</button>
+                <a href="{{ url_for('admin.manage_volunteers') }}" class="button volunteer-toolbar__button volunteer-toolbar__button--secondary">Clear</a>
+            </div>
+        </form>
+        <div class="volunteer-grid" data-volunteer-grid>
+            {% for volunteer in volunteers %}
+            <article
+                class="card volunteer-card"
+                data-volunteer-card
+                data-search="{{ (volunteer.name ~ ' ' ~ (volunteer.gender or '') ~ ' ' ~ (volunteer.place or '') ~ ' ' ~ volunteer.phone ~ ' ' ~ (volunteer.area_interest or '') ~ ' ' ~ (volunteer.message or ''))|lower }}"
+            >
+                <div class="volunteer-card__top">
+                    <div>
+                        <h2 class="volunteer-card__name">{{ volunteer.name }}</h2>
+                        <p class="volunteer-card__meta">{{ volunteer.gender or 'Not specified' }} | {{ volunteer.place or 'Place not added' }}</p>
+                    </div>
+                    <span class="volunteer-card__badge">{{ volunteer.area_interest or 'General Support' }}</span>
+                </div>
+                <div class="volunteer-card__details">
+                    <p><strong>Phone:</strong> {{ volunteer.phone }}</p>
+                    <p><strong>Email:</strong> {{ volunteer.email }}</p>
+                    <p><strong>Why Join:</strong> {{ volunteer.message or 'No message provided.' }}</p>
+                </div>
+            </article>
+            {% else %}
+            <div class="card">
+                <p>No volunteer applications yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="card volunteer-empty-state" data-volunteer-empty {% if volunteers|length != 0 %}hidden{% endif %}>
+            <p>No volunteers matched your search.</p>
+        </div>
+    </main>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,7 @@
+.gallery-grid img {
+    width: 100%;
+    border-radius: 14px;
+    display: block;
+    background: #eadfce;
+    min-height: 180px;
+}

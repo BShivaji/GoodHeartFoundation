@@ -1,0 +1,30 @@
+<aside class="admin-sidebar">
+    <div class="admin-sidebar__brand">
+        <img
+            src="{{ url_for('static', filename='images/logo/logo.png') }}"
+            alt="Good Heart Foundation logo"
+            class="admin-sidebar__logo"
+        >
+    </div>
+    <div class="admin-sidebar__intro">
+        <p class="admin-sidebar__eyebrow">Administration</p>
+        <h2 class="admin-sidebar__title">Admin Panel</h2>
+        <p class="admin-sidebar__copy">Manage volunteers, events, funds, and internal updates from one place.</p>
+    </div>
+    <div class="admin-sidebar__nav">
+        <a class="admin-sidebar__button" href="{{ url_for('admin.dashboard') }}">Dashboard</a>
+        <a class="admin-sidebar__button" href="{{ url_for('admin.manage_volunteers') }}">Volunteers</a>
+        <a class="admin-sidebar__button" href="{{ url_for('admin.funds') }}">Funds</a>
+        <a class="admin-sidebar__button" href="{{ url_for('admin.manage_events') }}">Manage Events</a>
+        <a class="admin-sidebar__button" href="{{ url_for('admin.expenditures') }}">Expenditures</a>
+    </div>
+    <div class="admin-sidebar__footer">
+        <a
+            href="{{ url_for('admin.logout') }}"
+            data-logout-link
+            class="admin-sidebar__button admin-sidebar__button--danger"
+        >
+            Logout
+        </a>
+    </div>
+</aside>
