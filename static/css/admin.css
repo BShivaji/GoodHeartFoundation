@@ -135,7 +135,7 @@
     margin: 0 0 0.5rem 0;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #8f4b1f;
+    color: var(--accent-dark);
     font-size: 0.85rem;
 }
 
@@ -216,7 +216,7 @@
     text-transform: uppercase;
     letter-spacing: 0.12em;
     font-size: 0.78rem;
-    color: #8f4b1f;
+    color: var(--accent-dark);
 }
 
 .dashboard-panel__hint {
@@ -255,7 +255,7 @@
 }
 
 .growth-chart__bar--volunteers {
-    background: linear-gradient(180deg, #de8e50 0%, #c46a2f 100%);
+    background: linear-gradient(180deg, #b7e78e 0%, var(--accent) 100%);
 }
 
 .growth-chart__bar--events {
@@ -263,7 +263,7 @@
 }
 
 .growth-chart__bar--donors {
-    background: linear-gradient(180deg, #ad6e45 0%, #8f4b1f 100%);
+    background: linear-gradient(180deg, #8ab04c 0%, var(--accent-dark) 100%);
 }
 
 .growth-chart__label {
@@ -289,7 +289,7 @@
 }
 
 .dashboard-legend__dot--volunteers {
-    background: #c46a2f;
+    background: var(--accent);
 }
 
 .dashboard-legend__dot--events {
@@ -297,7 +297,7 @@
 }
 
 .dashboard-legend__dot--donors {
-    background: #8f4b1f;
+    background: var(--accent-dark);
 }
 
 .dashboard-pie {
@@ -389,7 +389,7 @@
 }
 
 .insight-bars__fill--volunteer {
-    background: linear-gradient(90deg, #c46a2f 0%, #de8e50 100%);
+    background: linear-gradient(90deg, var(--accent) 0%, #b7e78e 100%);
 }
 
 .insight-bars__fill--fund {
@@ -566,7 +566,7 @@
     padding: 0.45rem 0.75rem;
     border-radius: 999px;
     background: #f3e4cf;
-    color: #8f4b1f;
+    color: var(--accent-dark);
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;

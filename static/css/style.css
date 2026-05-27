@@ -2,8 +2,8 @@
     --bg: #f8f4ed;
     --surface: #fffdf8;
     --text: #243127;
-    --accent: #c46a2f;
-    --accent-dark: #8f4b1f;
+    --accent: #83D352;
+    --accent-dark: #5d8b2d;
     --border: #e6d8c7;
 }
 
@@ -147,7 +147,7 @@ nav a:focus-visible {
 .hero-eyebrow {
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #8f4b1f;
+    color: var(--accent-dark);
     font-size: 0.85rem;
     margin-bottom: 0.75rem;
 }
