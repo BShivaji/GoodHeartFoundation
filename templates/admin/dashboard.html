@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">{% endblock %}
+{% block body %}
+<div class="admin-layout">
+    {% include "admin/sidebar.html" %}
+    <main class="admin-content">
+        <div class="card" style="margin-bottom:1.25rem;">
+            <p style="letter-spacing:0.15em;text-transform:uppercase;color:#8f4b1f;font-size:0.85rem;">Overview</p>
+            <h1 data-admin-title>Dashboard</h1>
+            <p>Use this dashboard to review current activity across volunteer applications, event publishing, and donation summaries.</p>
+        </div>
+        <div class="admin-stats">
+            <div class="card"><h3>Volunteers</h3><p style="font-size:2rem;margin:0;">{{ stats.volunteers|default(0) }}</p><span>Applications received</span></div>
+            <div class="card"><h3>Events</h3><p style="font-size:2rem;margin:0;">{{ stats.events|default(0) }}</p><span>Programs listed</span></div>
+            <div class="card"><h3>Funds</h3><p style="font-size:2rem;margin:0;">{{ stats.funds|default(0) }}</p><span>Total raised</span></div>
+        </div>
+        <div class="dashboard-grid">
+            <section class="card dashboard-panel">
+                <div class="dashboard-panel__head">
+                    <div>
+                        <p class="dashboard-panel__eyebrow">Organization Growth</p>
+                        <h2>Monthly Activity Trend</h2>
+                    </div>
+                    <p class="dashboard-panel__hint">Last 6 months</p>
+                </div>
+                <div class="growth-chart">
+                    {% for label in stats.growth_labels|default([]) %}
+                    <div class="growth-chart__group">
+                        <div class="growth-chart__bars">
+                            <span class="growth-chart__bar growth-chart__bar--volunteers" data-bar-height="{{ (((stats.volunteer_growth if stats.volunteer_growth is defined else [])[loop.index0] if loop.index0 < (stats.volunteer_growth|default([])|length) else 0) / (stats.growth_max|default(1)) * 140)|round(0, 'ceil') }}"></span>
+                            <span class="growth-chart__bar growth-chart__bar--events" data-bar-height="{{ (((stats.event_growth if stats.event_growth is defined else [])[loop.index0] if loop.index0 < (stats.event_growth|default([])|length) else 0) / (stats.growth_max|default(1)) * 140)|round(0, 'ceil') }}"></span>
+                            <span class="growth-chart__bar growth-chart__bar--donors" data-bar-height="{{ (((stats.donor_growth if stats.donor_growth is defined else [])[loop.index0] if loop.index0 < (stats.donor_growth|default([])|length) else 0) / (stats.growth_max|default(1)) * 140)|round(0, 'ceil') }}"></span>
+                        </div>
+                        <span class="growth-chart__label">{{ (label|string)[5:] }}/{{ (label|string)[:4] }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="dashboard-legend">
+                    <span><i class="dashboard-legend__dot dashboard-legend__dot--volunteers"></i> Volunteers</span>
+                    <span><i class="dashboard-legend__dot dashboard-legend__dot--events"></i> Events</span>
+                    <span><i class="dashboard-legend__dot dashboard-legend__dot--donors"></i> Donors</span>
+                </div>
+            </section>
+            <section class="card dashboard-panel">
+                    <div class="dashboard-panel__head">
+                        <div>
+                            <p class="dashboard-panel__eyebrow">Community Mix</p>
+                            <h2>Impact Distribution</h2>
+                        </div>
+                        <p class="dashboard-panel__hint">{{ stats.total_donors|default(0) }} donors included</p>
+                    </div>
+                <div class="dashboard-pie">
+                    <div class="dashboard-pie__chart" style="background: transparent;" data-impact-gradient="{{ stats.impact_gradient|default('transparent') }}">
+                        <div class="dashboard-pie__center">
+                            <strong>{{ (stats.volunteers|default(0) + stats.events|default(0) + stats.total_donors|default(0)) }}</strong>
+                            <span>Total Touchpoints</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-pie__legend">
+                        {% for segment in stats.impact_segments|default([]) %}
+                        <div class="dashboard-pie__legend-item">
+                            {% if segment.color %}<span class="dashboard-pie__swatch" data-swatch-color="{{ segment.color|default('') }}" data-swatch-border="{{ segment.color|default('') }}"></span>{% else %}<span class="dashboard-pie__swatch"></span>{% endif %}
+                            <span>{{ segment.label }}</span>
+                            <strong>{{ segment.value }}</strong>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="dashboard-grid">
+            <section class="card dashboard-panel">
+                <div class="dashboard-panel__head">
+                    <div>
+                        <p class="dashboard-panel__eyebrow">Volunteer Interests</p>
+                        <h2>Top Program Areas</h2>
+                    </div>
+                </div>
+                <div class="insight-bars">
+                    {% for item in stats.area_breakdown|default([]) %}
+                    <div class="insight-bars__item">
+                        <div class="insight-bars__meta">
+                            <span>{{ item.label }}</span>
+                            <strong>{{ item.value }}</strong>
+                        </div>
+                        <div class="insight-bars__track">
+                            <span class="insight-bars__fill insight-bars__fill--volunteer" data-fill-width="{{ (item.value / stats.area_breakdown_max * 100)|round(0, 'ceil') if stats.area_breakdown_max else 0 }}"></span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="card dashboard-panel">
+                <div class="dashboard-panel__head">
+                    <div>
+                        <p class="dashboard-panel__eyebrow">Funding Insights</p>
+                        <h2>Donation Purpose Strength</h2>
+                    </div>
+                </div>
+                <div class="insight-bars">
+                    {% for item in stats.purpose_breakdown|default([]) %}
+                    <div class="insight-bars__item">
+                        <div class="insight-bars__meta">
+                            <span>{{ item.label }}</span>
+                            <strong>{{ item.value }}</strong>
+                        </div>
+                        <div class="insight-bars__track">
+                            <span class="insight-bars__fill insight-bars__fill--fund" data-fill-width="{{ (item.value / stats.purpose_breakdown_max * 100)|round(0, 'ceil') if stats.purpose_breakdown_max else 0 }}"></span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        <div class="dashboard-grid">
+            <section class="card dashboard-panel">
+                <div class="dashboard-panel__head">
+                    <div>
+                        <p class="dashboard-panel__eyebrow">Recent Works</p>
+                        <h2>Manage Home Page Posts</h2>
+                    </div>
+                    <button type="button" class="button volunteer-toolbar__button" data-open-recent-work-modal>Add Recent Work</button>
+                </div>
+                <div class="recent-work-admin-list">
+                    {% for item in recent_works %}
+                    <article class="recent-work-admin-item">
+                        <img src="{{ url_for('static', filename=item.image_path) }}" alt="{{ item.title }}" class="recent-work-admin-item__image">
+                        <div class="recent-work-admin-item__content">
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.description }}</p>
+                            <form method="post" action="{{ url_for('admin.delete_recent_work', work_id=item.id) }}">
+                                <button type="submit" class="button volunteer-toolbar__button volunteer-toolbar__button--danger">Delete</button>
+                            </form>
+                        </div>
+                    </article>
+                    {% else %}
+                    <p>No recent works posted yet.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+<div class="admin-modal" data-recent-work-modal hidden>
+    <div class="admin-modal__backdrop" data-close-recent-work-modal></div>
+    <div class="admin-modal__dialog card" role="dialog" aria-modal="true" aria-labelledby="recent-work-modal-title">
+        <div class="admin-modal__header">
+            <div>
+                <p class="admin-sidebar__eyebrow" style="color:#8f4b1f;opacity:1;">Recent Works</p>
+                <h2 id="recent-work-modal-title" class="admin-modal__title">Add Recent Work</h2>
+            </div>
+            <button type="button" class="admin-modal__close" aria-label="Close recent work popup" data-close-recent-work-modal>&times;</button>
+        </div>
+        <form method="post" action="{{ url_for('admin.add_recent_work') }}" enctype="multipart/form-data" class="admin-modal__form">
+            <label for="recent-work-title" class="volunteer-toolbar__label">Title</label>
+            <input id="recent-work-title" name="title" type="text" class="volunteer-toolbar__input" required>
+
+            <label for="recent-work-description" class="volunteer-toolbar__label">Description</label>
+            <textarea id="recent-work-description" name="description" rows="5" class="volunteer-toolbar__input admin-modal__textarea" required></textarea>
+
+            <label for="recent-work-image" class="volunteer-toolbar__label">Image</label>
+            <input id="recent-work-image" name="image" type="file" class="volunteer-toolbar__input" accept=".png,.jpg,.jpeg,.webp,.gif" required>
+
+            <div class="admin-modal__actions">
+                <button type="submit" class="button volunteer-toolbar__button">Post Recent Work</button>
+                <button type="button" class="button volunteer-toolbar__button volunteer-toolbar__button--secondary" data-close-recent-work-modal>Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/admin.js') }}"></script>{% endblock %}

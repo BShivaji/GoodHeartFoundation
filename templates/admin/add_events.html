@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Add Event{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">{% endblock %}
+{% block body %}
+<div class="admin-layout">
+    {% include "admin/sidebar.html" %}
+    <main class="admin-content">
+        <div class="card" style="margin-bottom:1.25rem;">
+            <h1>Add Event</h1>
+            <p>Create a new public event entry with date, location, and a short description for volunteers and visitors.</p>
+        </div>
+        <div class="card">
+            <form method="post">
+                <p><input name="title" type="text" placeholder="Event title" required></p>
+                <p><input name="event_date" type="date" required></p>
+                <p><input name="location" type="text" placeholder="Location" required></p>
+                <p><textarea name="description" rows="5" placeholder="Describe the event goals, audience, and volunteer support needed."></textarea></p>
+                <button class="button" type="submit">Create Event</button>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}

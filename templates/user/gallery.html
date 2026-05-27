@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery | Good Heart Foundation{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">{% endblock %}
+{% block body %}
+{% include "user/navbar.html" %}
+<section class="page-section">
+    <div class="container">
+        <div class="card" style="margin-bottom:1.25rem;">
+            <p style="letter-spacing:0.15em;text-transform:uppercase;color:#8f4b1f;font-size:0.85rem;">Impact Stories</p>
+            <h1>Gallery</h1>
+            <p>These moments reflect the people, partnerships, and field efforts that shape our work across outreach programs and community events.</p>
+        </div>
+        <div class="grid gallery-grid">
+            {% for item in gallery_items %}
+            <div class="card">
+                <img src="{{ item.image }}" alt="{{ item.title }}">
+                <h3>{{ item.title }}</h3>
+                <p>Snapshots from volunteer-led programs, public events, and support campaigns.</p>
+            </div>
+            {% else %}
+            <div class="card">
+                <h3>Gallery Updates Coming Soon</h3>
+                <p>New photos will appear here once recent campaign images are added to the system.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% include "user/footer.html" %}
+{% endblock %}
