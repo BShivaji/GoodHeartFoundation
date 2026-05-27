@@ -24,17 +24,17 @@
 </section>
 <section class="hero">
     <div class="container">
-        <div class="card" style="display:grid;gap:1.5rem;grid-template-columns:2fr 1fr;align-items:center;">
+        <div class="card home-hero-card">
             <div>
-                <p style="letter-spacing:0.15em;text-transform:uppercase;color:#8f4b1f;font-size:0.85rem;">Community First</p>
+                <p class="hero-eyebrow">Community First</p>
                 <h1>Support people with compassion, structure, and consistent action.</h1>
                 <p>Good Heart Foundation brings together volunteers, organizers, and donors to run practical local programs that make help feel immediate and personal.</p>
-                <div style="display:flex;gap:0.85rem;flex-wrap:wrap;margin-top:1rem;">
-                    <a class="button" href="{{ url_for('volunteer.show_volunteer_form') }}" align = "center">Become a Volunteer</a>
-                    <a class="button" style="background:#203227;" href="{{ url_for('event.list_events') }}">Explore Events</a>
+                <div class="hero-actions">
+                    <a class="button" href="{{ url_for('volunteer.show_volunteer_form') }}">Become a Volunteer</a>
+                    <a class="button hero-cta-button" href="{{ url_for('event.list_events') }}">Explore Events</a>
                 </div>
             </div>
-            <div class="card" style="background:#f4e2cc;">
+            <div class="card home-hero-stats-card">
                 <h3 style="margin-top:0;">This Month</h3>
                 <p><strong>4</strong> outreach drives planned</p>
                 <p><strong>120+</strong> meals sponsored</p>

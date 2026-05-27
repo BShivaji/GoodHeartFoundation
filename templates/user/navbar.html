@@ -1,5 +1,5 @@
 <nav>
-    <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0;flex-wrap:wrap;">
+    <div class="container navbar-container">
         <div class="navbar-brand">
             <a href="{{ url_for('admin.login') }}" aria-label="Admin login">
                 <img
@@ -13,7 +13,7 @@
                 <span style="font-size:0.9rem;opacity:0.85;">Service, dignity, and community care</span>
             </div>
         </div>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+        <div class="navbar-links">
             <a href="{{ url_for('user.home') }}">Home</a>
             <a href="{{ url_for('volunteer.show_volunteer_form') }}">Volunteer</a>
             <a href="{{ url_for('user.gallery') }}">Gallery</a>
