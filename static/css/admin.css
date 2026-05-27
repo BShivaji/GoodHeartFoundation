@@ -5,7 +5,7 @@
 }
 
 .admin-sidebar {
-    background: linear-gradient(180deg, #16241c 0%, #203227 100%);
+    background: linear-gradient(180deg, #19371e 0%, #24572c 100%);
     color: #fff;
     padding: 2rem 1rem;
     display: flex;
@@ -81,8 +81,8 @@
 
 .admin-sidebar__button:hover,
 .admin-sidebar__button:focus-visible {
-    background: rgba(196, 106, 47, 0.22);
-    border-color: rgba(196, 106, 47, 0.45);
+    background: rgba(131, 211, 82, 0.22);
+    border-color: rgba(131, 211, 82, 0.45);
     transform: translateX(2px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
     outline: none;
@@ -93,8 +93,8 @@
 }
 
 .admin-sidebar__button--danger {
-    background: rgba(182, 69, 53, 0.18);
-    border-color: rgba(182, 69, 53, 0.32);
+    background: rgba(65, 107, 36, 0.18);
+    border-color: rgba(65, 107, 36, 0.32);
 }
 
 .admin-sidebar__button--danger:hover,
@@ -160,7 +160,7 @@
     display: grid;
     place-items: center;
     text-align: center;
-    background: linear-gradient(180deg, #203227 0%, #355242 100%);
+    background: linear-gradient(180deg, #275431 0%, #3d7a45 100%);
     color: #fff;
 }
 
@@ -259,11 +259,11 @@
 }
 
 .growth-chart__bar--events {
-    background: linear-gradient(180deg, #527360 0%, #355242 100%);
+    background: linear-gradient(180deg, #4f7c40 0%, #355242 100%);
 }
 
 .growth-chart__bar--donors {
-    background: linear-gradient(180deg, #8ab04c 0%, var(--accent-dark) 100%);
+    background: linear-gradient(180deg, #7aad62 0%, var(--accent-dark) 100%);
 }
 
 .growth-chart__label {
@@ -293,11 +293,11 @@
 }
 
 .dashboard-legend__dot--events {
-    background: #355242;
+    background: #385a39;
 }
 
 .dashboard-legend__dot--donors {
-    background: var(--accent-dark);
+    background: #5b7f35;
 }
 
 .dashboard-pie {
@@ -393,7 +393,7 @@
 }
 
 .insight-bars__fill--fund {
-    background: linear-gradient(90deg, #355242 0%, #62806f 100%);
+    background: linear-gradient(90deg, #3e6f3e 0%, #6b8b5f 100%);
 }
 
 .recent-work-admin-list {
@@ -450,7 +450,7 @@
     min-width: 180px;
     padding: 1rem 1.1rem;
     border-radius: 16px;
-    background: linear-gradient(135deg, #203227 0%, #355242 100%);
+    background: linear-gradient(135deg, #24542a 0%, #3d6b43 100%);
     color: #fff;
 }
 
@@ -565,7 +565,7 @@
     display: inline-block;
     padding: 0.45rem 0.75rem;
     border-radius: 999px;
-    background: #f3e4cf;
+    background: #e2f0d7;
     color: var(--accent-dark);
     font-size: 0.8rem;
     font-weight: 700;
@@ -618,13 +618,13 @@
 }
 
 .event-card__badge--completed {
-    background: #ece7de;
-    color: #6a6256;
+    background: #dfe9d5;
+    color: #4f5f45;
 }
 
 .event-card__badge--unknown {
-    background: #f8e4c3;
-    color: #9a5a18;
+    background: #d9ebc9;
+    color: #4f6c40;
 }
 
 .fund-table-card h3 {
@@ -709,7 +709,7 @@
 .admin-modal__close {
     border: none;
     background: transparent;
-    color: #6a6256;
+    color: #4f5f45;
     font-size: 1.8rem;
     line-height: 1;
     cursor: pointer;
