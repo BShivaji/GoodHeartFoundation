@@ -13,10 +13,8 @@
         </div>
         <div class="grid gallery-grid">
             {% for item in gallery_items %}
-            <div class="card">
-                <img src="{{ item.image }}" alt="{{ item.title }}">
-                <h3>{{ item.title }}</h3>
-                <p>Snapshots from volunteer-led programs, public events, and support campaigns.</p>
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename=item.image) }}" alt="Gallery image">
             </div>
             {% else %}
             <div class="card">

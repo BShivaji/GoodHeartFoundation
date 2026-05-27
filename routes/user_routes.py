@@ -1,4 +1,5 @@
 import os
+import random
 
 from flask import Blueprint, render_template
 
@@ -39,9 +40,24 @@ def home():
 
 @user_bp.route("/gallery")
 def gallery():
-    gallery_items = [
-        {"title": "Community Meal Drive", "image": "https://via.placeholder.com/600x400?text=Meal+Drive"},
-        {"title": "Education Support", "image": "https://via.placeholder.com/600x400?text=Education"},
-        {"title": "Health Camp", "image": "https://via.placeholder.com/600x400?text=Health+Camp"},
-    ]
+    gallery_dir = os.path.join(
+        os.path.dirname(os.path.dirname(__file__)),
+        "static",
+        "images",
+        "gallery",
+    )
+    gallery_items = []
+    allowed_extensions = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
+
+    if os.path.isdir(gallery_dir):
+        for filename in os.listdir(gallery_dir):
+            _, extension = os.path.splitext(filename.lower())
+            if extension in allowed_extensions:
+                gallery_items.append(
+                    {"image": f"images/gallery/{filename}"}
+                )
+    
+    # Randomize the order
+    random.shuffle(gallery_items)
+    
     return render_template("user/gallery.html", gallery_items=gallery_items)
