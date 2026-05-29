@@ -31,11 +31,24 @@ def login():
 
 @admin_bp.route("/dashboard")
 def dashboard():
+    recent_works = []
+    gallery_items = []
+
+    try:
+        recent_works = get_all_recent_works()
+    except Exception:
+        flash("Unable to load recent works. Please refresh the page.", "error")
+
+    try:
+        gallery_items = get_gallery_photos()
+    except Exception:
+        flash("Unable to load gallery images. Please refresh the page.", "error")
+
     return render_template(
         "admin/dashboard.html",
         stats=build_dashboard_stats(),
-        recent_works=get_all_recent_works(),
-        gallery_items=get_gallery_photos(),
+        recent_works=recent_works,
+        gallery_items=gallery_items,
     )
 
 
@@ -220,7 +233,13 @@ def logout():
 
 @admin_bp.route("/recent-works", methods=["POST"])
 def add_recent_work():
-    create_recent_work(request.form, request.files.get("image"))
+    try:
+        create_recent_work(request.form, request.files.get("image"))
+        flash("Recent work posted successfully.", "success")
+    except ValueError as exc:
+        flash(str(exc), "error")
+    except Exception:
+        flash("Unable to add recent work. Please try again.", "error")
     return redirect(url_for("admin.dashboard"))
 
 
@@ -248,5 +267,9 @@ def delete_gallery_photo(filename):
 
 @admin_bp.route("/recent-works/<int:work_id>/delete", methods=["POST"])
 def delete_recent_work(work_id):
-    remove_recent_work(work_id)
+    try:
+        remove_recent_work(work_id)
+        flash("Recent work deleted successfully.", "success")
+    except Exception:
+        flash("Unable to delete recent work. Please try again.", "error")
     return redirect(url_for("admin.dashboard"))

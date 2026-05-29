@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, flash, redirect, url_for
+from werkzeug.exceptions import RequestEntityTooLarge
 
 from config import Config
 from routes.admin_routes import admin_bp
@@ -18,6 +19,11 @@ def create_app():
     app.register_blueprint(volunteer_bp, url_prefix="/volunteer")
     app.register_blueprint(event_bp, url_prefix="/events")
     app.register_blueprint(admin_bp, url_prefix="/admin")
+
+    @app.errorhandler(RequestEntityTooLarge)
+    def handle_large_upload(error):
+        flash("Uploaded file is too large. Maximum size is 5MB.", "error")
+        return redirect(url_for("admin.dashboard"))
 
     return app
 
