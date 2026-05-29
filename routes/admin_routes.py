@@ -226,13 +226,23 @@ def add_recent_work():
 
 @admin_bp.route("/gallery-photos", methods=["POST"])
 def add_gallery_photo():
-    save_gallery_photo(request.files.get("image"))
+    try:
+        save_gallery_photo(request.files.get("image"))
+        flash("Gallery photo uploaded successfully.", "success")
+    except ValueError as exc:
+        flash(str(exc), "error")
+    except Exception:
+        flash("Unable to upload gallery photo. Please try again.", "error")
     return redirect(url_for("admin.dashboard"))
 
 
 @admin_bp.route("/gallery-photos/<filename>/delete", methods=["POST"])
 def delete_gallery_photo(filename):
-    remove_gallery_photo(filename)
+    try:
+        remove_gallery_photo(filename)
+        flash("Gallery photo deleted successfully.", "success")
+    except Exception:
+        flash("Unable to delete gallery photo. Please try again.", "error")
     return redirect(url_for("admin.dashboard"))
 
 

@@ -98,6 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
         setupModal(galleryPhotoModal, openGalleryPhotoModalButton, closeGalleryPhotoModalButtons);
     }
 
+    const galleryCollapseToggle = document.querySelector("[data-gallery-collapse-toggle]");
+    const galleryCollapseTarget = document.querySelector("[data-gallery-collapse-target]");
+
+    if (galleryCollapseToggle && galleryCollapseTarget) {
+        galleryCollapseToggle.addEventListener("click", () => {
+            const collapsed = galleryCollapseTarget.classList.toggle("collapsed");
+            galleryCollapseToggle.textContent = collapsed ? "Show Images" : "Hide Images";
+            galleryCollapseToggle.setAttribute("aria-expanded", (!collapsed).toString());
+        });
+    }
+
     const eventDetailModal = document.querySelector("[data-event-details-modal]");
     const eventCards = document.querySelectorAll("[data-event-card-open]");
     const closeEventDetailButtons = document.querySelectorAll("[data-close-event-details-modal]");

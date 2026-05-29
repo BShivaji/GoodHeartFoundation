@@ -121,10 +121,14 @@
                         <p class="dashboard-panel__eyebrow">Photo Gallery</p>
                         <h2>Manage Gallery Images</h2>
                     </div>
-                    <button type="button" class="button volunteer-toolbar__button" data-open-gallery-photo-modal>Add Gallery Photo</button>
+                    <div class="dashboard-panel__actions">
+                        <button type="button" class="button volunteer-toolbar__button" data-open-gallery-photo-modal>Add Gallery Photo</button>
+                        <button type="button" class="button volunteer-toolbar__button volunteer-toolbar__button--secondary" data-gallery-collapse-toggle aria-expanded="true">Hide Images</button>
+                    </div>
                 </div>
-                <div class="recent-work-admin-list">
-                    {% for item in gallery_items %}
+                <div class="dashboard-panel__body" data-gallery-collapse-target>
+                    <div class="recent-work-admin-list">
+                        {% for item in gallery_items %}
                     <article class="recent-work-admin-item">
                         <img src="{{ url_for('static', filename=item.image) }}" alt="Gallery photo" class="recent-work-admin-item__image">
                         <div class="recent-work-admin-item__content">
@@ -138,6 +142,7 @@
                     <p>No gallery photos added yet.</p>
                     {% endfor %}
                 </div>
+            </div>
             </section>
         </div>
         <div class="dashboard-grid">
