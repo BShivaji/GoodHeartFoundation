@@ -374,38 +374,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const recentWorkModal = document.querySelector("[data-recent-work-modal]");
-    const openRecentWorkModalButton = document.querySelector("[data-open-recent-work-modal]");
-    const closeRecentWorkModalButtons = document.querySelectorAll("[data-close-recent-work-modal]");
-
-    if (recentWorkModal && openRecentWorkModalButton) {
-        const openRecentWorkModal = () => {
-            recentWorkModal.hidden = false;
-            document.body.style.overflow = "hidden";
-            const firstInput = recentWorkModal.querySelector("input, textarea");
-            if (firstInput) {
-                firstInput.focus();
-            }
-        };
-
-        const closeRecentWorkModal = () => {
-            recentWorkModal.hidden = true;
-            document.body.style.overflow = "";
-        };
-
-        openRecentWorkModalButton.addEventListener("click", openRecentWorkModal);
-
-        closeRecentWorkModalButtons.forEach((button) => {
-            button.addEventListener("click", closeRecentWorkModal);
-        });
-
-        document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && !recentWorkModal.hidden) {
-                closeRecentWorkModal();
-            }
-        });
-    }
-
     // Apply template-driven visual values (data attributes -> inline styles)
     const applyFillWidths = () => {
         const fills = document.querySelectorAll('[data-fill-width]');
