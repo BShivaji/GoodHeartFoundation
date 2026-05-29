@@ -46,32 +46,56 @@ document.addEventListener("DOMContentLoaded", () => {
     const openEventModalButton = document.querySelector("[data-open-event-modal]");
     const closeEventModalButtons = document.querySelectorAll("[data-close-event-modal]");
 
-    if (eventModal && openEventModalButton) {
+    const recentWorkModal = document.querySelector("[data-recent-work-modal]");
+    const openRecentWorkModalButton = document.querySelector("[data-open-recent-work-modal]");
+    const closeRecentWorkModalButtons = document.querySelectorAll("[data-close-recent-work-modal]");
+
+    const galleryPhotoModal = document.querySelector("[data-gallery-photo-modal]");
+    const openGalleryPhotoModalButton = document.querySelector("[data-open-gallery-photo-modal]");
+    const closeGalleryPhotoModalButtons = document.querySelectorAll("[data-close-gallery-photo-modal]");
+
+    const setupModal = (modal, openButton, closeButtons) => {
+        if (!modal || !openButton) {
+            return;
+        }
+
         const openModal = () => {
-            eventModal.hidden = false;
+            modal.hidden = false;
             document.body.style.overflow = "hidden";
-            const firstInput = eventModal.querySelector("input, textarea");
+            const firstInput = modal.querySelector("input, textarea");
             if (firstInput) {
                 firstInput.focus();
             }
         };
 
         const closeModal = () => {
-            eventModal.hidden = true;
+            modal.hidden = true;
             document.body.style.overflow = "";
         };
 
-        openEventModalButton.addEventListener("click", openModal);
+        openButton.addEventListener("click", openModal);
 
-        closeEventModalButtons.forEach((button) => {
+        closeButtons.forEach((button) => {
             button.addEventListener("click", closeModal);
         });
 
         document.addEventListener("keydown", (event) => {
-            if (event.key === "Escape" && !eventModal.hidden) {
+            if (event.key === "Escape" && !modal.hidden) {
                 closeModal();
             }
         });
+    };
+
+    if (eventModal && openEventModalButton) {
+        setupModal(eventModal, openEventModalButton, closeEventModalButtons);
+    }
+
+    if (recentWorkModal && openRecentWorkModalButton) {
+        setupModal(recentWorkModal, openRecentWorkModalButton, closeRecentWorkModalButtons);
+    }
+
+    if (galleryPhotoModal && openGalleryPhotoModalButton) {
+        setupModal(galleryPhotoModal, openGalleryPhotoModalButton, closeGalleryPhotoModalButtons);
     }
 
     const eventDetailModal = document.querySelector("[data-event-details-modal]");

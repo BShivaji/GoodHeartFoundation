@@ -118,6 +118,32 @@
             <section class="card dashboard-panel">
                 <div class="dashboard-panel__head">
                     <div>
+                        <p class="dashboard-panel__eyebrow">Photo Gallery</p>
+                        <h2>Manage Gallery Images</h2>
+                    </div>
+                    <button type="button" class="button volunteer-toolbar__button" data-open-gallery-photo-modal>Add Gallery Photo</button>
+                </div>
+                <div class="recent-work-admin-list">
+                    {% for item in gallery_items %}
+                    <article class="recent-work-admin-item">
+                        <img src="{{ url_for('static', filename=item.image) }}" alt="Gallery photo" class="recent-work-admin-item__image">
+                        <div class="recent-work-admin-item__content">
+                            <h3>{{ item.filename }}</h3>
+                            <form method="post" action="{{ url_for('admin.delete_gallery_photo', filename=item.filename) }}">
+                                <button type="submit" class="button volunteer-toolbar__button volunteer-toolbar__button--danger">Delete</button>
+                            </form>
+                        </div>
+                    </article>
+                    {% else %}
+                    <p>No gallery photos added yet.</p>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        <div class="dashboard-grid">
+            <section class="card dashboard-panel">
+                <div class="dashboard-panel__head">
+                    <div>
                         <p class="dashboard-panel__eyebrow">Recent Works</p>
                         <h2>Manage Home Page Posts</h2>
                     </div>
@@ -142,6 +168,27 @@
             </section>
         </div>
     </main>
+</div>
+<div class="admin-modal" data-gallery-photo-modal hidden>
+    <div class="admin-modal__backdrop" data-close-gallery-photo-modal></div>
+    <div class="admin-modal__dialog card" role="dialog" aria-modal="true" aria-labelledby="gallery-photo-modal-title">
+        <div class="admin-modal__header">
+            <div>
+                <p class="admin-sidebar__eyebrow" style="color:var(--accent-dark);opacity:1;">Photo Gallery</p>
+                <h2 id="gallery-photo-modal-title" class="admin-modal__title">Add Gallery Photo</h2>
+            </div>
+            <button type="button" class="admin-modal__close" aria-label="Close gallery photo popup" data-close-gallery-photo-modal>&times;</button>
+        </div>
+        <form method="post" action="{{ url_for('admin.add_gallery_photo') }}" enctype="multipart/form-data" class="admin-modal__form">
+            <label for="gallery-photo-image" class="volunteer-toolbar__label">Image</label>
+            <input id="gallery-photo-image" name="image" type="file" class="volunteer-toolbar__input" accept=".png,.jpg,.jpeg,.webp,.gif" required>
+
+            <div class="admin-modal__actions">
+                <button type="submit" class="button volunteer-toolbar__button">Upload Photo</button>
+                <button type="button" class="button volunteer-toolbar__button volunteer-toolbar__button--secondary" data-close-gallery-photo-modal>Cancel</button>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="admin-modal" data-recent-work-modal hidden>
     <div class="admin-modal__backdrop" data-close-recent-work-modal></div>

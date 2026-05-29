@@ -12,6 +12,7 @@ from controllers.expenditure_controller import (
 from controllers.event_controller import create_event, edit_event_date, get_all_events, remove_event
 from controllers.fund_controller import create_fund, edit_fund, get_fund_summary, remove_fund
 from controllers.recent_work_controller import create_recent_work, get_all_recent_works, remove_recent_work
+from controllers.gallery_controller import get_gallery_photos, save_gallery_photo, remove_gallery_photo
 from controllers.volunteer_controller import get_all_volunteers
 
 
@@ -34,6 +35,7 @@ def dashboard():
         "admin/dashboard.html",
         stats=build_dashboard_stats(),
         recent_works=get_all_recent_works(),
+        gallery_items=get_gallery_photos(),
     )
 
 
@@ -219,6 +221,18 @@ def logout():
 @admin_bp.route("/recent-works", methods=["POST"])
 def add_recent_work():
     create_recent_work(request.form, request.files.get("image"))
+    return redirect(url_for("admin.dashboard"))
+
+
+@admin_bp.route("/gallery-photos", methods=["POST"])
+def add_gallery_photo():
+    save_gallery_photo(request.files.get("image"))
+    return redirect(url_for("admin.dashboard"))
+
+
+@admin_bp.route("/gallery-photos/<filename>/delete", methods=["POST"])
+def delete_gallery_photo(filename):
+    remove_gallery_photo(filename)
     return redirect(url_for("admin.dashboard"))
 
 
