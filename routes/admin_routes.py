@@ -14,6 +14,7 @@ from controllers.fund_controller import create_fund, edit_fund, get_fund_summary
 from controllers.recent_work_controller import create_recent_work, get_all_recent_works, remove_recent_work
 from controllers.gallery_controller import get_gallery_photos, save_gallery_photo, remove_gallery_photo
 from controllers.volunteer_controller import get_all_volunteers
+from utils.auth import login_required
 
 
 admin_bp = Blueprint("admin", __name__)
@@ -30,6 +31,7 @@ def login():
 
 
 @admin_bp.route("/dashboard")
+@login_required
 def dashboard():
     recent_works = []
     gallery_items = []
@@ -53,6 +55,7 @@ def dashboard():
 
 
 @admin_bp.route("/volunteers")
+@login_required
 def manage_volunteers():
     volunteers = get_all_volunteers()
     search_query = request.args.get("q", "").strip()
@@ -83,6 +86,7 @@ def manage_volunteers():
 
 
 @admin_bp.route("/add-events", methods=["GET", "POST"])
+@login_required
 def add_events():
     if request.method == "POST":
         create_event(request.form)
@@ -91,6 +95,7 @@ def add_events():
 
 
 @admin_bp.route("/manage-events")
+@login_required
 def manage_events():
     events = get_all_events()
     search_query = request.args.get("q", "").strip()
@@ -127,18 +132,21 @@ def manage_events():
 
 
 @admin_bp.route("/events/<int:event_id>/update-date", methods=["POST"])
+@login_required
 def update_event_date(event_id):
     edit_event_date(event_id, request.form)
     return redirect(url_for("admin.manage_events"))
 
 
 @admin_bp.route("/events/<int:event_id>/delete", methods=["POST"])
+@login_required
 def delete_event(event_id):
     remove_event(event_id)
     return redirect(url_for("admin.manage_events"))
 
 
 @admin_bp.route("/funds")
+@login_required
 def funds():
     funds_summary = get_fund_summary()
     search_query = request.args.get("q", "").strip()
@@ -162,24 +170,28 @@ def funds():
 
 
 @admin_bp.route("/add-donor", methods=["POST"])
+@login_required
 def add_donor():
     create_fund(request.form)
     return redirect(url_for("admin.funds"))
 
 
 @admin_bp.route("/funds/<int:fund_id>/update", methods=["POST"])
+@login_required
 def update_donor(fund_id):
     edit_fund(fund_id, request.form)
     return redirect(url_for("admin.funds"))
 
 
 @admin_bp.route("/funds/<int:fund_id>/delete", methods=["POST"])
+@login_required
 def delete_donor(fund_id):
     remove_fund(fund_id)
     return redirect(url_for("admin.funds"))
 
 
 @admin_bp.route("/expenditures")
+@login_required
 def expenditures():
     expenditure_summary = get_expenditure_summary()
     search_query = request.args.get("q", "").strip()
@@ -207,24 +219,28 @@ def expenditures():
 
 
 @admin_bp.route("/add-expenditure", methods=["POST"])
+@login_required
 def add_expenditure():
     create_expenditure(request.form)
     return redirect(url_for("admin.expenditures"))
 
 
 @admin_bp.route("/expenditures/<int:expenditure_id>/update", methods=["POST"])
+@login_required
 def update_expenditure(expenditure_id):
     edit_expenditure(expenditure_id, request.form)
     return redirect(url_for("admin.expenditures"))
 
 
 @admin_bp.route("/expenditures/<int:expenditure_id>/delete", methods=["POST"])
+@login_required
 def delete_expenditure(expenditure_id):
     remove_expenditure(expenditure_id)
     return redirect(url_for("admin.expenditures"))
 
 
 @admin_bp.route("/logout")
+@login_required
 def logout():
     session.pop("admin_user", None)
     flash("You have been logged out.", "success")
@@ -232,44 +248,67 @@ def logout():
 
 
 @admin_bp.route("/recent-works", methods=["POST"])
+@login_required
 def add_recent_work():
     try:
-        create_recent_work(request.form, request.files.get("image"))
-        flash("Recent work posted successfully.", "success")
+        image_file = request.files.get("image")
+        if not image_file:
+            flash("No image file provided for recent work.", "error")
+        else:
+            create_recent_work(request.form, image_file)
+            flash("Recent work posted successfully.", "success")
     except ValueError as exc:
         flash(str(exc), "error")
-    except Exception:
-        flash("Unable to add recent work. Please try again.", "error")
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        flash(f"Unable to add recent work: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))
 
 
 @admin_bp.route("/gallery-photos", methods=["POST"])
+@login_required
 def add_gallery_photo():
     try:
-        save_gallery_photo(request.files.get("image"))
-        flash("Gallery photo uploaded successfully.", "success")
+        image_file = request.files.get("image")
+        if not image_file:
+            flash("No image file provided.", "error")
+        else:
+            save_gallery_photo(image_file)
+            flash("Gallery photo uploaded successfully.", "success")
     except ValueError as exc:
         flash(str(exc), "error")
-    except Exception:
-        flash("Unable to upload gallery photo. Please try again.", "error")
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        flash(f"Unable to upload gallery photo: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))
 
 
 @admin_bp.route("/gallery-photos/<filename>/delete", methods=["POST"])
+@login_required
 def delete_gallery_photo(filename):
     try:
-        remove_gallery_photo(filename)
-        flash("Gallery photo deleted successfully.", "success")
-    except Exception:
-        flash("Unable to delete gallery photo. Please try again.", "error")
+        if not filename or not filename.strip():
+            flash("Invalid filename provided.", "error")
+        else:
+            remove_gallery_photo(filename)
+            flash("Gallery photo deleted successfully.", "success")
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        flash(f"Unable to delete gallery photo: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))
 
 
 @admin_bp.route("/recent-works/<int:work_id>/delete", methods=["POST"])
+@login_required
 def delete_recent_work(work_id):
     try:
         remove_recent_work(work_id)
         flash("Recent work deleted successfully.", "success")
-    except Exception:
-        flash("Unable to delete recent work. Please try again.", "error")
+    except Exception as exc:
+        import traceback
+        traceback.print_exc()
+        flash(f"Unable to delete recent work: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))
