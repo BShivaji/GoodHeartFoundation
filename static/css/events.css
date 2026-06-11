@@ -1,37 +1,26 @@
-.event-list .card h3 {
-    margin-top: 0;
+/* ─── EVENTS PAGE SPECIFIC STYLES ──────────────────────────── */
+
+/* Event Card (Overrides on premium-feature-card) */
+.event-card {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.event-meta {
-    color: #6f675d;
-    font-size: 0.95rem;
-}
-
-/* ─── EVENT CARD (public page) ───────────────────────────────── */
-.event-list .card[data-event-card] {
-    border-left: 3px solid var(--accent);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.event-list .card[data-event-card]:hover {
+.event-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 36px rgba(36, 49, 39, 0.14);
+    box-shadow: 0 12px 30px rgba(40, 69, 34, 0.12);
 }
 
 /* Date badge */
 .event-date-badge {
     display: inline-block;
-    background: var(--accent-dark);
-    color: white;
-    padding: 0.3rem 0.75rem;
+    background: #e2faeb;
+    color: #2e8b57;
+    padding: 0.4rem 1rem;
     border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
     font-family: 'Inter', sans-serif;
-}
-
-/* Location icon prefix via CSS */
-.event-meta--location::before {
-    content: "📍 ";
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }

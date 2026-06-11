@@ -4,26 +4,37 @@
 {% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">{% endblock %}
 {% block body %}
 {% include "user/navbar.html" %}
-<section class="page-section">
-    <div class="container">
-        <div class="card" style="margin-bottom:1.25rem;">
-            <p style="letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-dark);font-size:0.85rem;">Impact Stories</p>
-            <h1>Gallery</h1>
-            <p>These moments reflect the people, partnerships, and field efforts that shape our work across outreach programs and community events.</p>
+
+<!-- INTERNAL HERO -->
+<header class="hero-premium hero-premium--internal" style="background-image: linear-gradient(to right, rgba(26, 46, 31, 0.9), rgba(26, 46, 31, 0.6)), url('{{ url_for('static', filename='images/hero_bg.png') }}');">
+    <div class="container hero-premium__container">
+        <div class="hero-premium__content">
+            <span class="hero-premium__eyebrow">Impact Stories</span>
+            <h1 class="hero-premium__title">Moments of Impact</h1>
+            <p class="hero-premium__desc">A visual journey of the people, partnerships, and field efforts that shape our work across outreach programs and community events.</p>
         </div>
+    </div>
+</header>
+
+<section class="section-premium">
+    <div class="container">
         <div class="grid gallery-grid">
             {% for item in gallery_items %}
             <div class="gallery-item">
                 <img src="{{ url_for('static', filename=item.image) }}" alt="Gallery image">
             </div>
             {% else %}
-            <div class="card">
-                <h3>Gallery Updates Coming Soon</h3>
+            <div class="premium-feature-card" style="grid-column: 1 / -1; text-align: center;">
+                <div class="volunteer-area-icon" style="margin: 0 auto 1.5rem auto;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-camera"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                </div>
+                <h3 style="font-size: 1.8rem; color: #1a2e1f; margin-bottom: 0.5rem;">Gallery Updates Coming Soon</h3>
                 <p>New photos will appear here once recent campaign images are added to the system.</p>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
+
 {% include "user/footer.html" %}
 {% endblock %}

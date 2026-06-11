@@ -1,21 +1,23 @@
 .gallery-grid {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
 
 .gallery-item {
     overflow: hidden;
-    border-radius: 14px;
+    border-radius: 12px;
     background: #f0f8ea;
     aspect-ratio: 1 / 1;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .gallery-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 16px 40px rgba(40, 69, 34, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(40, 69, 34, 0.12);
 }
 
 .gallery-item img {
