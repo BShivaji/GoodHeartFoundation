@@ -51,7 +51,7 @@
                 <div class="achievements-carousel__track" data-recent-work-track>
                     {% for item in recent_works %}
                     <article class="achievements-carousel__slide recent-work-slide premium-feature-card" data-recent-work-slide>
-                        <img src="{{ url_for('static', filename=item.image_path) }}" alt="{{ item.title }}" class="premium-feature-card__img">
+                        <img src="{{ url_for('static', filename=item.image_path) }}" alt="{{ item.title }}" class="premium-feature-card__img" onerror="this.src='{{ url_for('static', filename='images/hero_bg.png') }}'">
                         <div class="premium-feature-card__content">
                             <h3>{{ item.title }}</h3>
                             <p>{{ item.description }}</p>
@@ -115,11 +115,8 @@
             <div class="achievements-carousel__viewport">
                 <div class="achievements-carousel__track" data-achievement-track>
                     {% for item in achievement_images %}
-                    <article class="achievements-carousel__slide premium-feature-card" data-achievement-slide>
-                        <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title }}" class="premium-feature-card__img">
-                        <div class="premium-feature-card__content" style="padding: 1.5rem;">
-                            <h3 style="margin:0;">{{ item.title }}</h3>
-                        </div>
+                    <article class="achievements-carousel__slide" data-achievement-slide>
+                        <img src="{{ url_for('static', filename=item.image) }}" alt="Achievement" class="achievements-carousel__image" style="margin:0; height: 320px; width: 100%; object-fit: contain; background-color: #fafbf9; border-radius: 12px;" onerror="this.src='{{ url_for('static', filename='images/hero_bg.png') }}'">
                     </article>
                     {% endfor %}
                 </div>

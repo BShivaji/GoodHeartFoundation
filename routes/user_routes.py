@@ -15,23 +15,23 @@ user_bp = Blueprint("user", __name__)
 
 @user_bp.route("/")
 def home():
-    achievements_dir = os.path.join(
+    gallery_dir = os.path.join(
         os.path.dirname(os.path.dirname(__file__)),
         "static",
         "images",
-        "achievements",
+        "gallery",
     )
     achievement_images = []
     allowed_extensions = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
-    if os.path.isdir(achievements_dir):
-        for filename in sorted(os.listdir(achievements_dir)):
+    if os.path.isdir(gallery_dir):
+        for filename in sorted(os.listdir(gallery_dir)):
             _, extension = os.path.splitext(filename.lower())
             if extension in allowed_extensions:
                 achievement_images.append(
                     {
                         "title": os.path.splitext(filename)[0].replace("_", " ").replace("-", " ").title(),
-                        "image": f"images/achievements/{filename}",
+                        "image": f"images/gallery/{filename}",
                     }
                 )
 
