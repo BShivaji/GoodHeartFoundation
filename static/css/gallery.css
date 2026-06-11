@@ -9,19 +9,41 @@
     border-radius: 14px;
     background: #f0f8ea;
     aspect-ratio: 1 / 1;
+    position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 28px rgba(40, 69, 34, 0.2);
+    transform: scale(1.02);
+    box-shadow: 0 16px 40px rgba(40, 69, 34, 0.25);
 }
 
-.gallery-grid img {
+.gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Dark overlay that fades in on hover */
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(32, 50, 39, 0.25);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 14px;
+    pointer-events: none;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
 }
 
 @media (max-width: 768px) {

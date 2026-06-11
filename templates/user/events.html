@@ -14,8 +14,9 @@
         <div class="grid">
             {% for event in events %}
             <div class="card" data-event-card>
+                <span class="event-date-badge">{{ event.event_date }}</span>
                 <h3>{{ event.title }}</h3>
-                <p class="event-meta">{{ event.event_date }} | {{ event.location }}</p>
+                <p class="event-meta event-meta--location">{{ event.location }}</p>
                 <p>{{ event.description }}</p>
             </div>
             {% else %}

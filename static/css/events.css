@@ -6,3 +6,32 @@
     color: #6f675d;
     font-size: 0.95rem;
 }
+
+/* ─── EVENT CARD (public page) ───────────────────────────────── */
+.event-list .card[data-event-card] {
+    border-left: 3px solid var(--accent);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-list .card[data-event-card]:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(36, 49, 39, 0.14);
+}
+
+/* Date badge */
+.event-date-badge {
+    display: inline-block;
+    background: var(--accent-dark);
+    color: white;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Location icon prefix via CSS */
+.event-meta--location::before {
+    content: "📍 ";
+}

@@ -8,9 +8,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/transition.css') }}">
     <style>
-        .card.flash-message { margin-bottom: 0.75rem; }
-        .card.flash-message.error { border-left: 4px solid #b64535; }
-        .card.flash-message.success { border-left: 4px solid #3e7c47; }
+        .card.flash-message {
+            margin-bottom: 0.75rem;
+            animation: slideDown 0.3s ease forwards;
+        }
+        .card.flash-message.error {
+            background: #fff5f5;
+            border-left: 4px solid #c0392b;
+            color: #7b2020;
+        }
+        .card.flash-message.error::before {
+            content: "⚠ ";
+        }
+        .card.flash-message.success {
+            background: #f0fff4;
+            border-left: 4px solid #27ae60;
+            color: #1e5e35;
+        }
+        .card.flash-message.success::before {
+            content: "✓ ";
+        }
     </style>
     {% block styles %}{% endblock %}
 </head>
