@@ -4,214 +4,198 @@
 {% block body %}
 {% include "user/navbar.html" %}
 <div class="home-page">
-<section class="home-brand-strip">
-    <div class="container">
-        <div class="card home-brand-strip__card">
-            <div class="navbar-brand home-brand-strip__brand">
-                <img
-                    src="{{ url_for('static', filename='images/logo/logo.png') }}"
-                    alt="Good Heart Foundation logo"
-                    class="navbar-brand__logo"
-                >
-                <div>
-                    <strong class="home-brand-strip__title">Good Heart Foundation</strong>
-                    <span class="home-brand-strip__subtitle">Service, dignity, and community care</span>
-                </div>
-            </div>
-            <p class="home-brand-strip__text">Working with volunteers and local partners to turn compassion into practical support for every community we reach.</p>
-        </div>
-    </div>
-</section>
-<section class="hero">
-    <div class="container">
-        <div class="card home-hero-card">
-            <div>
-                <p class="hero-eyebrow">Community First</p>
-                <h1>Support people with compassion, structure, and consistent action.</h1>
-                <p>Good Heart Foundation brings together volunteers, organizers, and donors to run practical local programs that make help feel immediate and personal.</p>
-                <div class="hero-actions">
-                    <a class="button" href="{{ url_for('volunteer.show_volunteer_form') }}">Become a Volunteer</a>
-                    <a class="button hero-cta-button" href="{{ url_for('event.list_events') }}">Explore Events</a>
-                </div>
-            </div>
-            <div class="card home-hero-stats-card">
-                <h3 style="margin-top:0;">This Month</h3>
-                <p><strong>{{ upcoming_events }}</strong> Upcoming Events</p>
-                <p><strong>&#8377;{{ total_raised | int | string }}</strong> Total Raised</p>
-                <p><strong>{{ volunteer_count }}</strong> Active Volunteers</p>
+<section class="hero-premium" style="background-image: linear-gradient(to right, rgba(20, 35, 25, 0.85) 0%, rgba(20, 35, 25, 0.5) 50%, rgba(20, 35, 25, 0.2) 100%), url('{{ url_for('static', filename='images/hero_bg.png') }}');">
+    <div class="container hero-premium__container">
+        <div class="hero-premium__content">
+            <span class="hero-premium__eyebrow">Service &amp; Dignity</span>
+            <h1 class="hero-premium__headline">Turning Compassion into Practical Support.</h1>
+            <p class="hero-premium__subhead">We organize volunteers, health drives, and food programs that make help feel immediate and personal. Because every community deserves care.</p>
+            <div class="hero-premium__actions">
+                <a class="button button-primary-large" href="#">Donate Now</a>
+                <a class="button button-secondary-large" href="{{ url_for('volunteer.show_volunteer_form') }}">Join as Volunteer</a>
             </div>
         </div>
     </div>
 </section>
-<section class="page-section">
-    <div class="container">
-        <div class="card recent-works-section">
-            <div class="achievements-section__header">
-                <p class="about-section__eyebrow">Our Recent Works</p>
-                <h2>Latest Community Efforts</h2>
-                <p>From awareness drives to support programs, our recent works reflect the ongoing efforts we make to serve communities with consistency and care.</p>
-            </div>
-            {% if recent_works %}
-            <div class="recent-works-carousel" data-recent-works-carousel>
-                <button type="button" class="achievements-carousel__control" data-recent-work-prev aria-label="Previous recent work">&#8249;</button>
-                <div class="achievements-carousel__viewport">
-                    <div class="achievements-carousel__track" data-recent-work-track>
-                        {% for item in recent_works %}
-                        <article class="achievements-carousel__slide recent-work-slide" data-recent-work-slide>
-                            <img
-                                src="{{ url_for('static', filename=item.image_path) }}"
-                                alt="{{ item.title }}"
-                                class="achievements-carousel__image"
-                            >
-                            <div class="recent-work-slide__content">
-                                <h3>{{ item.title }}</h3>
-                                <p>{{ item.description }}</p>
-                            </div>
-                        </article>
-                        {% endfor %}
-                    </div>
-                </div>
-                <button type="button" class="achievements-carousel__control" data-recent-work-next aria-label="Next recent work">&#8250;</button>
-            </div>
-            {% else %}
-            <div class="achievements-empty-state">
-                <p>Recent works posted by the admin will appear here as a carousel.</p>
-            </div>
-            {% endif %}
+
+<section class="impact-bar">
+    <div class="container impact-bar__grid">
+        <div class="impact-stat">
+            <strong class="impact-stat__number">{{ upcoming_events }}</strong>
+            <span class="impact-stat__label">Upcoming Events</span>
+        </div>
+        <div class="impact-stat">
+            <strong class="impact-stat__number">&#8377;{{ total_raised | int | string }}</strong>
+            <span class="impact-stat__label">Total Raised</span>
+        </div>
+        <div class="impact-stat">
+            <strong class="impact-stat__number">{{ volunteer_count }}</strong>
+            <span class="impact-stat__label">Active Volunteers</span>
+        </div>
+        <div class="impact-stat impact-stat--highlight">
+            <p>100% of public donations directly fund our field projects.</p>
         </div>
     </div>
 </section>
-<section class="page-section">
+<section class="section-premium section-premium--alt">
     <div class="container">
-        <div class="card contribution-section">
-            <div class="achievements-section__header">
-                <p class="about-section__eyebrow">Our Streams Of Contribution</p>
-                <h2>Areas Where We Create Impact</h2>
-                <p>Our work reaches communities through focused streams of service that support people, nature, health, and compassionate care.</p>
-            </div>
-            <div class="grid contribution-section__grid">
-                <div class="card contribution-card">
-                    <span class="contribution-card__icon">🌱</span>
-                    <h2>Plantation for Nature</h2>
-                    <p>We organize tree plantation drives and green-cover initiatives to improve local environments and encourage community stewardship.</p>
-                </div>
-                <div class="card contribution-card">
-                    <span class="contribution-card__icon">🏥</span>
-                    <h2>Medical Awareness</h2>
-                    <p>Our programs spread health awareness through camps, preventive education, and local support sessions for families and individuals.</p>
-                </div>
-                <div class="card contribution-card">
-                    <span class="contribution-card__icon">🤝</span>
-                    <h2>Social Welfare</h2>
-                    <p>We support communities through food drives, education outreach, resource distribution, and people-first service activities.</p>
-                </div>
-                <div class="card contribution-card">
-                    <span class="contribution-card__icon">🐾</span>
-                    <h2>Animal Welfare</h2>
-                    <p>We promote care, rescue support, feeding initiatives, and awareness efforts that improve safety and dignity for animals.</p>
-                </div>
-            </div>
+        <div class="section-header-center">
+            <p class="section-premium__eyebrow">Our Recent Works</p>
+            <h2 class="section-premium__title">Latest Community Efforts</h2>
+            <p class="section-premium__desc">From awareness drives to support programs, our recent works reflect the ongoing efforts we make to serve communities with consistency and care.</p>
         </div>
+        {% if recent_works %}
+        <div class="recent-works-carousel" data-recent-works-carousel>
+            <button type="button" class="achievements-carousel__control" data-recent-work-prev aria-label="Previous recent work">&#8249;</button>
+            <div class="achievements-carousel__viewport">
+                <div class="achievements-carousel__track" data-recent-work-track>
+                    {% for item in recent_works %}
+                    <article class="achievements-carousel__slide recent-work-slide premium-feature-card" data-recent-work-slide>
+                        <img src="{{ url_for('static', filename=item.image_path) }}" alt="{{ item.title }}" class="premium-feature-card__img">
+                        <div class="premium-feature-card__content">
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.description }}</p>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="button" class="achievements-carousel__control" data-recent-work-next aria-label="Next recent work">&#8250;</button>
+        </div>
+        {% else %}
+        <div class="achievements-empty-state premium-feature-card">
+            <p>Recent works posted by the admin will appear here as a carousel.</p>
+        </div>
+        {% endif %}
     </div>
 </section>
-<section class="page-section">
+
+<section class="section-premium">
     <div class="container">
-        <div class="card achievements-section">
-            <div class="achievements-section__header">
-                <p class="about-section__eyebrow">Our Achievements</p>
-                <h2>Impact Through Action</h2>
-                <p>A visual look at the meaningful programs, milestones, and moments created by Good Heart Foundation.</p>
-            </div>
-            {% if achievement_images %}
-            <div class="achievements-carousel" data-achievements-carousel>
-                <button type="button" class="achievements-carousel__control" data-achievement-prev aria-label="Previous achievement">&#8249;</button>
-                <div class="achievements-carousel__viewport">
-                    <div class="achievements-carousel__track" data-achievement-track>
-                        {% for item in achievement_images %}
-                        <article class="achievements-carousel__slide" data-achievement-slide>
-                            <img
-                                src="{{ url_for('static', filename=item.image) }}"
-                                alt="{{ item.title }}"
-                                class="achievements-carousel__image"
-                            >
-                            <div class="achievements-carousel__caption">
-                                <h3>{{ item.title }}</h3>
-                                <p>Good Heart Foundation achievement highlight</p>
-                            </div>
-                        </article>
-                        {% endfor %}
-                    </div>
-                </div>
-                <button type="button" class="achievements-carousel__control" data-achievement-next aria-label="Next achievement">&#8250;</button>
-            </div>
-            {% else %}
-            <div class="achievements-empty-state">
-                <p>Add image files to <code>static/images/achievements</code> to display the achievements carousel here.</p>
-            </div>
-            {% endif %}
+        <div class="section-header-center">
+            <p class="section-premium__eyebrow">Our Streams Of Contribution</p>
+            <h2 class="section-premium__title">Areas Where We Create Impact</h2>
+            <p class="section-premium__desc">Our work reaches communities through focused streams of service that support people, nature, health, and compassionate care.</p>
         </div>
-    </div>
-</section>
-<section class="page-section">
-    <div class="container">
-        <div class="card">
-            <h2>How We Work</h2>
-            <div class="grid">
-                <div>
-                    <h3>Listen First</h3>
-                    <p>We build programs around local needs instead of assuming one solution fits every neighborhood.</p>
-                </div>
-                <div>
-                    <h3>Mobilize Quickly</h3>
-                    <p>Our volunteer network helps us respond to event logistics, awareness drives, and emergency support.</p>
-                </div>
-                <div>
-                    <h3>Stay Accountable</h3>
-                    <p>We track activities, funds, and participation so every effort stays visible and purposeful.</p>
-                </div>
+        <div class="grid contribution-section__grid">
+            <div class="premium-feature-card">
+                <span class="premium-feature-card__icon">🌱</span>
+                <h3>Plantation for Nature</h3>
+                <p>We organize tree plantation drives and green-cover initiatives to improve local environments and encourage community stewardship.</p>
             </div>
-            <div style="margin-top:1.5rem;">
-                <a class="button" href="{{ url_for('user.gallery') }}">See The Works Done</a>
+            <div class="premium-feature-card">
+                <span class="premium-feature-card__icon">🏥</span>
+                <h3>Medical Awareness</h3>
+                <p>Our programs spread health awareness through camps, preventive education, and local support sessions for families and individuals.</p>
+            </div>
+            <div class="premium-feature-card">
+                <span class="premium-feature-card__icon">🤝</span>
+                <h3>Social Welfare</h3>
+                <p>We support communities through food drives, education outreach, resource distribution, and people-first service activities.</p>
+            </div>
+            <div class="premium-feature-card">
+                <span class="premium-feature-card__icon">🐾</span>
+                <h3>Animal Welfare</h3>
+                <p>We promote care, rescue support, feeding initiatives, and awareness efforts that improve safety and dignity for animals.</p>
             </div>
         </div>
     </div>
 </section>
-<section class="page-section">
+
+<section class="section-premium section-premium--alt">
     <div class="container">
-        <div class="card about-section">
-            <div class="about-section__header">
-                <p class="about-section__eyebrow">About Us</p>
-                <h2>Mission and Vision</h2>
-                <p>Good Heart Foundation exists to turn care into steady action through environmental work, health awareness, welfare support, and community-led service.</p>
+        <div class="section-header-center">
+            <p class="section-premium__eyebrow">Our Achievements</p>
+            <h2 class="section-premium__title">Impact Through Action</h2>
+            <p class="section-premium__desc">A visual look at the meaningful programs, milestones, and moments created by Good Heart Foundation.</p>
+        </div>
+        {% if achievement_images %}
+        <div class="achievements-carousel" data-achievements-carousel>
+            <button type="button" class="achievements-carousel__control" data-achievement-prev aria-label="Previous achievement">&#8249;</button>
+            <div class="achievements-carousel__viewport">
+                <div class="achievements-carousel__track" data-achievement-track>
+                    {% for item in achievement_images %}
+                    <article class="achievements-carousel__slide premium-feature-card" data-achievement-slide>
+                        <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.title }}" class="premium-feature-card__img">
+                        <div class="premium-feature-card__content" style="padding: 1.5rem;">
+                            <h3 style="margin:0;">{{ item.title }}</h3>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="grid about-section__grid">
-                <div class="card about-section__item">
+            <button type="button" class="achievements-carousel__control" data-achievement-next aria-label="Next achievement">&#8250;</button>
+        </div>
+        {% else %}
+        <div class="achievements-empty-state premium-feature-card">
+            <p>Add image files to <code>static/images/achievements</code> to display the achievements carousel here.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section-premium">
+    <div class="container">
+        <div class="section-header-center">
+            <p class="section-premium__eyebrow">Process</p>
+            <h2 class="section-premium__title">How We Work</h2>
+        </div>
+        <div class="grid contribution-section__grid">
+            <div class="number-step">
+                <div class="number-step__num">01</div>
+                <h3>Listen First</h3>
+                <p>We build programs around local needs instead of assuming one solution fits every neighborhood.</p>
+            </div>
+            <div class="number-step">
+                <div class="number-step__num">02</div>
+                <h3>Mobilize Quickly</h3>
+                <p>Our volunteer network helps us respond to event logistics, awareness drives, and emergency support.</p>
+            </div>
+            <div class="number-step">
+                <div class="number-step__num">03</div>
+                <h3>Stay Accountable</h3>
+                <p>We track activities, funds, and participation so every effort stays visible and purposeful.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3.5rem;">
+            <a class="button button-primary-large" href="{{ url_for('user.gallery') }}">See The Works Done</a>
+        </div>
+    </div>
+</section>
+
+<section class="section-premium section-premium--alt">
+    <div class="container">
+        <div class="editorial-split">
+            <div class="editorial-split__content">
+                <p class="section-premium__eyebrow">About Us</p>
+                <h2 class="section-premium__title">Mission and Vision</h2>
+                <div class="editorial-split__block">
                     <h3>Our Mission</h3>
                     <p>To serve communities with compassion through practical initiatives that improve health awareness, social welfare, environmental responsibility, and humane care for all living beings.</p>
                 </div>
-                <div class="card about-section__item">
+                <div class="editorial-split__block">
                     <h3>Our Vision</h3>
                     <p>To build a future where every community has access to care, dignity, and opportunity, supported by volunteers, awareness, and sustainable grassroots action.</p>
                 </div>
             </div>
+            <div class="editorial-split__image-wrap">
+                <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Logo" class="editorial-split__image" style="object-fit: contain; padding: 2rem;">
+            </div>
         </div>
     </div>
 </section>
-<section class="page-section founder-section">
+
+<section class="section-premium">
     <div class="container">
-        <div class="card founder-section__card">
-            <div class="founder-section__image-wrap">
-                <img
-                    src="{{ url_for('static', filename='images/logo/founder.jpeg') }}"
-                    alt="Founder of Good Heart Foundation"
-                    class="founder-section__image"
-                >
+        <div class="editorial-split editorial-split--reverse">
+            <div class="editorial-split__content">
+                <p class="section-premium__eyebrow">Founder</p>
+                <h2 class="section-premium__title">Message From the Founder</h2>
+                <p class="editorial-split__text">Good Heart Foundation was built on the belief that meaningful change starts when ordinary people choose to care consistently. Every activity we run is rooted in service, accountability, and respect for both people and nature.</p>
+                <p class="editorial-split__text">Our goal is to create a space where volunteers, supporters, and communities can come together to solve real problems with empathy and action.</p>
             </div>
-            <div class="founder-section__content">
-                <p class="about-section__eyebrow">Founder</p>
-                <h2>Message From the Founder</h2>
-                <p>Good Heart Foundation was built on the belief that meaningful change starts when ordinary people choose to care consistently. Every activity we run is rooted in service, accountability, and respect for both people and nature.</p>
-                <p>Our goal is to create a space where volunteers, supporters, and communities can come together to solve real problems with empathy and action.</p>
+            <div class="editorial-split__image-wrap">
+                <img src="{{ url_for('static', filename='images/logo/founder.jpeg') }}" alt="Founder of Good Heart Foundation" class="editorial-split__image">
             </div>
         </div>
     </div>

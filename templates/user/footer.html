@@ -1,22 +1,38 @@
-<footer>
-    <div class="container footer-grid">
-        <div>
-            <strong class="footer-heading">Good Heart Foundation</strong>
-            <p>We support local families through health drives, food programs, education outreach, and volunteer-led events.</p>
+<footer class="footer-modern">
+    <div class="container footer-grid-compact">
+        <div class="footer-col brand-col">
+            <div class="footer-brand">
+                <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Logo" class="footer-logo">
+                <span class="footer-brand-name">Good Heart Foundation</span>
+            </div>
+            <p class="footer-mission">We support local families through health drives, food programs, and education outreach.</p>
         </div>
-        <div>
-            <strong class="footer-heading">Quick Links</strong>
-            <p class="footer-link"><a href="{{ url_for('user.home') }}">Home</a></p>
-            <p class="footer-link"><a href="{{ url_for('event.list_events') }}">Events</a></p>
-            <p class="footer-link"><a href="{{ url_for('volunteer.show_volunteer_form') }}">Volunteer</a></p>
+        <div class="footer-col">
+            <strong class="footer-heading">Navigation</strong>
+            <nav class="footer-nav">
+                <a href="{{ url_for('user.home') }}">Home</a>
+                <a href="{{ url_for('event.list_events') }}">Events</a>
+                <a href="{{ url_for('volunteer.show_volunteer_form') }}">Volunteer</a>
+                <a href="{{ url_for('user.gallery') }}">Gallery</a>
+            </nav>
         </div>
-        <div>
+        <div class="footer-col">
             <strong class="footer-heading">Contact</strong>
-            <p class="footer-link">Email: goodheartfoundation@gmail.com</p>
-            <p class="footer-link">Name : Sai Kumar Pasupuleti</p>
-            <p class="footer-link">Phone: +91 9059127385 , +91 9703100272</p>
-            <p class="footer-link">Place : Kavali, Andhra Pradesh, India - 524201</p>
+            <div class="footer-contact">
+                <p>goodheartfoundation@gmail.com</p>
+                <p>+91 9059127385</p>
+                <p>Kavali, AP, India</p>
+            </div>
+        </div>
+        <div class="footer-col action-col">
+            <strong class="footer-heading">Take Action</strong>
+            <div class="footer-actions">
+                <a href="#" class="button button-donate">Donate Now</a>
+                <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="button button-volunteer">Become Volunteer</a>
+            </div>
         </div>
     </div>
-    <p class="footer-copyright">© 2026 Good Heart Foundation. All rights reserved.</p>
+    <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Good Heart Foundation. All rights reserved.</p>
+    </div>
 </footer>
