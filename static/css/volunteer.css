@@ -14,7 +14,7 @@
 
 .volunteer-area-icon {
     font-size: 2.5rem;
-    background: #f0fdf4;
+    background: linear-gradient(135deg, #f0fdf4 0%, #e2faeb 100%);
     width: 60px;
     height: 60px;
     display: flex;
@@ -22,7 +22,14 @@
     justify-content: center;
     border-radius: 12px;
     flex-shrink: 0;
-    box-shadow: 0 4px 10px rgba(131, 211, 82, 0.1);
+    box-shadow: 0 4px 12px rgba(131, 211, 82, 0.15);
+    color: #2e8b57; /* Deep, attractive green for the SVG */
+}
+
+.volunteer-area-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5px;
 }
 
 .volunteer-area-text h4 {

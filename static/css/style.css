@@ -939,25 +939,22 @@ nav .navbar-links .button:hover {
     width: 60px;
     height: 60px;
     object-fit: contain;
-    border-radius: 50%;
-    background: #fff; /* White bg for better logo visibility */
-    padding: 0.3rem;
 }
 
-.footer-brand-name {
-    font-family: 'Playfair Display', serif;
+.footer-org-name {
     font-size: 1.4rem;
-    font-weight: 700;
+    font-family: 'Playfair Display', serif;
     color: #fff;
+    margin: 0;
     line-height: 1.2;
 }
 
 .footer-mission {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
     font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.75);
+    max-width: 320px;
     margin: 0;
-    max-width: 90%;
 }
 
 .footer-heading {
