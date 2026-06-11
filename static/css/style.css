@@ -302,14 +302,25 @@ nav .navbar-links .button:hover {
 /* ─── HERO PREMIUM (New Redesign) ────────────────────────────── */
 .hero-premium {
     position: relative;
-    padding: 8rem 0;
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    min-height: 80vh;
+    padding: 10rem 0 6rem 0; /* Huge padding for hero */
+    min-height: 85vh;
     display: flex;
     align-items: center;
-    border-bottom: 4px solid var(--accent);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+    color: #fff;
+}
+
+.hero-premium--internal {
+    min-height: 45vh;
+    padding: 8rem 0 4rem 0;
+    text-align: center;
+}
+
+.hero-premium--internal .hero-premium__content {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero-premium__container {
@@ -387,6 +398,75 @@ nav .navbar-links .button:hover {
 
 .button-secondary-large:hover {
     background: rgba(255,255,255,0.25);
+}
+
+/* ─── PREMIUM FORMS ────────────────────────────────────────────── */
+.premium-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.premium-form__row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.premium-form__row > * {
+    flex: 1;
+}
+
+.premium-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.premium-form__group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a2e1f;
+}
+
+.premium-form__input,
+.premium-form__select,
+.premium-form__file {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    border: 1px solid #d1d9d3;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.premium-form__input:focus,
+.premium-form__select:focus {
+    outline: none;
+    border-color: var(--accent-dark);
+    box-shadow: 0 0 0 3px rgba(131, 211, 82, 0.2);
+}
+
+.premium-form__select-wrapper {
+    position: relative;
+}
+
+.premium-form__select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.premium-form__select-wrapper::after {
+    content: "▼";
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    color: #888;
+    pointer-events: none;
 }
 
 /* ─── IMPACT BAR ─────────────────────────────────────────────── */

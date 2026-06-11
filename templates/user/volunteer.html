@@ -4,72 +4,129 @@
 {% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/volunteer.css') }}">{% endblock %}
 {% block body %}
 {% include "user/navbar.html" %}
-<section class="page-section">
-    <div class="container volunteer-page">
-        <div class="card volunteer-form-card">
-            <h1>Volunteer With Us</h1>
-            <p>Tell us about your availability, interests, and motivation. We use this form to match people with the right events and support roles.</p>
-            <form id="volunteer-form" class="volunteer-form" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <label for="name">Full Name</label>
-                <input id="name" name="name" type="text" required>
 
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender" required>
-                    <option value="">Select gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
-                </select>
-
-                <label for="place">Place</label>
-                <input id="place" name="place" type="text" required>
-
-                <label for="phone">Mobile Number</label>
-                <input id="phone" name="phone" type="tel" inputmode="tel" required>
-
-                <label for="message">Why To Join Organization</label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell us why you want to join the organization." required></textarea>
-
-                <label for="area_interest">Area of Interest</label>
-                <select id="area_interest" name="area_interest" required>
-                    <option value="">Select area of interest</option>
-                    <option value="Nature Protection">Nature Protection</option>
-                    <option value="Education Support">Education Support</option>
-                    <option value="Fund Raising">Fund Raising</option>
-                    <option value="Medical Wing">Medical Wing</option>
-                    <option value="Animal Welfare">Animal Welfare</option>
-                    <option value="Social Awareness">Social Awareness</option>
-                </select>
-
-                <label for="document">Upload Supporting Document</label>
-                <input id="document" name="document" type="file">
-                <button class="button" type="submit">Submit Application</button>
-            </form>
+<!-- INTERNAL HERO -->
+<header class="hero-premium hero-premium--internal" style="background-image: linear-gradient(to right, rgba(26, 46, 31, 0.9), rgba(26, 46, 31, 0.6)), url('{{ url_for('static', filename='images/hero_ngo_community_1781195893159.png') }}');">
+    <div class="container hero-premium__container">
+        <div class="hero-premium__content">
+            <h1 class="hero-premium__title">Join the Movement</h1>
+            <p class="hero-premium__subtitle" style="font-size: 1.25rem;">Support community action through health outreach, environmental work, welfare programs, and awareness drives.</p>
         </div>
-        <div class="volunteer-side-column">
-            <div class="card volunteer-visual-card">
-                <img
-                    src="{{ url_for('static', filename='images/logo/logo.png') }}"
-                    alt="Volunteer support visual"
-                    class="volunteer-visual-card__image"
-                >
-                <div class="volunteer-visual-card__overlay">
-                    <p class="volunteer-visual-card__eyebrow">Join the Movement</p>
-                    <h2 style="text-align:center;">Volunteer With Purpose</h2>
-                    <p style="text-align:center;">Support community action through health outreach, environmental work, welfare programs, and awareness drives.</p>
-                </div>
+    </div>
+</header>
+
+<section class="section-premium section-premium--alt">
+    <div class="container">
+        <div class="editorial-split">
+            <!-- Form Section -->
+            <div class="editorial-split__content volunteer-form-container">
+                <span class="section-premium__eyebrow">Apply Now</span>
+                <h2 class="section-premium__title" style="font-size: 2.2rem;">Volunteer With Purpose</h2>
+                <p class="section-premium__desc" style="margin-bottom: 2rem;">Tell us about your availability, interests, and motivation. We use this form to match people with the right events and support roles.</p>
+                
+                <form id="volunteer-form" class="premium-form" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    
+                    <div class="premium-form__group">
+                        <label for="name">Full Name</label>
+                        <input id="name" name="name" type="text" required class="premium-form__input">
+                    </div>
+
+                    <div class="premium-form__row">
+                        <div class="premium-form__group">
+                            <label for="gender">Gender</label>
+                            <div class="premium-form__select-wrapper">
+                                <select id="gender" name="gender" required class="premium-form__select">
+                                    <option value="">Select gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="premium-form__group">
+                            <label for="phone">Mobile Number</label>
+                            <input id="phone" name="phone" type="tel" inputmode="tel" required class="premium-form__input">
+                        </div>
+                    </div>
+
+                    <div class="premium-form__group">
+                        <label for="place">Place / City</label>
+                        <input id="place" name="place" type="text" required class="premium-form__input">
+                    </div>
+
+                    <div class="premium-form__group">
+                        <label for="area_interest">Area of Interest</label>
+                        <div class="premium-form__select-wrapper">
+                            <select id="area_interest" name="area_interest" required class="premium-form__select">
+                                <option value="">Select area of interest</option>
+                                <option value="Nature Protection">Nature Protection</option>
+                                <option value="Education Support">Education Support</option>
+                                <option value="Fund Raising">Fund Raising</option>
+                                <option value="Medical Wing">Medical Wing</option>
+                                <option value="Animal Welfare">Animal Welfare</option>
+                                <option value="Social Awareness">Social Awareness</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="premium-form__group">
+                        <label for="message">Why To Join Organization</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us why you want to join the organization..." required class="premium-form__input"></textarea>
+                    </div>
+
+                    <div class="premium-form__group">
+                        <label for="document">Upload Supporting Document</label>
+                        <input id="document" name="document" type="file" class="premium-form__file">
+                    </div>
+                    
+                    <button class="button button--primary" type="submit" style="width: 100%; margin-top: 1rem; padding: 1rem;">Submit Application</button>
+                </form>
             </div>
-            <div class="card volunteer-info-card">
-                <h2 style="text-align:center;">Volunteer Areas</h2>
-                <p><strong>Nature Protection:</strong> Plantation drives, clean-up activities, and local green campaigns.</p>
-                <p><strong>Education Support:</strong> Mentoring, study circles, and community learning sessions.</p>
-                <p><strong>Medical and Welfare:</strong> Awareness drives, camps, fundraising, and social support work.</p>
-                <p><strong>Animal Welfare : </strong> Contribute to the welfare of the Animals in localities.</p>
+
+            <!-- Info Section -->
+            <div class="editorial-split__content" style="align-self: start;">
+                <div class="volunteer-info-areas premium-feature-card">
+                    <h3 style="font-size: 1.8rem; color: #1a2e1f; margin-bottom: 2rem; text-align: left;">Volunteer Areas</h3>
+                    
+                    <div class="volunteer-area-item">
+                        <div class="volunteer-area-icon">🌱</div>
+                        <div class="volunteer-area-text">
+                            <h4>Nature Protection</h4>
+                            <p>Plantation drives, clean-up activities, and local green campaigns.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="volunteer-area-item">
+                        <div class="volunteer-area-icon">📚</div>
+                        <div class="volunteer-area-text">
+                            <h4>Education Support</h4>
+                            <p>Mentoring, study circles, and community learning sessions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="volunteer-area-item">
+                        <div class="volunteer-area-icon">❤️</div>
+                        <div class="volunteer-area-text">
+                            <h4>Medical and Welfare</h4>
+                            <p>Awareness drives, camps, fundraising, and social support work.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="volunteer-area-item">
+                        <div class="volunteer-area-icon">🐾</div>
+                        <div class="volunteer-area-text">
+                            <h4>Animal Welfare</h4>
+                            <p>Contribute to the welfare of the animals in localities.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
 {% include "user/footer.html" %}
 {% endblock %}
 {% block scripts %}<script src="{{ url_for('static', filename='js/volunteer.js') }}"></script>{% endblock %}
