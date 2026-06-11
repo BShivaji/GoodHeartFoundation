@@ -63,70 +63,85 @@ textarea {
 }
 
 /* ─── NAVBAR ─────────────────────────────────────────────────── */
-nav {
+.premium-nav {
     background: #203227;
     color: #fff;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-footer {
-    background: #203227;
-    color: #fff;
-    border-top: 3px solid var(--accent);
-}
-
-nav .container {
+.premium-nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-    padding: 1.1rem 0;
+    padding: 1rem 0;
 }
 
-nav .navbar-links {
+.navbar-brand {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar-brand__logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.navbar-brand__name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #fff;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 1.5rem;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
 }
 
-nav a {
-    color: inherit;
+.premium-nav a:not(.button) {
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    transition: color 0.2s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-nav a:hover,
-nav a:focus-visible {
-    text-decoration: none;
+.premium-nav a:not(.button):hover,
+.premium-nav a.active:not(.button) {
     color: var(--accent);
 }
 
-/* Active nav link indicator */
-nav .navbar-links a.active {
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 2px;
-}
-
 /* Join Us button */
-nav .navbar-links .button {
-    padding: 0.65rem 1.4rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 14px rgba(83, 196, 26, 0.3);
+.premium-nav .navbar-button {
+    background: var(--accent);
+    color: #1a2e1f;
+    padding: 0.6rem 1.4rem;
+    font-weight: 700;
+    border-radius: 999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    text-decoration: none;
 }
 
-nav .navbar-links .button:hover {
+.premium-nav .navbar-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(83, 196, 26, 0.4);
-    color: #fff;
+    box-shadow: 0 8px 20px rgba(131, 211, 82, 0.2);
+    background: #94e363;
 }
 
 /* ─── FOOTER LINKS (Removed legacy styles) ──────────────────── */
@@ -930,9 +945,16 @@ nav .navbar-links .button:hover {
 
 .footer-brand {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1.25rem;
+}
+
+.footer-brand__header {
+    display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1.25rem;
 }
 
 .footer-logo {
