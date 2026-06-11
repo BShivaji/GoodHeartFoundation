@@ -1,4 +1,8 @@
+import logging
+import os
+
 from flask import Flask, flash, redirect, url_for
+from flask_wtf.csrf import CSRFProtect
 from werkzeug.exceptions import RequestEntityTooLarge
 
 from config import Config
@@ -8,10 +12,16 @@ from routes.user_routes import user_bp
 from routes.volunteer_routes import volunteer_bp
 from utils.helpers import ensure_database
 
+csrf = CSRFProtect()
+
+logging.basicConfig(level=logging.INFO)
+
 
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
+
+    csrf.init_app(app)
 
     ensure_database(app.config["DATABASE"])
 
@@ -32,4 +42,4 @@ app = create_app()
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=os.environ.get("FLASK_DEBUG", "false").lower() == "true")

@@ -36,9 +36,9 @@
             </div>
             <div class="card home-hero-stats-card">
                 <h3 style="margin-top:0;">This Month</h3>
-                <p><strong>4</strong> outreach drives planned</p>
-                <p><strong>120+</strong> meals sponsored</p>
-                <p><strong>36</strong> active volunteers</p>
+                <p><strong>{{ upcoming_events }}</strong> Upcoming Events</p>
+                <p><strong>&#8377;{{ total_raised | int | string }}</strong> Total Raised</p>
+                <p><strong>{{ volunteer_count }}</strong> Active Volunteers</p>
             </div>
         </div>
     </div>
@@ -142,7 +142,7 @@
             </div>
             {% else %}
             <div class="achievements-empty-state">
-                <p>Add image files to <code>static/images/acheivements</code> to display the achievements carousel here.</p>
+                <p>Add image files to <code>static/images/achievements</code> to display the achievements carousel here.</p>
             </div>
             {% endif %}
         </div>
@@ -175,9 +175,9 @@
 <section class="page-section">
     <div class="container">
         <div class="card about-section">
-            <div class="about-section__header" align-items="center">
+            <div class="about-section__header">
                 <p class="about-section__eyebrow">About Us</p>
-                <h2 align>Mission and Vision</h2>
+                <h2>Mission and Vision</h2>
                 <p>Good Heart Foundation exists to turn care into steady action through environmental work, health awareness, welfare support, and community-led service.</p>
             </div>
             <div class="grid about-section__grid">

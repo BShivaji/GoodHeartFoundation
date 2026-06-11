@@ -11,6 +11,7 @@
                 <h1>Admin Login</h1>
                 <p>Sign in to manage volunteer applications, add events, fundraising records, expenditures, and home-page updates.</p>
                 <form method="post" class="admin-login-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <label for="username" class="volunteer-toolbar__label">Username</label>
                     <input id="username" name="username" type="text" class="volunteer-toolbar__input" placeholder="Enter username" required>
 

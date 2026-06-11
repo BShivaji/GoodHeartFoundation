@@ -134,6 +134,7 @@
                         <div class="recent-work-admin-item__content">
                             <h3>{{ item.filename }}</h3>
                             <form method="post" action="{{ url_for('admin.delete_gallery_photo', filename=item.filename) }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="button volunteer-toolbar__button volunteer-toolbar__button--danger">Delete</button>
                             </form>
                         </div>
@@ -162,6 +163,7 @@
                             <h3>{{ item.title }}</h3>
                             <p>{{ item.description }}</p>
                             <form method="post" action="{{ url_for('admin.delete_recent_work', work_id=item.id) }}">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                 <button type="submit" class="button volunteer-toolbar__button volunteer-toolbar__button--danger">Delete</button>
                             </form>
                         </div>
@@ -185,6 +187,7 @@
             <button type="button" class="admin-modal__close" aria-label="Close gallery photo popup" data-close-gallery-photo-modal>&times;</button>
         </div>
         <form method="post" action="{{ url_for('admin.add_gallery_photo') }}" enctype="multipart/form-data" class="admin-modal__form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <label for="gallery-photo-image" class="volunteer-toolbar__label">Image</label>
             <input id="gallery-photo-image" name="image" type="file" class="volunteer-toolbar__input" accept=".png,.jpg,.jpeg,.webp,.gif" required>
 
@@ -206,6 +209,7 @@
             <button type="button" class="admin-modal__close" aria-label="Close recent work popup" data-close-recent-work-modal>&times;</button>
         </div>
         <form method="post" action="{{ url_for('admin.add_recent_work') }}" enctype="multipart/form-data" class="admin-modal__form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <label for="recent-work-title" class="volunteer-toolbar__label">Title</label>
             <input id="recent-work-title" name="title" type="text" class="volunteer-toolbar__input" required>
 

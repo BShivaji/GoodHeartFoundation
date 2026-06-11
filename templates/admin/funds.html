@@ -103,6 +103,7 @@
             <button type="button" class="admin-modal__close" aria-label="Close add donor popup" data-close-donor-modal>&times;</button>
         </div>
         <form method="post" action="{{ url_for('admin.add_donor') }}" class="admin-modal__form" data-donor-form>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <label for="donor-name" class="volunteer-toolbar__label">Donor Name</label>
             <input id="donor-name" name="donor_name" type="text" class="volunteer-toolbar__input" required>
 

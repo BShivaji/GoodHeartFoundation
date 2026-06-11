@@ -10,6 +10,7 @@
             <h1>Volunteer With Us</h1>
             <p>Tell us about your availability, interests, and motivation. We use this form to match people with the right events and support roles.</p>
             <form id="volunteer-form" class="volunteer-form" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <label for="name">Full Name</label>
                 <input id="name" name="name" type="text" required>
 
@@ -30,9 +31,9 @@
                 <label for="message">Why To Join Organization</label>
                 <textarea id="message" name="message" rows="5" placeholder="Tell us why you want to join the organization." required></textarea>
 
-                <label for="area_interest">Area of Intrest</label>
+                <label for="area_interest">Area of Interest</label>
                 <select id="area_interest" name="area_interest" required>
-                    <option value="">Select area of intrest</option>
+                    <option value="">Select area of interest</option>
                     <option value="Nature Protection">Nature Protection</option>
                     <option value="Education Support">Education Support</option>
                     <option value="Fund Raising">Fund Raising</option>
@@ -55,12 +56,12 @@
                 >
                 <div class="volunteer-visual-card__overlay">
                     <p class="volunteer-visual-card__eyebrow">Join the Movement</p>
-                    <h2 align = "center">Volunteer With Purpose</h2>
-                    <p align = "center">Support community action through health outreach, environmental work, welfare programs, and awareness drives.</p>
+                    <h2 style="text-align:center;">Volunteer With Purpose</h2>
+                    <p style="text-align:center;">Support community action through health outreach, environmental work, welfare programs, and awareness drives.</p>
                 </div>
             </div>
-            <div class="card volunteer-info-card" align = "left">
-                <h2 align = "center">Volunteer Areas</h2>
+            <div class="card volunteer-info-card">
+                <h2 style="text-align:center;">Volunteer Areas</h2>
                 <p><strong>Nature Protection:</strong> Plantation drives, clean-up activities, and local green campaigns.</p>
                 <p><strong>Education Support:</strong> Mentoring, study circles, and community learning sessions.</p>
                 <p><strong>Medical and Welfare:</strong> Awareness drives, camps, fundraising, and social support work.</p>

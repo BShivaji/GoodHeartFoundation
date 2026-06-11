@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
@@ -16,6 +17,7 @@ from controllers.gallery_controller import get_gallery_photos, save_gallery_phot
 from controllers.volunteer_controller import get_all_volunteers
 from utils.auth import login_required
 
+logger = logging.getLogger(__name__)
 
 admin_bp = Blueprint("admin", __name__)
 
@@ -40,11 +42,13 @@ def dashboard():
         recent_works = get_all_recent_works()
     except Exception:
         flash("Unable to load recent works. Please refresh the page.", "error")
+        logger.exception("Failed to load recent works for dashboard")
 
     try:
         gallery_items = get_gallery_photos()
     except Exception:
         flash("Unable to load gallery images. Please refresh the page.", "error")
+        logger.exception("Failed to load gallery photos for dashboard")
 
     return render_template(
         "admin/dashboard.html",
@@ -260,8 +264,7 @@ def add_recent_work():
     except ValueError as exc:
         flash(str(exc), "error")
     except Exception as exc:
-        import traceback
-        traceback.print_exc()
+        logger.exception("Failed to add recent work")
         flash(f"Unable to add recent work: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))
 
@@ -279,8 +282,7 @@ def add_gallery_photo():
     except ValueError as exc:
         flash(str(exc), "error")
     except Exception as exc:
-        import traceback
-        traceback.print_exc()
+        logger.exception("Failed to upload gallery photo")
         flash(f"Unable to upload gallery photo: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))
 
@@ -295,8 +297,7 @@ def delete_gallery_photo(filename):
             remove_gallery_photo(filename)
             flash("Gallery photo deleted successfully.", "success")
     except Exception as exc:
-        import traceback
-        traceback.print_exc()
+        logger.exception("Failed to delete gallery photo '%s'", filename)
         flash(f"Unable to delete gallery photo: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))
 
@@ -308,7 +309,6 @@ def delete_recent_work(work_id):
         remove_recent_work(work_id)
         flash("Recent work deleted successfully.", "success")
     except Exception as exc:
-        import traceback
-        traceback.print_exc()
+        logger.exception("Failed to delete recent work id=%s", work_id)
         flash(f"Unable to delete recent work: {str(exc)}", "error")
     return redirect(url_for("admin.dashboard"))

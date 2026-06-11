@@ -103,6 +103,7 @@
             <button type="button" class="admin-modal__close" aria-label="Close expenditure popup" data-close-expenditure-modal>&times;</button>
         </div>
         <form method="post" action="{{ url_for('admin.add_expenditure') }}" class="admin-modal__form" data-expenditure-form>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <label for="expense-event-name" class="volunteer-toolbar__label">Event Name</label>
             <input id="expense-event-name" name="event_name" type="text" class="volunteer-toolbar__input" required>
 
