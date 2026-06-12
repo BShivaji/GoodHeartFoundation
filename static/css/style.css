@@ -75,11 +75,11 @@ textarea {
 }
 
 .premium-nav.nav-scrolled {
-    background: rgba(32, 50, 39, 0.35); /* Transparent dark green */
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background: rgba(20, 35, 25, 0.88); /* Darker transparent green for better contrast */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
 .premium-nav .container {
