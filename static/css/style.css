@@ -576,7 +576,6 @@ textarea {
 .section-premium__eyebrow {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
     color: #fff;
     background: linear-gradient(135deg, #1a2e1f 0%, #83d352 100%);
     padding: 0.5rem 1.5rem;
@@ -589,12 +588,6 @@ textarea {
     box-shadow: 0 4px 15px rgba(131, 211, 82, 0.4);
     animation: pulseHook 2s infinite;
     text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
-
-.section-premium__eyebrow::before {
-    content: "⚡";
-    font-size: 1rem;
-    filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
 }
 
 .section-premium__title {
@@ -1336,8 +1329,15 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5rem;
     transition: all 0.4s ease;
+}
+
+.playful-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    mix-blend-mode: multiply; /* Magically removes the white background on light blobs */
+    transition: transform 0.4s ease;
 }
 
 .playful-impact-card:hover .playful-impact-card__icon-wrap {

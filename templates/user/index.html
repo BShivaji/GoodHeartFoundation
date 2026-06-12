@@ -81,7 +81,7 @@
             <!-- Item 1 -->
             <div class="playful-impact-card" style="--theme-color: #2e7d32; --blob-color: #e8f5e9; --blob-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;">
                 <div class="playful-impact-card__icon-wrap">
-                    <span class="playful-impact-card__emoji">🌱</span>
+                    <img src="{{ url_for('static', filename='images/icons/nature.png') }}" alt="Plantation" class="playful-icon">
                 </div>
                 <div class="playful-impact-card__content">
                     <h3>PLANTATION FOR NATURE</h3>
@@ -92,7 +92,7 @@
             <!-- Item 2 -->
             <div class="playful-impact-card" style="--theme-color: #00838f; --blob-color: #e0f7fa; --blob-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;">
                 <div class="playful-impact-card__icon-wrap">
-                    <span class="playful-impact-card__emoji">🏥</span>
+                    <img src="{{ url_for('static', filename='images/icons/medical.png') }}" alt="Medical" class="playful-icon">
                 </div>
                 <div class="playful-impact-card__content">
                     <h3>MEDICAL AWARENESS</h3>
@@ -103,7 +103,7 @@
             <!-- Item 3 -->
             <div class="playful-impact-card" style="--theme-color: #e65100; --blob-color: #fff3e0; --blob-radius: 50% 50% 20% 80% / 25% 80% 20% 75%;">
                 <div class="playful-impact-card__icon-wrap">
-                    <span class="playful-impact-card__emoji">🤝</span>
+                    <img src="{{ url_for('static', filename='images/icons/social.png') }}" alt="Social" class="playful-icon">
                 </div>
                 <div class="playful-impact-card__content">
                     <h3>SOCIAL WELFARE</h3>
@@ -114,7 +114,7 @@
             <!-- Item 4 -->
             <div class="playful-impact-card" style="--theme-color: #6a1b9a; --blob-color: #f3e5f5; --blob-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;">
                 <div class="playful-impact-card__icon-wrap">
-                    <span class="playful-impact-card__emoji">🐾</span>
+                    <img src="{{ url_for('static', filename='images/icons/animal.png') }}" alt="Animal" class="playful-icon">
                 </div>
                 <div class="playful-impact-card__content">
                     <h3>ANIMAL WELFARE</h3>
@@ -198,8 +198,8 @@
                     <p>To build a future where every community has access to care, dignity, and opportunity, supported by volunteers, awareness, and sustainable grassroots action.</p>
                 </div>
             </div>
-            <div class="editorial-split__image-wrap">
-                <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Logo" class="editorial-split__image" style="object-fit: contain; padding: 2rem;">
+            <div class="editorial-split__image-wrap" style="box-shadow: none; background: transparent; overflow: visible; display: flex; align-items: center; justify-content: center;">
+                <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Logo" class="editorial-split__image" style="position: relative; width: 100%; max-width: 400px; height: auto; object-fit: contain; mix-blend-mode: multiply; clip-path: circle(48%);">
             </div>
         </div>
     </div>
