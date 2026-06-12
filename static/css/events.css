@@ -1,26 +1,51 @@
 /* ─── EVENTS PAGE SPECIFIC STYLES ──────────────────────────── */
 
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 /* Event Card (Overrides on premium-feature-card) */
 .event-card {
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
 }
 
 .event-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(40, 69, 34, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
 }
 
-/* Date badge */
-.event-date-badge {
-    display: inline-block;
-    background: #e2faeb;
-    color: #2e8b57;
-    padding: 0.4rem 1rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+.event-card__header {
+    height: 220px;
+    background-color: #1a2e1f;
+    position: relative;
+    border-radius: 12px 12px 0 0;
+}
+
+.event-card__date-badge {
+    position: absolute;
+    bottom: -20px;
+    left: 2rem;
+    background: #ffffff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 800;
+    color: #1a2e1f;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border: 2px solid #83d352;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.event-card__date-badge svg {
+    color: #4f7c2f;
 }
