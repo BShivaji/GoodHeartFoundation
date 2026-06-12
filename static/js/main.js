@@ -1,6 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.add("app-ready");
 
+    // --- Dynamic Navbar ---
+    const navbar = document.querySelector('.premium-nav');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        }, { passive: true });
+    }
+
     const carousel = document.querySelector("[data-achievements-carousel]");
     const track = document.querySelector("[data-achievement-track]");
     const slides = document.querySelectorAll("[data-achievement-slide]");
