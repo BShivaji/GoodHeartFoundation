@@ -74,4 +74,49 @@ document.addEventListener("DOMContentLoaded", () => {
             setInterval(showRecentNext, 5000);
         }
     }
+
+    // --- Stats Counter Animation ---
+    const counters = document.querySelectorAll('.counter-number');
+    if (counters.length > 0) {
+        const animateCounters = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const prefix = counter.getAttribute('data-prefix') || '';
+                    const duration = 2500; // slightly longer, 2.5 seconds
+                    const frameDuration = 1000 / 60; // ~60fps
+                    const totalFrames = Math.round(duration / frameDuration);
+                    let frame = 0;
+                    
+                    const updateCount = () => {
+                        frame++;
+                        const progress = Math.min(frame / totalFrames, 1);
+                        // Ease Out Expo - very fast start, slow elegant finish
+                        const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                        const current = Math.round(target * easeOut);
+                        
+                        // Format with commas using Indian numbering system
+                        const formattedNumber = current.toLocaleString('en-IN');
+                        counter.innerText = prefix + formattedNumber;
+                        
+                        if (frame < totalFrames) {
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            // Ensure final target is exact and formatted
+                            counter.innerText = prefix + target.toLocaleString('en-IN');
+                        }
+                    };
+                    
+                    updateCount();
+                    observer.unobserve(counter); // Only animate once
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(animateCounters, { threshold: 0.5 });
+        counters.forEach(counter => {
+            observer.observe(counter);
+        });
+    }
 });

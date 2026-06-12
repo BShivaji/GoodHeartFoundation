@@ -21,15 +21,15 @@
 <section class="impact-bar">
     <div class="container impact-bar__grid">
         <div class="impact-stat">
-            <strong class="impact-stat__number">{{ upcoming_events }}</strong>
+            <strong class="impact-stat__number counter-number" data-target="{{ upcoming_events }}">0</strong>
             <span class="impact-stat__label">Upcoming Events</span>
         </div>
         <div class="impact-stat">
-            <strong class="impact-stat__number">&#8377;{{ total_raised | int | string }}</strong>
+            <strong class="impact-stat__number counter-number" data-prefix="&#8377;" data-target="{{ total_raised | int }}">0</strong>
             <span class="impact-stat__label">Total Raised</span>
         </div>
         <div class="impact-stat">
-            <strong class="impact-stat__number">{{ volunteer_count }}</strong>
+            <strong class="impact-stat__number counter-number" data-target="{{ volunteer_count }}">0</strong>
             <span class="impact-stat__label">Active Volunteers</span>
         </div>
         <div class="impact-stat impact-stat--highlight">
