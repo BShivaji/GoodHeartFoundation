@@ -1,39 +1,408 @@
-<footer class="footer-modern">
-    <div class="container footer-grid-compact">
-        <div class="footer-brand" style="display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.25rem;">
-            <div class="footer-brand__header" style="display: flex; align-items: center; gap: 1rem;">
-                <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Good Heart Foundation Logo" class="footer-logo" style="width: 60px; height: 60px; object-fit: contain; clip-path: circle(48%);">
-                <h3 class="footer-org-name" style="margin: 0; line-height: 1.2;">Good Heart Foundation</h3>
+<style>
+.ft-new {
+    background-color: #1a2e1f;
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    padding: 4rem 0 0 0;
+    margin-top: 4rem;
+}
+.ft-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+.ft-top {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.5fr 1.5fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.ft-brand-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.ft-brand-head img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 2px;
+    object-fit: contain;
+}
+.ft-brand-head h3 {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin: 0;
+}
+.ft-divider {
+    width: 40px;
+    height: 2px;
+    background-color: #81c784;
+    margin-bottom: 1.5rem;
+}
+.ft-brand p {
+    color: #b0bec5;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 90%;
+}
+.ft-social {
+    display: flex;
+    gap: 0.8rem;
+}
+.ft-social a {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all 0.3s;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.ft-social a:hover {
+    background: #81c784;
+    border-color: #81c784;
+}
+
+.ft-col h4 {
+    color: #81c784;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.ft-links, .ft-info {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.ft-links li {
+    margin-bottom: 1rem;
+}
+.ft-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: color 0.3s;
+}
+.ft-links a i {
+    font-size: 0.75rem;
+    color: #81c784;
+}
+.ft-links a:hover {
+    color: #81c784;
+}
+
+.ft-info li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+}
+.ft-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(129, 199, 132, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #81c784;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+}
+.ft-info li span {
+    line-height: 1.5;
+    margin-top: 0.2rem;
+}
+.ft-hours {
+    color: #81c784;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.ft-help {
+    color: #b0bec5;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.ft-action p {
+    font-size: 0.95rem;
+    color: #b0bec5;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.ft-btn-primary, .ft-btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+}
+.ft-btn-primary {
+    background: #81c784;
+    color: #1a2e1f;
+}
+.ft-btn-primary:hover {
+    background: #66bb6a;
+}
+.ft-btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+}
+.ft-btn-secondary:hover {
+    border-color: #81c784;
+    color: #81c784;
+}
+.ft-arrow {
+    margin-left: auto;
+}
+
+/* Middle Section */
+.ft-middle {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.ft-badge {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+.ft-badge:first-child {
+    padding-left: 0;
+}
+.ft-badge:last-child {
+    border-right: none;
+}
+.ft-badge-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(129, 199, 132, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #81c784;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.ft-badge-text {
+    display: flex;
+    flex-direction: column;
+}
+.ft-badge-text strong {
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+.ft-badge-text span {
+    color: #b0bec5;
+    font-size: 0.85rem;
+}
+
+/* Bottom Section */
+.ft-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #b0bec5;
+}
+.ft-legal {
+    display: flex;
+    gap: 1rem;
+}
+.ft-legal a {
+    color: #b0bec5;
+    text-decoration: none;
+    transition: color 0.3s;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    padding-right: 1rem;
+}
+.ft-legal a:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+.ft-legal a:hover {
+    color: #fff;
+}
+.ft-made {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.ft-highlight {
+    color: #81c784;
+}
+
+@media (max-width: 992px) {
+    .ft-top {
+        grid-template-columns: 1fr 1fr;
+    }
+    .ft-middle {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    .ft-badge {
+        border: none;
+    }
+    .ft-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+@media (max-width: 600px) {
+    .ft-top {
+        grid-template-columns: 1fr;
+    }
+    .ft-middle {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<footer class="ft-new">
+    <div class="ft-container">
+        <!-- Top row -->
+        <div class="ft-top">
+            <!-- Brand -->
+            <div class="ft-brand">
+                <div class="ft-brand-head">
+                    <img src="{{ url_for('static', filename='images/logo/logo.png') }}" alt="Good Heart Foundation">
+                    <h3>Good Heart Foundation</h3>
+                </div>
+                <div class="ft-divider"></div>
+                <p>Creating meaningful change through compassion, community action and sustainable initiatives.</p>
+                <div class="ft-social">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
             </div>
-            <p class="footer-mission" style="margin: 0;">Dedicated to creating meaningful change through community-driven environmental and social initiatives.</p>
-        </div>
-        <div class="footer-col">
-            <strong class="footer-heading">Navigation</strong>
-            <nav class="footer-nav">
-                <a href="{{ url_for('user.home') }}">Home</a>
-                <a href="{{ url_for('event.list_events') }}">Events</a>
-                <a href="{{ url_for('volunteer.show_volunteer_form') }}">Volunteer</a>
-                <a href="{{ url_for('user.gallery') }}">Gallery</a>
-                <a href="{{ url_for('user.contact') }}">Contact</a>
-            </nav>
-        </div>
-        <div class="footer-col">
-            <strong class="footer-heading">Contact</strong>
-            <div class="footer-contact">
-                <p>goodheartfoundation@gmail.com</p>
-                <p>+91 9059127385</p>
-                <p>Kavali, AP, India</p>
+
+            <!-- Quick Links -->
+            <div class="ft-col">
+                <h4>Quick Links</h4>
+                <div class="ft-divider"></div>
+                <ul class="ft-links">
+                    <li><a href="{{ url_for('user.home') }}"><i class="fa-solid fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Our Programs</a></li>
+                    <li><a href="{{ url_for('event.list_events') }}"><i class="fa-solid fa-chevron-right"></i> Events</a></li>
+                    <li><a href="{{ url_for('user.gallery') }}"><i class="fa-solid fa-chevron-right"></i> Gallery</a></li>
+                    <li><a href="{{ url_for('user.contact') }}"><i class="fa-solid fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Us -->
+            <div class="ft-col">
+                <h4>Contact Us</h4>
+                <div class="ft-divider"></div>
+                <ul class="ft-info">
+                    <li>
+                        <div class="ft-icon"><i class="fa-regular fa-envelope"></i></div>
+                        <span>goodheartfoundation@gmail.com</span>
+                    </li>
+                    <li>
+                        <div class="ft-icon"><i class="fa-solid fa-phone"></i></div>
+                        <span>+91 9059127385</span>
+                    </li>
+                    <li>
+                        <div class="ft-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <span>Kavali, AP, India</span>
+                    </li>
+                    <li class="ft-hours">
+                        <i class="fa-regular fa-clock" style="color:#81c784;"></i>
+                        <span style="color:#81c784;">Mon - Sat: 9:00 AM - 6:00 PM</span>
+                    </li>
+                    <p class="ft-help">We're here to help!</p>
+                </ul>
+            </div>
+
+            <!-- Take Action -->
+            <div class="ft-col ft-action">
+                <h4>Take Action</h4>
+                <div class="ft-divider"></div>
+                <p>Your support helps us create a better, brighter future for communities in need.</p>
+                <a href="#" class="ft-btn-primary">
+                    <i class="fa-solid fa-hand-holding-heart"></i> Donate Now <i class="fa-solid fa-arrow-right ft-arrow"></i>
+                </a>
+                <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="ft-btn-secondary">
+                    <i class="fa-solid fa-user-group"></i> Become Volunteer <i class="fa-solid fa-arrow-right ft-arrow"></i>
+                </a>
             </div>
         </div>
-        <div class="footer-col action-col">
-            <strong class="footer-heading">Take Action</strong>
-            <div class="footer-actions">
-                <a href="#" class="button button-donate">Donate Now</a>
-                <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="button button-volunteer">Become Volunteer</a>
+
+        <!-- Middle row -->
+        <div class="ft-middle">
+            <div class="ft-badge">
+                <div class="ft-badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="ft-badge-text">
+                    <strong>Registered NGO</strong>
+                    <span>Trusted & Verified</span>
+                </div>
+            </div>
+            <div class="ft-badge">
+                <div class="ft-badge-icon"><i class="fa-regular fa-file-lines"></i></div>
+                <div class="ft-badge-text">
+                    <strong>Transparent Operations</strong>
+                    <span>Open & Accountable</span>
+                </div>
+            </div>
+            <div class="ft-badge">
+                <div class="ft-badge-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="ft-badge-text">
+                    <strong>Community Driven</strong>
+                    <span>People First</span>
+                </div>
+            </div>
+            <div class="ft-badge">
+                <div class="ft-badge-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div class="ft-badge-text">
+                    <strong>Impact Focused</strong>
+                    <span>Change That Matters</span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p class="footer-copyright">© 2026 Good Heart Foundation. All rights reserved.</p>
+
+        <!-- Bottom row -->
+        <div class="ft-bottom">
+            <div class="ft-copy">© 2026 Good Heart Foundation. All rights reserved.</div>
+            <div class="ft-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+            <div class="ft-made">
+                <i class="fa-regular fa-heart"></i> Made with <span class="ft-highlight">care</span> for humanity
+            </div>
+        </div>
     </div>
 </footer>
