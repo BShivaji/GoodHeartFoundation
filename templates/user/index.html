@@ -21,15 +21,15 @@
 <section class="impact-bar">
     <div class="container impact-bar__grid">
         <div class="impact-stat">
-            <strong class="impact-stat__number counter-number" data-target="{{ upcoming_events }}">0</strong>
+            <strong class="impact-stat__number counter-number" data-target="10">0</strong>
             <span class="impact-stat__label">Upcoming Events</span>
         </div>
         <div class="impact-stat">
-            <strong class="impact-stat__number counter-number" data-prefix="&#8377;" data-target="{{ total_raised | int }}">0</strong>
+            <strong class="impact-stat__number counter-number" data-prefix="&#8377;" data-target="177550">0</strong>
             <span class="impact-stat__label">Total Raised</span>
         </div>
         <div class="impact-stat">
-            <strong class="impact-stat__number counter-number" data-target="{{ volunteer_count }}">0</strong>
+            <strong class="impact-stat__number counter-number" data-target="16">0</strong>
             <span class="impact-stat__label">Active Volunteers</span>
         </div>
         <div class="impact-stat impact-stat--highlight">
@@ -405,32 +405,374 @@
     </div>
 </section>
 
-<section class="section-premium section-premium--alt">
+<style>
+.achieve-exact {
+    padding: 6rem 0;
+    background-color: #fafcf8;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+.achieve-exact__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+}
+.achieve-exact__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f1f6f1;
+    color: #2e7d32;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+.achieve-exact__title {
+    font-size: 2.8rem;
+    color: #1a2e1f;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+.achieve-exact__desc {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.achieve-exact__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #4a8e31;
+}
+.achieve-exact__divider span {
+    width: 40px;
+    height: 1px;
+    background-color: #4a8e31;
+}
+.achieve-exact__divider i {
+    font-size: 0.8rem;
+}
+
+/* Carousel Container */
+.achieve-carousel-wrap {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto 3rem auto;
+    padding: 0 50px;
+}
+.achieve-carousel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide scrollbar */
+}
+.achieve-carousel::-webkit-scrollbar {
+    display: none;
+}
+.achieve-card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    overflow: visible; /* to allow floating icon */
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    scroll-snap-align: start;
+    min-width: 270px;
+    margin-bottom: 1rem;
+    position: relative;
+}
+.achieve-card__img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.achieve-card__icon-badge {
+    position: absolute;
+    top: 155px; /* 180 - 25 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    z-index: 2;
+}
+.achieve-card__body {
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.achieve-card__cat {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.achieve-card__title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a2e1f;
+    margin-bottom: 0.8rem;
+}
+.achieve-card__desc {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+.achieve-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.8rem;
+}
+.achieve-card__meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Card Colors */
+.ac-green .achieve-card__icon-badge { color: #388e3c; }
+.ac-green .achieve-card__cat { color: #388e3c; }
+.ac-green .achieve-card__meta { color: #388e3c; }
+
+.ac-blue .achieve-card__icon-badge { color: #0288d1; }
+.ac-blue .achieve-card__cat { color: #0288d1; }
+.ac-blue .achieve-card__meta { color: #0288d1; }
+
+.ac-orange .achieve-card__icon-badge { color: #f57c00; }
+.ac-orange .achieve-card__cat { color: #f57c00; }
+.ac-orange .achieve-card__meta { color: #f57c00; }
+
+.ac-purple .achieve-card__icon-badge { color: #7b1fa2; }
+.ac-purple .achieve-card__cat { color: #7b1fa2; }
+.ac-purple .achieve-card__meta { color: #7b1fa2; }
+
+/* Controls */
+.achieve-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    background: #3c7a2b;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+.achieve-btn:hover { background: #2e6021; }
+.achieve-btn-prev { left: 0; }
+.achieve-btn-next { right: 0; }
+
+.achieve-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+}
+.achieve-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #3c7a2b;
+    background: transparent;
+    cursor: pointer;
+}
+.achieve-dot.active {
+    background: #3c7a2b;
+}
+
+/* Banner */
+.achieve-banner {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f1f6f1;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.achieve-banner-icon {
+    width: 70px;
+    height: 70px;
+    background: #1a2e1f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.8rem;
+    flex-shrink: 0;
+}
+.achieve-banner-text {
+    flex: 1;
+}
+.achieve-banner-text h4 {
+    font-size: 1.3rem;
+    color: #1a2e1f;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+}
+.achieve-banner-text p {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 0;
+}
+.achieve-banner-btn {
+    background: #4a8e31;
+    color: #fff;
+    padding: 1rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+.achieve-banner-btn:hover {
+    background: #3b7425;
+}
+
+@media (max-width: 1024px) {
+    .achieve-carousel {
+        grid-template-columns: repeat(4, 300px);
+    }
+}
+@media (max-width: 768px) {
+    .achieve-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<section class="achieve-exact">
     <div class="container">
-        <div class="section-header-center">
-            <p class="section-premium__eyebrow">Our Achievements</p>
-            <h2 class="section-premium__title">Impact Through Action</h2>
-            <p class="section-premium__desc">A visual look at the meaningful programs, milestones, and moments created by Good Heart Foundation.</p>
-        </div>
-        {% if achievement_images %}
-        <div class="achievements-carousel" data-achievements-carousel>
-            <button type="button" class="achievements-carousel__control" data-achievement-prev aria-label="Previous achievement">&#8249;</button>
-            <div class="achievements-carousel__viewport">
-                <div class="achievements-carousel__track" data-achievement-track>
-                    {% for item in achievement_images %}
-                    <article class="achievements-carousel__slide" data-achievement-slide>
-                        <img src="{{ url_for('static', filename=item.image) }}" alt="Achievement" class="achievements-carousel__image" style="margin:0; height: 320px; width: 100%; object-fit: contain; background-color: #fafbf9; border-radius: 12px;" onerror="this.src='{{ url_for('static', filename='images/hero_bg.png') }}'">
-                    </article>
-                    {% endfor %}
-                </div>
+        <div class="achieve-exact__header">
+            <div class="achieve-exact__badge">
+                <i class="fa-solid fa-leaf"></i> OUR ACHIEVEMENTS
             </div>
-            <button type="button" class="achievements-carousel__control" data-achievement-next aria-label="Next achievement">&#8250;</button>
+            <h2 class="achieve-exact__title">Impact Through Action</h2>
+            <p class="achieve-exact__desc">From small steps to big changes – explore real moments, meaningful programs, and the difference we're making together.</p>
+            <div class="achieve-exact__divider">
+                <span></span><i class="fa-solid fa-heart"></i><span></span>
+            </div>
         </div>
-        {% else %}
-        <div class="achievements-empty-state premium-feature-card">
-            <p>Add image files to <code>static/images/achievements</code> to display the achievements carousel here.</p>
+
+        <div class="achieve-carousel-wrap">
+            <button class="achieve-btn achieve-btn-prev" onclick="document.getElementById('achieve-scroll').scrollBy({left: -320, behavior: 'smooth'})"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="achieve-carousel" id="achieve-scroll">
+                
+                <!-- Card 1 -->
+                <div class="achieve-card ac-green">
+                    <img src="{{ url_for('static', filename='images/gallery/IMG-20190711-WA0212.jpg') }}" alt="Tree Plantation Drive" class="achieve-card__img">
+                    <div class="achieve-card__icon-badge"><i class="fa-solid fa-seedling"></i></div>
+                    <div class="achieve-card__body">
+                        <div class="achieve-card__cat">Environment</div>
+                        <h3 class="achieve-card__title">Tree Plantation Drive</h3>
+                        <p class="achieve-card__desc">Planted 2,450+ trees across villages and schools to promote a greener and healthier environment.</p>
+                        <div class="achieve-card__meta">
+                            <span><i class="fa-regular fa-calendar"></i> Feb 2025</span>
+                            <span><i class="fa-regular fa-user"></i> 120+ Volunteers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="achieve-card ac-blue">
+                    <img src="{{ url_for('static', filename='images/gallery/IMG-20190804-WA0095.jpg') }}" alt="Free Health Camp" class="achieve-card__img">
+                    <div class="achieve-card__icon-badge"><i class="fa-solid fa-stethoscope"></i></div>
+                    <div class="achieve-card__body">
+                        <div class="achieve-card__cat">Healthcare</div>
+                        <h3 class="achieve-card__title">Free Health Camp</h3>
+                        <p class="achieve-card__desc">Organized health check-up camps benefitting 1,200+ individuals with consultations and medicines.</p>
+                        <div class="achieve-card__meta">
+                            <span><i class="fa-regular fa-calendar"></i> Mar 2025</span>
+                            <span><i class="fa-regular fa-user"></i> 80+ Volunteers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="achieve-card ac-orange">
+                    <img src="{{ url_for('static', filename='images/gallery/IMG-20190825-WA0099.jpg') }}" alt="Education Support" class="achieve-card__img">
+                    <div class="achieve-card__icon-badge"><i class="fa-solid fa-book-open"></i></div>
+                    <div class="achieve-card__body">
+                        <div class="achieve-card__cat">Education</div>
+                        <h3 class="achieve-card__title">Education Support</h3>
+                        <p class="achieve-card__desc">Supporting 350+ children with study materials, school kits, and learning resources for a better future.</p>
+                        <div class="achieve-card__meta">
+                            <span><i class="fa-regular fa-calendar"></i> Apr 2025</span>
+                            <span><i class="fa-regular fa-user"></i> 60+ Volunteers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="achieve-card ac-purple">
+                    <img src="{{ url_for('static', filename='images/gallery/IMG-20190826-WA0025.jpg') }}" alt="Rescue & Care" class="achieve-card__img">
+                    <div class="achieve-card__icon-badge"><i class="fa-solid fa-paw"></i></div>
+                    <div class="achieve-card__body">
+                        <div class="achieve-card__cat">Animal Welfare</div>
+                        <h3 class="achieve-card__title">Rescue & Care</h3>
+                        <p class="achieve-card__desc">Rescued and provided care to 350+ animals through feeding drives, treatment, and adoption support.</p>
+                        <div class="achieve-card__meta">
+                            <span><i class="fa-regular fa-calendar"></i> May 2025</span>
+                            <span><i class="fa-regular fa-user"></i> 70+ Volunteers</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <button class="achieve-btn achieve-btn-next" onclick="document.getElementById('achieve-scroll').scrollBy({left: 320, behavior: 'smooth'})"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
-        {% endif %}
+
+        <div class="container">
+            <div class="achieve-banner">
+                <div class="achieve-banner-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <div class="achieve-banner-text">
+                    <h4>Be Part of the Change</h4>
+                    <p>Every action counts. Join our mission and help us build stronger, compassionate, and sustainable communities.</p>
+                </div>
+                <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="achieve-banner-btn">Join Us Today <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
     </div>
 </section>
 

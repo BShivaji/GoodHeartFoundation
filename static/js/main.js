@@ -32,36 +32,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextButton = document.querySelector("[data-achievement-next]");
     const prevButton = document.querySelector("[data-achievement-prev]");
 
-    if (!carousel || !track || slides.length === 0) {
-        return;
-    }
+    if (carousel && track && slides.length > 0) {
+        let currentIndex = 0;
 
-    let currentIndex = 0;
+        const renderSlide = () => {
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        };
 
-    const renderSlide = () => {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-    };
+        const showNext = () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            renderSlide();
+        };
 
-    const showNext = () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        renderSlide();
-    };
+        const showPrev = () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            renderSlide();
+        };
 
-    const showPrev = () => {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        renderSlide();
-    };
+        if (nextButton) {
+            nextButton.addEventListener("click", showNext);
+        }
 
-    if (nextButton) {
-        nextButton.addEventListener("click", showNext);
-    }
+        if (prevButton) {
+            prevButton.addEventListener("click", showPrev);
+        }
 
-    if (prevButton) {
-        prevButton.addEventListener("click", showPrev);
-    }
-
-    if (slides.length > 1) {
-        setInterval(showNext, 4500);
+        if (slides.length > 1) {
+            setInterval(showNext, 4500);
+        }
     }
 
     const recentWorksCarousel = document.querySelector("[data-recent-works-carousel]");
