@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | Good Heart Foundation{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}?v=2">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+{% block body %}
+{% include "user/navbar.html" %}
+
+<header class="contact-hero">
+    <div class="contact-hero__content">
+        <div class="contact-hero__text">
+            <span class="contact-badge">GET IN TOUCH</span>
+            <h1>Contact Us</h1>
+            <p>We'd love to hear from you. Whether you want to volunteer, partner with us, or have any questions, feel free to reach out.</p>
+        </div>
+    </div>
+    <div class="contact-hero__image">
+        <img src="{{ url_for('static', filename='images/contact_hero.jpg') }}" alt="Contact Hero Image">
+        <div class="contact-hero__edge">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0,0 Q50,20 20,40 T30,70 T0,100 Z" fill="#ffffff" />
+            </svg>
+        </div>
+    </div>
+</header>
+
+<section class="contact-section">
+    <div class="container contact-container">
+        
+        <!-- Form Section -->
+        <div class="contact-card">
+            <div class="contact-card__header">
+                <h2>Send Us a Message</h2>
+                <div class="title-underline"></div>
+            </div>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="card flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form id="contact-form" class="contact-form" method="post" action="{{ url_for('user.contact') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                
+                <div class="form-group has-icon">
+                    <i class="fa-regular fa-user form-icon"></i>
+                    <input id="name" name="name" type="text" placeholder="Full Name" required class="form-input">
+                </div>
+
+                <div class="form-group has-icon">
+                    <i class="fa-regular fa-envelope form-icon"></i>
+                    <input id="email" name="email" type="email" placeholder="Email Address" required class="form-input">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group has-icon">
+                        <i class="fa-solid fa-phone form-icon"></i>
+                        <input id="phone" name="phone" type="tel" placeholder="Phone Number" class="form-input">
+                    </div>
+                    <div class="form-group has-icon">
+                        <i class="fa-solid fa-tag form-icon"></i>
+                        <input id="subject" name="subject" type="text" placeholder="Subject" required class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group has-icon">
+                    <i class="fa-regular fa-comment-dots form-icon" style="top: 1.2rem; transform: none;"></i>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required class="form-input"></textarea>
+                </div>
+
+                <button class="btn-submit" type="submit">
+                    <i class="fa-regular fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+
+        <!-- Info Section -->
+        <div class="contact-info">
+            <div class="contact-card__header">
+                <h2>Contact Information</h2>
+                <div class="title-underline"></div>
+            </div>
+            
+            <div class="info-list">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Our Office</h4>
+                        <p>D.No: 12-3-45, Kavali,<br>Nellore District,<br>Andhra Pradesh - 524201, India</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Phone</h4>
+                        <p>+91 90591 27385</p>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-regular fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Email</h4>
+                        <p>goodheartfoundation@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <h4>Office Hours</h4>
+                        <p>Monday - Saturday<br>9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-section">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="container map-container">
+        <div class="map-card">
+            <div class="map-header">
+                <h2>Find Our Office</h2>
+                <div class="title-underline center"></div>
+                <p>We are located in Kavali, Nellore District. Visit us or reach out through our contact channels.</p>
+            </div>
+            <div class="map-wrapper">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61596.262507604314!2d79.94046180371804!3d14.921387680074218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4c7b80a65e9ecf%3A0x959728cb118a16aa!2sKavali%2C%20Andhra%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include "user/footer.html" %}
+{% endblock %}

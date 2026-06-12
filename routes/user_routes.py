@@ -3,7 +3,7 @@ import os
 import random
 from datetime import date
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 
 from controllers.recent_work_controller import get_all_recent_works
 from utils.helpers import fetch_one, fetch_all
@@ -82,3 +82,23 @@ def gallery():
     random.shuffle(gallery_items)
     
     return render_template("user/gallery.html", gallery_items=gallery_items)
+
+
+@user_bp.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == "POST":
+        name = request.form.get("name")
+        email = request.form.get("email")
+        subject = request.form.get("subject")
+        message = request.form.get("message")
+        
+        from utils.helpers import execute_query
+        execute_query(
+            "INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)",
+            (name, email, subject, message)
+        )
+        
+        flash("Your message has been sent successfully! Our team will get back to you soon.", "success")
+        return redirect(url_for("user.contact"))
+        
+    return render_template("user/contact.html")
