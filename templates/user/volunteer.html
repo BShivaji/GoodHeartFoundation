@@ -1,42 +1,156 @@
 {% extends "base.html" %}
 
 {% block title %}Volunteer | Good Heart Foundation{% endblock %}
-{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/volunteer.css') }}?v=3">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/volunteer.css') }}?v=4">{% endblock %}
 {% block body %}
 {% include "user/navbar.html" %}
 
-<!-- INTERNAL HERO -->
-<header class="hero-premium hero-premium--internal" style="background-image: linear-gradient(to right, rgba(26, 46, 31, 0.9), rgba(26, 46, 31, 0.6)), url('{{ url_for('static', filename='images/volunteer_hero.png') }}');">
-    <div class="container hero-premium__container">
-        <div class="hero-premium__content">
-            <h1 class="hero-premium__title">Join the Movement</h1>
-            <p class="hero-premium__subtitle" style="font-size: 1.25rem;">Support community action through health outreach, environmental work, welfare programs, and awareness drives.</p>
+<!-- 1. HERO SECTION -->
+<header class="vol-hero">
+    <div class="container vol-hero__container">
+        <div class="vol-hero__badge">VOLUNTEER WITH US</div>
+        <h1 class="vol-hero__title">Be the Change.<br><span>Volunteer Today.</span></h1>
+        <p class="vol-hero__subtitle">Join a community of passionate individuals making a real difference. Your time, skills, and compassion can help build a better tomorrow.</p>
+        
+        <div class="vol-features">
+            <div class="vol-feature">
+                <div class="vol-feature__icon"><i class="fa-solid fa-people-group"></i></div>
+                <div class="vol-feature__text">
+                    <h4>Make an Impact</h4>
+                    <p>Support real causes and people in need</p>
+                </div>
+            </div>
+            <div class="vol-feature">
+                <div class="vol-feature__icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <div class="vol-feature__text">
+                    <h4>Learn & Grow</h4>
+                    <p>Build skills, gain experience</p>
+                </div>
+            </div>
+            <div class="vol-feature">
+                <div class="vol-feature__icon"><i class="fa-solid fa-user-plus"></i></div>
+                <div class="vol-feature__text">
+                    <h4>Be Part of a Family</h4>
+                    <p>Work with like-minded volunteers</p>
+                </div>
+            </div>
         </div>
     </div>
 </header>
 
-<section class="section-premium section-premium--alt">
+<!-- 2. FOUNDER & IMPACT SECTION -->
+<section class="vol-founder-impact">
     <div class="container">
-        <div class="editorial-split">
-            <!-- Form Section -->
-            <div class="editorial-split__content volunteer-form-container">
-                <span class="section-premium__eyebrow">Apply Now</span>
-                <h2 class="section-premium__title" style="font-size: 2.2rem;">Volunteer With Purpose</h2>
-                <p class="section-premium__desc" style="margin-bottom: 2rem;">Tell us about your availability, interests, and motivation. We use this form to match people with the right events and support roles.</p>
+        <!-- Founder Block -->
+        <div class="vfi-founder">
+            <img src="{{ url_for('static', filename='images/logo/founder.jpeg') }}" alt="Founder" class="vfi-founder__image">
+            <div class="vfi-founder__content">
+                <div class="vfi-badge">FOUNDER</div>
+                <h2>A Message From<br>Our Founder</h2>
+                <div class="vfi-divider">
+                    <span></span><i class="fa-solid fa-heart"></i><span></span>
+                </div>
+                <p>Good Heart Foundation was built on the belief that meaningful change starts when ordinary people choose to care consistently. Every activity we run is rooted in service, accountability, and respect for both people and nature.</p>
+                <p>Our goal is to create a space where volunteers, supporters, and communities can come together to solve real problems with empathy and action.</p>
+            </div>
+        </div>
+
+        <!-- Impact Card -->
+        <div class="vfi-impact-card">
+            <h3>Your Time Can Create Lasting Change</h3>
+            <div class="vfi-stats">
+                <div class="vfi-stat">
+                    <div class="vfi-stat__icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="vfi-stat__info">
+                        <h4>50,000+</h4>
+                        <p>Lives Impacted</p>
+                    </div>
+                </div>
+                <div class="vfi-stat">
+                    <div class="vfi-stat__icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                    <div class="vfi-stat__info">
+                        <h4>200+</h4>
+                        <p>Community Programs</p>
+                    </div>
+                </div>
+                <div class="vfi-stat">
+                    <div class="vfi-stat__icon"><i class="fa-solid fa-people-group"></i></div>
+                    <div class="vfi-stat__info">
+                        <h4>1,500+</h4>
+                        <p>Active Volunteers</p>
+                    </div>
+                </div>
+                <div class="vfi-stat">
+                    <div class="vfi-stat__icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="vfi-stat__info">
+                        <h4>30+</h4>
+                        <p>Areas Served</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. OPPORTUNITIES & FORM SECTION -->
+<section class="vol-split">
+    <div class="container">
+        <!-- Opportunities Left -->
+        <div class="vol-opps">
+            <h2>Volunteer Opportunities</h2>
+            <p>Choose an area that inspires you and make a difference in the community.</p>
+            
+            <div class="vol-opp-list">
+                <div class="vol-opp-item">
+                    <div class="vol-opp-icon"><i class="fa-solid fa-seedling"></i></div>
+                    <div class="vol-opp-text">
+                        <h4>Environmental Action</h4>
+                        <p>Plant trees, restore habitats, and lead clean-up drives to protect our environment.</p>
+                    </div>
+                </div>
+                <div class="vol-opp-item">
+                    <div class="vol-opp-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                    <div class="vol-opp-text">
+                        <h4>Educational Outreach</h4>
+                        <p>Mentor students, conduct study programs, and support learning in communities.</p>
+                    </div>
+                </div>
+                <div class="vol-opp-item">
+                    <div class="vol-opp-icon"><i class="fa-solid fa-stethoscope"></i></div>
+                    <div class="vol-opp-text">
+                        <h4>Health & Welfare</h4>
+                        <p>Support health camps, blood donation drives, and essential care for vulnerable families.</p>
+                    </div>
+                </div>
+                <div class="vol-opp-item">
+                    <div class="vol-opp-icon"><i class="fa-solid fa-paw"></i></div>
+                    <div class="vol-opp-text">
+                        <h4>Animal Rescue & Care</h4>
+                        <p>Help rescue, feed, and care for street animals and promote animal welfare.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Right -->
+        <div class="vol-form-wrapper">
+            <div class="vol-form-card">
+                <h3>Become a Volunteer</h3>
+                <p>Fill out the form below to join our mission.</p>
                 
                 <form id="volunteer-form" class="premium-form" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     
                     <div class="premium-form__group">
                         <label for="name">Full Name</label>
-                        <input id="name" name="name" type="text" required class="premium-form__input">
+                        <input id="name" name="name" type="text" placeholder="Enter your full name" required class="premium-form__input" style="background: white; border: 1px solid #e0e0e0; box-shadow: none;">
                     </div>
 
                     <div class="premium-form__row">
                         <div class="premium-form__group">
                             <label for="gender">Gender</label>
                             <div class="premium-form__select-wrapper">
-                                <select id="gender" name="gender" required class="premium-form__select">
+                                <select id="gender" name="gender" required class="premium-form__select" style="background: white; border: 1px solid #e0e0e0; box-shadow: none;">
                                     <option value="">Select gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
@@ -47,19 +161,19 @@
 
                         <div class="premium-form__group">
                             <label for="phone">Mobile Number</label>
-                            <input id="phone" name="phone" type="tel" inputmode="tel" required class="premium-form__input">
+                            <input id="phone" name="phone" type="tel" placeholder="Enter mobile number" inputmode="tel" required class="premium-form__input" style="background: white; border: 1px solid #e0e0e0; box-shadow: none;">
                         </div>
                     </div>
 
                     <div class="premium-form__group">
                         <label for="place">Place / City</label>
-                        <input id="place" name="place" type="text" required class="premium-form__input">
+                        <input id="place" name="place" type="text" placeholder="Enter your city" required class="premium-form__input" style="background: white; border: 1px solid #e0e0e0; box-shadow: none;">
                     </div>
 
                     <div class="premium-form__group">
                         <label for="area_interest">Area of Interest</label>
                         <div class="premium-form__select-wrapper">
-                            <select id="area_interest" name="area_interest" required class="premium-form__select">
+                            <select id="area_interest" name="area_interest" required class="premium-form__select" style="background: white; border: 1px solid #e0e0e0; box-shadow: none;">
                                 <option value="">Select area of interest</option>
                                 <option value="Nature Protection">Nature Protection</option>
                                 <option value="Education Support">Education Support</option>
@@ -73,68 +187,21 @@
 
                     <div class="premium-form__group">
                         <label for="message">Why To Join Organization</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Tell us why you want to join the organization..." required class="premium-form__input"></textarea>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us why you want to join the organization..." required class="premium-form__input" style="background: white; border: 1px solid #e0e0e0; box-shadow: none;"></textarea>
                     </div>
 
                     <div class="premium-form__group">
-                        <label for="document">Upload Supporting Document</label>
-                        <input id="document" name="document" type="file" class="premium-form__file">
+                        <label for="document" style="font-size: 0.8rem; font-weight: 600;">Upload Supporting Document <span style="font-weight: 400; color: #777;">(Optional)</span></label>
+                        <input id="document" name="document" type="file" class="premium-form__file" style="background: white; border: 1px solid #e0e0e0; box-shadow: none; border-radius: 8px; padding: 0.6rem;">
                     </div>
                     
-                    <button class="button button--primary" type="submit" style="width: 100%; margin-top: 1rem; padding: 1rem;">Submit Application</button>
+                    <button class="button button--primary" type="submit" style="width: 100%; margin-top: 1rem; padding: 1rem; border-radius: 8px; font-weight: 700;">Submit Application <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem;"></i></button>
                 </form>
-            </div>
-
-            <!-- Info Section -->
-            <div class="editorial-split__content" style="align-self: start;">
-                <div class="volunteer-info-areas premium-feature-card" style="text-align: left;">
-                    <span class="section-premium__eyebrow">Your Impact</span>
-                    <h3 style="font-size: 1.8rem; color: #1a2e1f; margin-bottom: 2rem;">Where You Can Help</h3>
-                    
-                    <div class="volunteer-area-item">
-                        <div class="volunteer-area-icon">
-                            <img src="{{ url_for('static', filename='images/icons/nature.png') }}" alt="Nature Icon" style="width: 44px; height: 44px; object-fit: contain; mix-blend-mode: multiply;">
-                        </div>
-                        <div class="volunteer-area-text">
-                            <h4>Environmental Action</h4>
-                            <p>Get your hands dirty planting trees, restoring local habitats, and leading clean-up campaigns to protect our planet.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="volunteer-area-item">
-                        <div class="volunteer-area-icon">
-                            <img src="{{ url_for('static', filename='images/icons/education.png') }}" alt="Education Icon" style="width: 44px; height: 44px; object-fit: contain; mix-blend-mode: multiply;">
-                        </div>
-                        <div class="volunteer-area-text">
-                            <h4>Educational Outreach</h4>
-                            <p>Empower the next generation by mentoring students, running study circles, and facilitating community learning.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="volunteer-area-item">
-                        <div class="volunteer-area-icon">
-                            <img src="{{ url_for('static', filename='images/icons/medical.png') }}" alt="Medical Icon" style="width: 44px; height: 44px; object-fit: contain; mix-blend-mode: multiply;">
-                        </div>
-                        <div class="volunteer-area-text">
-                            <h4>Health & Welfare</h4>
-                            <p>Support critical medical camps, coordinate blood donation drives, and provide essential social care to vulnerable families.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="volunteer-area-item">
-                        <div class="volunteer-area-icon">
-                            <img src="{{ url_for('static', filename='images/icons/animal.png') }}" alt="Animal Icon" style="width: 44px; height: 44px; object-fit: contain; mix-blend-mode: multiply;">
-                        </div>
-                        <div class="volunteer-area-text">
-                            <h4>Animal Rescue & Care</h4>
-                            <p>Be a voice for the voiceless by assisting with local street animal welfare, rescue operations, and feeding programs.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </section>
+
 
 {% include "user/footer.html" %}
 {% endblock %}

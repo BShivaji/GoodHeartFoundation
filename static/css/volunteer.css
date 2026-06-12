@@ -1,74 +1,343 @@
 /* ─── VOLUNTEER PAGE SPECIFIC STYLES ─────────────────────────── */
 
-.volunteer-info-areas {
+/* 1. HERO SECTION */
+.vol-hero {
+    position: relative;
+    padding: 8rem 0 6rem;
+    background: url('../images/volunteer_hero.png') no-repeat center center/cover;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+.vol-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(15, 30, 20, 0.9) 0%, rgba(15, 30, 20, 0.6) 40%, rgba(0,0,0,0) 100%);
+}
+.vol-hero__container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+.vol-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(90, 160, 60, 0.3);
+    border: 1px solid rgba(90, 160, 60, 0.6);
+    color: #e0eed9;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+.vol-hero__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+.vol-hero__title span {
+    color: #81c784;
+}
+.vol-hero__subtitle {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 500px;
+    opacity: 0.9;
+    margin-bottom: 4rem;
+}
+
+/* Hero Bottom Features */
+.vol-features {
+    display: flex;
+    gap: 3rem;
+    max-width: 900px;
+}
+.vol-feature {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    padding-right: 3rem;
+}
+.vol-feature:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+.vol-feature__icon {
+    font-size: 2rem;
+    color: #81c784;
+    flex-shrink: 0;
+}
+.vol-feature__text h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.3rem 0;
+}
+.vol-feature__text p {
+    font-size: 0.8rem;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* 2. FOUNDER & IMPACT SECTION */
+.vol-founder-impact {
+    padding: 6rem 0;
+    background: #fdfdfc;
+}
+.vol-founder-impact .container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Founder Block */
+.vfi-founder {
+    display: flex;
+    gap: 2.5rem;
+}
+.vfi-founder__image {
+    width: 280px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+}
+.vfi-founder__content {
+    flex: 1;
+    padding-top: 1rem;
+}
+.vfi-badge {
+    color: #4a8e31;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+}
+.vfi-founder__content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #1a2e1f;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+.vfi-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #7cb342;
+    margin-bottom: 1.5rem;
+}
+.vfi-divider span {
+    flex: 0 0 40px;
+    height: 1px;
+    background: #aed581;
+}
+.vfi-founder__content p {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* Impact Card */
+.vfi-impact-card {
+    background: #1e3523;
+    border-radius: 16px;
+    padding: 3rem;
+    color: white;
+}
+.vfi-impact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+}
+.vfi-stats {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
-
-.volunteer-area-item {
+.vfi-stat {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    padding: 1.25rem;
-    border-radius: 16px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid transparent;
 }
-
-.volunteer-area-item:hover {
-    background: #ffffff;
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-    border: 1px solid rgba(131, 211, 82, 0.15);
-}
-
-.volunteer-area-icon {
-    font-size: 2.5rem;
-    background: linear-gradient(135deg, #f0fdf4 0%, #e2faeb 100%);
-    width: 60px;
-    height: 60px;
+.vfi-stat__icon {
+    width: 50px;
+    height: 50px;
+    background: #e6f0e2;
+    color: #1a2e1f;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 14px;
+    font-size: 1.2rem;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(131, 211, 82, 0.15);
-    color: #2e8b57;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.vfi-stat__info h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.2rem 0;
+}
+.vfi-stat__info p {
+    font-size: 0.85rem;
+    color: #aed581;
+    margin: 0;
 }
 
-.volunteer-area-item:hover .volunteer-area-icon {
-    transform: scale(1.15) rotate(-5deg);
-    box-shadow: 0 10px 25px rgba(131, 211, 82, 0.35);
-    background: linear-gradient(135deg, #e2faeb 0%, #c6f6d5 100%);
+/* 3. OPPORTUNITIES & FORM SECTION */
+.vol-split {
+    padding: 6rem 0;
+    background: #fafafa;
+}
+.vol-split .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
 }
 
-.volunteer-area-icon svg {
-    width: 28px;
-    height: 28px;
-    stroke-width: 2.5px;
-}
-
-.volunteer-area-text h4 {
-    font-size: 1.15rem;
+/* Opportunities */
+.vol-opps h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
     color: #1a2e1f;
     margin-bottom: 0.5rem;
 }
-
-.volunteer-area-text p {
-    font-size: 1rem;
+.vol-opps > p {
     color: #555;
+    margin-bottom: 3rem;
+}
+.vol-opp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.vol-opp-item {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+.vol-opp-icon {
+    width: 60px;
+    height: 60px;
+    background: #eef5e9;
+    color: #4a8e31;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+.vol-opp-text h4 {
+    font-size: 1.15rem;
+    color: #1a2e1f;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+.vol-opp-text p {
+    color: #666;
+    font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
 }
 
-/* Responsive */
-@media (max-width: 780px) {
-    .premium-form__row {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
+/* Form Card */
+.vol-form-card {
+    background: white;
+    border-radius: 16px;
+    padding: 3rem;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+.vol-form-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #1a2e1f;
+    margin-bottom: 0.5rem;
+}
+.vol-form-card > p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+/* 4. BOTTOM BANNER */
+.vol-bottom-banner {
+    background: #f4f5f2;
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6rem;
+}
+.vbb-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.vbb-icon {
+    width: 60px;
+    height: 60px;
+    background: #4a8e31;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+.vbb-text h4 {
+    font-size: 1.3rem;
+    color: #1a2e1f;
+    font-weight: 800;
+    margin: 0 0 0.3rem 0;
+}
+.vbb-text p {
+    color: #555;
+    margin: 0;
+    font-size: 0.9rem;
+}
+.vbb-btn {
+    background: #1a2e1f;
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s;
+}
+.vbb-btn:hover {
+    background: #112015;
+    color: white;
+}
+
+@media (max-width: 1024px) {
+    .vol-features { flex-direction: column; gap: 1.5rem; }
+    .vol-feature { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 1.5rem; }
+    .vol-feature:last-child { border-bottom: none; }
+    .vol-founder-impact .container { grid-template-columns: 1fr; }
+    .vfi-founder { flex-direction: column; text-align: center; align-items: center; }
+    .vfi-divider { justify-content: center; }
+    .vol-split .container { grid-template-columns: 1fr; }
+    .vol-bottom-banner { flex-direction: column; text-align: center; gap: 2rem; }
+    .vbb-left { flex-direction: column; }
 }
