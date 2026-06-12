@@ -776,31 +776,442 @@
     </div>
 </section>
 
-<section class="section-premium">
+<style>
+.process-exact {
+    padding: 6rem 0;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+.process-exact__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 5rem auto;
+}
+.process-exact__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #f1f6f1;
+    color: #2e7d32;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+.process-exact__title {
+    font-size: 2.8rem;
+    color: #1a2e1f;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+.process-exact__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #4a8e31;
+    margin-bottom: 1.5rem;
+}
+.process-exact__divider span {
+    width: 40px;
+    height: 1px;
+    background-color: #4a8e31;
+}
+.process-exact__divider i {
+    font-size: 0.8rem;
+}
+.process-exact__desc {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
+    position: relative;
+}
+
+.process-card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    position: relative;
+    z-index: 1;
+}
+@media (min-width: 1025px) {
+    .process-card:nth-child(1)::after,
+    .process-card:nth-child(2)::after {
+        content: '';
+        position: absolute;
+        top: -30px;
+        right: -40px;
+        width: 80px;
+        height: 50px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50'%3E%3Cpath d='M10,50 Q50,0 90,50' fill='none' stroke='%233c7a2b' stroke-width='2' stroke-dasharray='5,5'/%3E%3Cpolygon points='85,45 92,52 82,52' fill='%233c7a2b'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: 10;
+        pointer-events: none;
+    }
+}
+.process-card__body {
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    flex: 1;
+}
+.process-card__top {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+.process-card__image-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    flex-shrink: 0;
+}
+.process-card__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.process-card__num {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #eef6ee;
+    color: #2e7d32;
+    font-weight: 700;
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.process-card__content {
+    flex: 1;
+}
+.process-card__icon {
+    font-size: 1.8rem;
+    color: #4a8e31;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #f8fbf8;
+    border-radius: 50%;
+}
+.process-card__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a2e1f;
+    margin-bottom: 0.8rem;
+}
+.process-card__desc {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+}
+.process-card__footer {
+    background: #fafbf9;
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid #f0f0f0;
+}
+.process-card__footer-icon {
+    width: 40px;
+    height: 40px;
+    background: #3c7a2b;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+.process-card__footer-text {
+    font-size: 0.85rem;
+    color: #444;
+}
+.process-card__footer-text strong {
+    color: #3c7a2b;
+}
+
+/* Commitment Banner */
+.commitment-banner {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fafcf8;
+    border: 1px solid #e8f0e8;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+.commitment-banner__intro {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1.5;
+}
+.commitment-banner__icon {
+    width: 65px;
+    height: 65px;
+    background: #4a8e31;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+.commitment-banner__text {
+    text-align: center;
+    max-width: 180px;
+}
+.commitment-banner__text h4 {
+    font-size: 1rem;
+    color: #1a2e1f;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+.commitment-banner__text p {
+    color: #777;
+    font-size: 0.75rem;
+    margin: 0;
+    line-height: 1.5;
+}
+.commitment-banner__stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex: 3;
+    justify-content: space-around;
+}
+.cb-stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-left: 1px solid #e0e0e0;
+    padding-left: 2rem;
+}
+.cb-stat:first-child {
+    border-left: none;
+    padding-left: 0;
+}
+.cb-stat__icon {
+    font-size: 1.6rem;
+    color: #4a8e31;
+}
+.cb-stat__info {
+    text-align: center;
+}
+.cb-stat__info h5 {
+    font-size: 1.15rem;
+    color: #1a2e1f;
+    margin: 0 0 0.2rem 0;
+    font-weight: 800;
+}
+.cb-stat__info span {
+    font-size: 0.65rem;
+    color: #777;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.commitment-button-wrap {
+    text-align: center;
+    margin-top: 3.5rem;
+    position: relative;
+    z-index: 10;
+}
+.cb-btn {
+    background: #4a8e31;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(74, 142, 49, 0.3);
+    transition: background 0.3s;
+}
+.cb-btn:hover { background: #3b7425; color: #fff; }
+
+@media (max-width: 1024px) {
+    .process-grid { grid-template-columns: 1fr; }
+    .commitment-banner { flex-direction: column; align-items: center; }
+    .commitment-banner__stats { flex-wrap: wrap; justify-content: center; border-top: 1px solid #e0e0e0; padding-top: 2rem; }
+    .cb-stat { border-left: none !important; padding-left: 0 !important; width: 45%; justify-content: center; margin-bottom: 1rem; }
+}
+</style>
+
+<section class="process-exact">
     <div class="container">
-        <div class="section-header-center">
-            <p class="section-premium__eyebrow">Process</p>
-            <h2 class="section-premium__title">How We Work</h2>
+        <div class="process-exact__header">
+            <div class="process-exact__badge">
+                <i class="fa-solid fa-leaf"></i> PROCESS
+            </div>
+            <h2 class="process-exact__title">How We Work</h2>
+            <div class="process-exact__divider">
+                <span></span><i class="fa-solid fa-heart"></i><span></span>
+            </div>
+            <p class="process-exact__desc">Our work is rooted in compassion and driven by a clear process that ensures meaningful impact and lasting change in communities.</p>
         </div>
-        <div class="grid contribution-section__grid">
-            <div class="number-step">
-                <div class="number-step__num">01</div>
-                <h3>Listen First</h3>
-                <p>We build programs around local needs instead of assuming one solution fits every neighborhood.</p>
+
+        <div class="process-grid">
+            
+            <!-- Card 1 -->
+            <div class="process-card">
+                <div class="process-card__body">
+                    <div class="process-card__top">
+                        <div class="process-card__image-container">
+                            <img src="{{ url_for('static', filename='images/gallery/Listen First.png') }}" class="process-card__img" alt="Listen First">
+                            <div class="process-card__num">01</div>
+                        </div>
+                        <div class="process-card__content">
+                            <div class="process-card__icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                            <h3 class="process-card__title">Listen First</h3>
+                        </div>
+                    </div>
+                    <p class="process-card__desc">We listen to communities, understand their real challenges, and design programs that address their specific needs.</p>
+                </div>
+                <div class="process-card__footer">
+                    <div class="process-card__footer-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <div class="process-card__footer-text">
+                        <strong>Focus:</strong> Community Needs<br>
+                        <strong>Outcome:</strong> Relevant Solutions
+                    </div>
+                </div>
             </div>
-            <div class="number-step">
-                <div class="number-step__num">02</div>
-                <h3>Mobilize Quickly</h3>
-                <p>Our volunteer network helps us respond to event logistics, awareness drives, and emergency support.</p>
+
+            <!-- Card 2 -->
+            <div class="process-card">
+                <div class="process-card__body">
+                    <div class="process-card__top">
+                        <div class="process-card__image-container">
+                            <img src="{{ url_for('static', filename='images/gallery/Mobilize Quickly.png') }}" class="process-card__img" alt="Mobilize Quickly">
+                            <div class="process-card__num">02</div>
+                        </div>
+                        <div class="process-card__content">
+                            <div class="process-card__icon"><i class="fa-solid fa-people-carry-box"></i></div>
+                            <h3 class="process-card__title">Mobilize Quickly</h3>
+                        </div>
+                    </div>
+                    <p class="process-card__desc">We mobilize our volunteers, partners, and resources quickly to implement initiatives and bring positive change on ground.</p>
+                </div>
+                <div class="process-card__footer">
+                    <div class="process-card__footer-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="process-card__footer-text">
+                        <strong>Focus:</strong> Swift Action<br>
+                        <strong>Outcome:</strong> Timely Impact
+                    </div>
+                </div>
             </div>
-            <div class="number-step">
-                <div class="number-step__num">03</div>
-                <h3>Stay Accountable</h3>
-                <p>We track activities, funds, and participation so every effort stays visible and purposeful.</p>
+
+            <!-- Card 3 -->
+            <div class="process-card">
+                <div class="process-card__body">
+                    <div class="process-card__top">
+                        <div class="process-card__image-container">
+                            <img src="{{ url_for('static', filename='images/gallery/Stay accountable.png') }}" class="process-card__img" alt="Stay Accountable">
+                            <div class="process-card__num">03</div>
+                        </div>
+                        <div class="process-card__content">
+                            <div class="process-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+                            <h3 class="process-card__title">Stay Accountable</h3>
+                        </div>
+                    </div>
+                    <p class="process-card__desc">We track our activities, measure impact, and remain transparent with our donors and communities.</p>
+                </div>
+                <div class="process-card__footer">
+                    <div class="process-card__footer-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="process-card__footer-text">
+                        <strong>Focus:</strong> Transparency<br>
+                        <strong>Outcome:</strong> Trust & Growth
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="commitment-banner">
+            <div class="commitment-banner__intro">
+                <div class="commitment-banner__icon"><i class="fa-solid fa-users"></i></div>
+                <div class="commitment-banner__text">
+                    <h4>Our<br>Commitment</h4>
+                </div>
+            </div>
+            <div class="commitment-banner__stats">
+                <div class="cb-stat">
+                    <div class="cb-stat__icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="cb-stat__info">
+                        <h5>50,000+</h5>
+                        <span>LIVES<br>TOUCHED</span>
+                    </div>
+                </div>
+                <div class="cb-stat">
+                    <div class="cb-stat__icon"><i class="fa-solid fa-hand-holding-medical"></i></div>
+                    <div class="cb-stat__info">
+                        <h5>200+</h5>
+                        <span>COMMUNITY<br>PROGRAMS</span>
+                    </div>
+                </div>
+                <div class="cb-stat">
+                    <div class="cb-stat__icon"><i class="fa-solid fa-people-group"></i></div>
+                    <div class="cb-stat__info">
+                        <h5>1,500+</h5>
+                        <span>ACTIVE<br>VOLUNTEERS</span>
+                    </div>
+                </div>
+                <div class="cb-stat">
+                    <div class="cb-stat__icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <div class="cb-stat__info">
+                        <h5>30+</h5>
+                        <span>AREAS<br>SERVED</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 3.5rem;">
-            <a class="button button-primary-large" href="{{ url_for('user.gallery') }}">See The Works Done</a>
+
+        <div class="commitment-button-wrap">
+            <a href="{{ url_for('user.gallery') }}" class="cb-btn"><i class="fa-solid fa-hand-holding-heart"></i> See The Works Done <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 </section>
