@@ -8,7 +8,7 @@
 
 .volunteer-area-item {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1.5rem;
     padding: 1.25rem;
     border-radius: 16px;
@@ -44,8 +44,6 @@
     transform: scale(1.15) rotate(-5deg);
     box-shadow: 0 10px 25px rgba(131, 211, 82, 0.35);
     background: linear-gradient(135deg, #e2faeb 0%, #c6f6d5 100%);
-}
-    color: #2e8b57; /* Deep, attractive green for the SVG */
 }
 
 .volunteer-area-icon svg {
