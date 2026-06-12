@@ -4,12 +4,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Dynamic Navbar ---
     const navbar = document.querySelector('.premium-nav');
     if (navbar) {
+        let lastScrollY = window.scrollY;
+        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 20) {
                 navbar.classList.add('nav-scrolled');
             } else {
                 navbar.classList.remove('nav-scrolled');
             }
+            
+            // Hide on scroll down, show on scroll up
+            if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
         }, { passive: true });
     }
 

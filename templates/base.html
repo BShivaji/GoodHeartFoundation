@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Good Heart Foundation{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}Good Heart Foundation supports communities through volunteers, events, and fundraising programs.{% endblock %}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/transition.css') }}?v=8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=9">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/transition.css') }}?v=9">
     <style>
         .card.flash-message {
             margin-bottom: 0.75rem;
@@ -47,7 +47,7 @@
         {% endwith %}
         {% block body %}{% endblock %}
     </div>
-    <script src="{{ url_for('static', filename='js/main.js') }}?v=6"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}?v=9"></script>
     <script src="{{ url_for('static', filename='js/transition.js') }}" defer></script>
     {% block scripts %}{% endblock %}
 </body>
