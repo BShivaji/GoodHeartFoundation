@@ -330,6 +330,11 @@
     color: white;
 }
 
+/* Fix footer gap */
+.ft-new {
+    margin-top: 0 !important;
+}
+
 @media (max-width: 1024px) {
     .vol-features { flex-direction: column; gap: 1.5rem; }
     .vol-feature { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 1.5rem; }
