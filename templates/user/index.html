@@ -70,57 +70,337 @@
     </div>
 </section>
 
-<section class="section-premium">
+<style>
+.impact-exact {
+    padding: 6rem 0;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+.impact-exact__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem auto;
+}
+.impact-exact__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #eaf3eb;
+    color: #388e3c;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+.impact-exact__title {
+    font-size: 2.8rem;
+    color: #1a2e1f;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+.impact-exact__desc {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.impact-exact__divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #4a8e31;
+}
+.impact-exact__divider span {
+    width: 40px;
+    height: 1px;
+    background-color: #4a8e31;
+}
+.impact-exact__divider i {
+    font-size: 0.8rem;
+}
+
+.impact-exact__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.impact-card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.impact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+.impact-card__icon {
+    padding: 2.5rem 0 1.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+.icon-circle {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+}
+.impact-card__title {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+.impact-card__desc {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    padding: 0 1.5rem 2rem 1.5rem;
+    flex: 1;
+}
+.impact-card__stats {
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(0,0,0,0.03);
+}
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+.stat-info strong {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+.stat-info span {
+    font-size: 0.8rem;
+}
+
+/* Card Themes */
+/* Green */
+.card-green .icon-circle { background: #f1f8f1; color: #388e3c; }
+.card-green .impact-card__title { color: #1b5e20; }
+.card-green .impact-card__stats { background: #f6faf6; }
+.card-green .stat-icon { background: #e8f5e9; color: #2e7d32; }
+.card-green .stat-info strong { color: #1b5e20; }
+.card-green .stat-info span { color: #388e3c; }
+
+/* Blue */
+.card-blue .icon-circle { background: #f0f7fb; color: #0288d1; }
+.card-blue .impact-card__title { color: #01579b; }
+.card-blue .impact-card__stats { background: #f5f9fc; }
+.card-blue .stat-icon { background: #e1f5fe; color: #0288d1; }
+.card-blue .stat-info strong { color: #01579b; }
+.card-blue .stat-info span { color: #0288d1; }
+
+/* Orange */
+.card-orange .icon-circle { background: #fdf5ef; color: #f57c00; }
+.card-orange .impact-card__title { color: #e65100; }
+.card-orange .impact-card__stats { background: #fdf8f4; }
+.card-orange .stat-icon { background: #fff3e0; color: #f57c00; }
+.card-orange .stat-info strong { color: #e65100; }
+.card-orange .stat-info span { color: #f57c00; }
+
+/* Purple */
+.card-purple .icon-circle { background: #f7f3f9; color: #7b1fa2; }
+.card-purple .impact-card__title { color: #4a148c; }
+.card-purple .impact-card__stats { background: #fbf7fc; }
+.card-purple .stat-icon { background: #f3e5f5; color: #7b1fa2; }
+.card-purple .stat-info strong { color: #4a148c; }
+.card-purple .stat-info span { color: #7b1fa2; }
+
+/* Banner */
+.impact-exact__banner {
+    background: #fbfdf9;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.banner-icon {
+    width: 60px;
+    height: 60px;
+    background: #3c7a2b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+.banner-text {
+    flex: 1;
+}
+.banner-text h4 {
+    font-size: 1.2rem;
+    color: #1a2e1f;
+    margin-bottom: 0.3rem;
+    font-weight: 700;
+}
+.banner-text p {
+    color: #555;
+    font-size: 0.95rem;
+    margin: 0;
+}
+.banner-btn {
+    background: #4a8e31;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+.banner-btn:hover {
+    background: #3b7425;
+}
+
+@media (max-width: 1024px) {
+    .impact-exact__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .impact-exact__grid {
+        grid-template-columns: 1fr;
+    }
+    .impact-exact__banner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<section class="impact-exact">
     <div class="container">
-        <div class="section-header-center">
-            <p class="section-premium__eyebrow">Our Streams Of Contribution</p>
-            <h2 class="section-premium__title">Areas Where We Create Impact</h2>
-            <p class="section-premium__desc">Our work reaches communities through focused streams of service that support people, nature, health, and compassionate care.</p>
+        <div class="impact-exact__header">
+            <div class="impact-exact__badge">
+                <i class="fa-solid fa-leaf"></i> OUR STREAMS OF CONTRIBUTION
+            </div>
+            <h2 class="impact-exact__title">Areas Where We Create Impact</h2>
+            <p class="impact-exact__desc">Through focused programs and community partnerships, we are building healthier environments, stronger communities, and a better tomorrow for all.</p>
+            <div class="impact-exact__divider">
+                <span></span><i class="fa-solid fa-heart"></i><span></span>
+            </div>
         </div>
-        <div class="playful-impact-grid">
-            <!-- Item 1 -->
-            <div class="playful-impact-card" style="--theme-color: #2e7d32; --blob-color: #e8f5e9; --blob-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;">
-                <div class="playful-impact-card__icon-wrap">
-                    <img src="{{ url_for('static', filename='images/icons/nature.png') }}" alt="Plantation" class="playful-icon">
+
+        <div class="impact-exact__grid">
+            <!-- Card 1: Green -->
+            <div class="impact-card card-green">
+                <div class="impact-card__icon">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
                 </div>
-                <div class="playful-impact-card__content">
-                    <h3>PLANTATION FOR NATURE</h3>
-                    <p>We organize tree plantation drives and green-cover initiatives to improve local environments and encourage community stewardship.</p>
-                </div>
-            </div>
-            
-            <!-- Item 2 -->
-            <div class="playful-impact-card" style="--theme-color: #00838f; --blob-color: #e0f7fa; --blob-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;">
-                <div class="playful-impact-card__icon-wrap">
-                    <img src="{{ url_for('static', filename='images/icons/medical.png') }}" alt="Medical" class="playful-icon">
-                </div>
-                <div class="playful-impact-card__content">
-                    <h3>MEDICAL AWARENESS</h3>
-                    <p>Our programs spread health awareness through camps, preventive education, and local support sessions for families and individuals.</p>
+                <h3 class="impact-card__title">Plantation<br>for Nature</h3>
+                <p class="impact-card__desc">We drive tree plantation and green cover initiatives to protect our environment and promote sustainable living.</p>
+                <div class="impact-card__stats">
+                    <div class="stat-icon"><i class="fa-solid fa-tree"></i></div>
+                    <div class="stat-info">
+                        <strong>2,450+</strong>
+                        <span>Trees Planted</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Item 3 -->
-            <div class="playful-impact-card" style="--theme-color: #e65100; --blob-color: #fff3e0; --blob-radius: 50% 50% 20% 80% / 25% 80% 20% 75%;">
-                <div class="playful-impact-card__icon-wrap">
-                    <img src="{{ url_for('static', filename='images/icons/social.png') }}" alt="Social" class="playful-icon">
+            <!-- Card 2: Blue -->
+            <div class="impact-card card-blue">
+                <div class="impact-card__icon">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
                 </div>
-                <div class="playful-impact-card__content">
-                    <h3>SOCIAL WELFARE</h3>
-                    <p>We support communities through food drives, education outreach, resource distribution, and people-first service activities.</p>
+                <h3 class="impact-card__title">Medical<br>Awareness</h3>
+                <p class="impact-card__desc">We organize health camps, awareness drives, and preventive care sessions to build healthier communities.</p>
+                <div class="impact-card__stats">
+                    <div class="stat-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                    <div class="stat-info">
+                        <strong>18+</strong>
+                        <span>Health Camps Held</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Item 4 -->
-            <div class="playful-impact-card" style="--theme-color: #6a1b9a; --blob-color: #f3e5f5; --blob-radius: 40% 60% 60% 40% / 60% 30% 70% 40%;">
-                <div class="playful-impact-card__icon-wrap">
-                    <img src="{{ url_for('static', filename='images/icons/animal.png') }}" alt="Animal" class="playful-icon">
+            <!-- Card 3: Orange -->
+            <div class="impact-card card-orange">
+                <div class="impact-card__icon">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-hand-holding-heart"></i>
+                    </div>
                 </div>
-                <div class="playful-impact-card__content">
-                    <h3>ANIMAL WELFARE</h3>
-                    <p>We promote care, rescue support, feeding initiatives, and awareness efforts that improve safety and dignity for animals.</p>
+                <h3 class="impact-card__title">Social<br>Welfare</h3>
+                <p class="impact-card__desc">From food distribution to education support, we stand with communities in their everyday challenges.</p>
+                <div class="impact-card__stats">
+                    <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-info">
+                        <strong>1,200+</strong>
+                        <span>Families Supported</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- Card 4: Purple -->
+            <div class="impact-card card-purple">
+                <div class="impact-card__icon">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                </div>
+                <h3 class="impact-card__title">Animal<br>Welfare</h3>
+                <p class="impact-card__desc">We rescue, care for, and protect animals while spreading compassion for all living beings.</p>
+                <div class="impact-card__stats">
+                    <div class="stat-icon"><i class="fa-solid fa-paw"></i></div>
+                    <div class="stat-info">
+                        <strong>350+</strong>
+                        <span>Animals Helped</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact-exact__banner">
+            <div class="banner-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <div class="banner-text">
+                <h4>One Mission. Many Ways to Make a Difference.</h4>
+                <p>Every small action creates a ripple of change. Be a part of our journey.</p>
+            </div>
+            <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="banner-btn">Join Us Today <i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 </section>
