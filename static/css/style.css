@@ -644,10 +644,26 @@ textarea {
 .premium-feature-card__img {
     width: calc(100% + 4rem);
     height: 240px;
-    object-fit: contain;
-    background-color: #fafbf9; /* Subtle background for letterboxing */
+    object-fit: cover;
+    background-color: #1a2e1f;
     border-radius: 12px 12px 0 0;
     margin: -2.5rem -2rem 1.5rem -2rem;
+}
+
+/* Specific overrides for the huge slider cards to make them ultra-premium */
+.recent-work-slide .premium-feature-card__img {
+    height: 480px;
+}
+
+.recent-work-slide h3 {
+    font-size: 1.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.recent-work-slide p {
+    font-size: 1.15rem;
+    line-height: 1.7;
 }
 
 .premium-feature-card__content {

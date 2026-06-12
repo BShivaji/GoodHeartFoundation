@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Gallery | Good Heart Foundation{% endblock %}
-{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}?v=3">{% endblock %}
 {% block body %}
 {% include "user/navbar.html" %}
 
@@ -18,7 +18,7 @@
 
 <section class="section-premium">
     <div class="container">
-        <div class="grid gallery-grid">
+        <div class="gallery-grid">
             {% for item in gallery_items %}
             <div class="gallery-item">
                 <img src="{{ url_for('static', filename=item.image) }}" alt="Gallery image">
