@@ -53,29 +53,29 @@
 
 <!-- 3. FILTER BAR -->
 <div class="container">
-    <div class="ev-filter-bar float-in">
+    <form class="ev-filter-bar float-in"
+          method="get"
+          action="{{ url_for('event.list_events') }}">
         <div class="ev-filter-search">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search events...">
+            <input type="text"
+                   name="q"
+                   value="{{ request.args.get('q', '') }}"
+                   placeholder="Search events by title or location...">
         </div>
-        <select class="ev-filter-select">
-            <option>All Categories</option>
-            <option>Health</option>
-            <option>Education</option>
-            <option>Environment</option>
-        </select>
-        <select class="ev-filter-select">
-            <option>All Locations</option>
-        </select>
-        <select class="ev-filter-select">
-            <option>Upcoming</option>
-            <option>Past</option>
-        </select>
-        <div class="ev-filter-views">
-            <button class="ev-view-btn active"><i class="fa-solid fa-border-all"></i></button>
-            <button class="ev-view-btn"><i class="fa-solid fa-bars"></i></button>
-        </div>
-    </div>
+        <button type="submit"
+                class="button"
+                style="border-radius:8px; padding:0.8rem 1.5rem;">
+            Search
+        </button>
+        {% if request.args.get('q') %}
+        <a href="{{ url_for('event.list_events') }}"
+           class="button"
+           style="background:#203227; border-radius:8px; padding:0.8rem 1.2rem;">
+            Clear
+        </a>
+        {% endif %}
+    </form>
 </div>
 
 <!-- 4. FEATURED EVENT -->
