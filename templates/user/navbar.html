@@ -8,7 +8,10 @@
             >
             <span class="navbar-brand__name">Good Heart Foundation</span>
         </a>
-        <div class="navbar-links">
+        <div class="mobile-menu-toggle" id="mobile-menu-btn" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="navbar-links" id="navbar-links">
             <a href="{{ url_for('user.home') }}" class="{{ 'active' if request.endpoint == 'user.home' else '' }}">Home</a>
             <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="{{ 'active' if request.endpoint == 'volunteer.show_volunteer_form' else '' }}">Volunteer</a>
             <a href="{{ url_for('user.gallery') }}" class="{{ 'active' if request.endpoint == 'user.gallery' else '' }}">Gallery</a>

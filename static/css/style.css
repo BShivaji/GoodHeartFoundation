@@ -159,7 +159,43 @@ textarea {
     transform-origin: left;
 }
 
-/* Join Us button */
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+@media (max-width: 992px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .navbar-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1.5rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 1000;
+        pointer-events: none;
+    }
+    
+    .navbar-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
 .premium-nav .navbar-button {
     background: var(--accent);
     color: #1a2e1f;
@@ -1204,15 +1240,7 @@ textarea {
 }
 
 @media (max-width: 780px) {
-    nav .container {
-        justify-content: center;
-        text-align: center;
-    }
 
-    nav .navbar-links {
-        justify-content: center;
-        width: 100%;
-    }
 
     .home-brand-strip .navbar-brand__logo {
         width: 140px;
@@ -1225,7 +1253,8 @@ textarea {
     .contribution-section__grid,
     .about-section__grid,
     .recent-works-carousel,
-    .achievements-carousel {
+    .achievements-carousel,
+    .footer-grid-compact {
         grid-template-columns: 1fr;
     }
 
@@ -1262,14 +1291,6 @@ textarea {
         width: min(100%, 94%);
     }
 
-    nav .navbar-brand,
-    nav .navbar-links {
-        width: 100%;
-    }
-
-    nav .navbar-links {
-        justify-content: center;
-    }
 
     .home-brand-strip__title {
         font-size: 1.6rem;
@@ -1297,6 +1318,11 @@ textarea {
     
     .editorial-split__image-wrap {
         min-height: 400px;
+    }
+    
+    .footer-grid-compact {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
     }
 }
 

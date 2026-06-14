@@ -346,3 +346,21 @@
     .vol-bottom-banner { flex-direction: column; text-align: center; gap: 2rem; }
     .vbb-left { flex-direction: column; }
 }
+
+@media (max-width: 768px) {
+    .vol-hero {
+        padding: 5rem 0 3rem;
+        min-height: auto;
+    }
+    .vol-hero__title {
+        font-size: 2.8rem;
+    }
+    .vol-hero__subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    .vfi-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}

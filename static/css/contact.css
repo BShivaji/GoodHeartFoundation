@@ -295,6 +295,9 @@ textarea.form-input {
     }
 }
 @media (max-width: 600px) {
+    .contact-hero__text h1 {
+        font-size: 2.5rem;
+    }
     .form-row {
         flex-direction: column;
     }

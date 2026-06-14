@@ -453,11 +453,18 @@
         top: auto;
     }
     .ev-stats-bar {
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
     }
 }
 @media (max-width: 768px) {
+    .ev-hero h1 {
+        font-size: 2.5rem;
+    }
+    .ev-stats-bar {
+        grid-template-columns: 1fr;
+    }
     .ev-grid {
         grid-template-columns: 1fr;
     }

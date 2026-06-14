@@ -24,6 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
             
             lastScrollY = currentScrollY;
         }, { passive: true });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navbarLinks = document.getElementById('navbar-links');
+        
+        if (mobileMenuBtn && navbarLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navbarLinks.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navbarLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
     }
 
     const carousel = document.querySelector("[data-achievements-carousel]");
