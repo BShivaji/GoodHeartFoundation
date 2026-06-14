@@ -1,12 +1,14 @@
 import logging
 import os
 import random
+import re
 from datetime import date
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 
 from controllers.recent_work_controller import get_all_recent_works
 from utils.helpers import fetch_one, fetch_all
+from extensions import limiter
 
 logger = logging.getLogger(__name__)
 
@@ -85,20 +87,47 @@ def gallery():
 
 
 @user_bp.route("/contact", methods=["GET", "POST"])
+@limiter.limit("5 per minute; 20 per hour")
 def contact():
     if request.method == "POST":
-        name = request.form.get("name")
-        email = request.form.get("email")
-        subject = request.form.get("subject")
-        message = request.form.get("message")
-        
+        # Sanitize and length-cap all inputs
+        name    = request.form.get("name",    "").strip()[:100]
+        email   = request.form.get("email",   "").strip()[:150]
+        subject = request.form.get("subject", "").strip()[:200]
+        message = request.form.get("message", "").strip()[:2000]
+        phone   = request.form.get("phone",   "").strip()[:20]
+
+        # Validate required fields
+        if not name:
+            flash("Name is required.", "error")
+            return redirect(url_for("user.contact"))
+
+        if not message:
+            flash("Message is required.", "error")
+            return redirect(url_for("user.contact"))
+
+        # Validate email format
+        email_pattern = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+        if not email or not email_pattern.match(email):
+            flash("Please enter a valid email address.", "error")
+            return redirect(url_for("user.contact"))
+
         from utils.helpers import execute_query
         execute_query(
-            "INSERT INTO contact_messages (name, email, subject, message) VALUES (?, ?, ?, ?)",
-            (name, email, subject, message)
+            """
+            INSERT INTO contact_messages
+                (name, email, phone, subject, message)
+            VALUES (?, ?, ?, ?, ?)
+            """,
+            (name, email, phone, subject, message),
         )
-        
-        flash("Your message has been sent successfully! Our team will get back to you soon.", "success")
+
+        logger.info("Contact form submitted by: %s <%s>", name, email)
+        flash(
+            "Your message has been sent successfully! "
+            "Our team will get back to you soon.",
+            "success"
+        )
         return redirect(url_for("user.contact"))
-        
+
     return render_template("user/contact.html")

@@ -48,8 +48,16 @@ def remove_gallery_photo(filename):
         return
 
     safe_filename = sanitize_filename(filename)
-    gallery_dir = _gallery_dir()
-    file_path = os.path.join(gallery_dir, safe_filename)
+    gallery_dir   = _gallery_dir()
+    file_path     = os.path.join(gallery_dir, safe_filename)
+
+    # SECURITY: Verify the resolved path stays inside gallery_dir
+    # This blocks path traversal like "../../config.py"
+    resolved_file = os.path.realpath(file_path)
+    resolved_dir  = os.path.realpath(gallery_dir)
+
+    if not resolved_file.startswith(resolved_dir + os.sep):
+        raise ValueError("Invalid file path: possible path traversal detected.")
 
     if os.path.isfile(file_path):
         os.remove(file_path)

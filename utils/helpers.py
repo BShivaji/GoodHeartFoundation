@@ -46,6 +46,7 @@ def ensure_database(database_path):
         _ensure_fund_columns(database_path)
         _ensure_expenditure_table(database_path)
         _ensure_recent_works_table(database_path)
+        _ensure_contact_messages_table(database_path)
         return
 
     schema_path = os.path.join(BASE_DIR, "database", "schema.sql")
@@ -61,6 +62,7 @@ def ensure_database(database_path):
     _ensure_fund_columns(database_path)
     _ensure_expenditure_table(database_path)
     _ensure_recent_works_table(database_path)
+    _ensure_contact_messages_table(database_path)
 
 
 def _ensure_volunteer_columns(database_path):
@@ -171,6 +173,27 @@ def _ensure_recent_works_table(database_path):
                 title TEXT NOT NULL,
                 description TEXT NOT NULL,
                 image_path TEXT NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+            """
+        )
+        connection.commit()
+    finally:
+        connection.close()
+
+
+def _ensure_contact_messages_table(database_path):
+    connection = sqlite3.connect(database_path)
+    try:
+        connection.execute(
+            """
+            CREATE TABLE IF NOT EXISTS contact_messages (
+                id         INTEGER PRIMARY KEY AUTOINCREMENT,
+                name       TEXT    NOT NULL,
+                email      TEXT    NOT NULL,
+                phone      TEXT,
+                subject    TEXT,
+                message    TEXT    NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
             """

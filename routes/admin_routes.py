@@ -16,6 +16,7 @@ from controllers.recent_work_controller import create_recent_work, get_all_recen
 from controllers.gallery_controller import get_gallery_photos, save_gallery_photo, remove_gallery_photo
 from controllers.volunteer_controller import get_all_volunteers
 from utils.auth import login_required
+from extensions import limiter
 
 logger = logging.getLogger(__name__)
 
@@ -23,11 +24,17 @@ admin_bp = Blueprint("admin", __name__)
 
 
 @admin_bp.route("/login", methods=["GET", "POST"])
+@limiter.limit("10 per minute; 50 per hour")
 def login():
     if request.method == "POST":
-        if check_admin_login(request.form.get("username"), request.form.get("password")):
-            session["admin_user"] = request.form.get("username")
+        username = request.form.get("username", "").strip()
+        password = request.form.get("password", "")
+        if check_admin_login(username, password):
+            session.permanent = True          # Enables 2-hour timeout from Config
+            session["admin_user"] = username
+            logger.info("Admin login success: %s", username)
             return redirect(url_for("admin.dashboard"))
+        logger.warning("Failed admin login attempt for username: %s", username)
         flash("Invalid credentials", "error")
     return render_template("admin/login.html")
 

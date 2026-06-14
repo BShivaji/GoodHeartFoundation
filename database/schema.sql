@@ -120,20 +120,4 @@ INSERT OR IGNORE INTO expenditures (id, event_name, amount, purpose, created_at)
 (12, 'Community Clean-Up Drive', 3900.00, 'Gloves, bags, and signage', '2026-04-12 12:00:00'),
 (13, 'Parents Counseling Meet', 3100.00, 'Session setup and stationery', '2026-04-13 12:00:00'),
 (14, 'Fundraising Dinner', 15200.00, 'Venue and hospitality', '2026-04-14 12:00:00'),
-(15, 'Volunteer Orientation Day', 4400.00, 'Welcome kits and presentation setup', '2026-04-15 12:00:00');
-
-INSERT OR IGNORE INTO admins (id, username, password) VALUES
-(2, 'superadmin', 'scrypt:32768:8:1$GRSIlVElEWv80bFL$282dfa6525d79d2a02319feb57b72cce7700a580c8520ed53e26b98693e28a249ad131cab62e6275935f08eea567494ae71194469cdc6954256fe09d26886591'),
-(3, 'eventadmin', 'scrypt:32768:8:1$CGON12HMzXMBL24q$140e3ecbc7b666faa5215f43a42946ad73c87d66f0a92e9e6fa7be8fea21811d3be0adc36530e9ec6a4702a24b68937adca383d7f78a34a9e074f960f58ed098'),
-(4, 'volunteeradmin', 'scrypt:32768:8:1$ISH4se2iQI2mpYDv$271374f7ef2b5088ac2a5fe5463d57e5acc716edfc107d8e2d5d68b9db971a5fa3c6d57766acea669ac475dc5ad481c5776f3d33a566aecd07d2acd661905758'),
-(5, 'fundadmin', 'scrypt:32768:8:1$8Dq5XPOaTvzfCcMU$14358dfe6961dd199dc094f04e497bfff859c2312558f5cd036fff2da806c5501be54181805e79ef49e311af98c2f63e9e4a0e7571d76ef69f9cf02a21e1ffbf'),
-(6, 'operations1', 'scrypt:32768:8:1$wFNmcLUCeAwv1Ij2$3acc16b07847ffb20354384cb09b66ffa8f072875979d40119b3f18d5b42465cda9501b7b5bfea6badbfd4ae7772b161653afa0adde7c6d93b1f4a25f947473c'),
-(7, 'operations2', 'scrypt:32768:8:1$iniawnl7vCCJkXVT$a99fea6082985502f61a249a363681df109732195984d0860771e5eee977b0ce4d869d9f183884be00a06951ce3d2821d75138cc8eae21150b7d5fa3a6999297'),
-(8, 'supportdesk', 'scrypt:32768:8:1$9qQWG7xnpbPlDaB2$8fb41f275c0f2d9845a2613b884224490fd98e4b0d988c27b14463da019c3df71239669230fbfa7e80db7b622f83f2cdd0ee4b050e44500817bdb9845591ace7'),
-(9, 'outreachlead', 'scrypt:32768:8:1$g0YCQQcooYqpHy5N$59275c96a8394dc0a96d6eced9bdddfbaaa9c3d4a38ea7ad9cdc444a52ece67bb68a682c0c2cbd997d3beb5361073d73e4c0bd8caf5a14a1dc3b44c40ac4302d'),
-(10, 'programmanager', 'scrypt:32768:8:1$jl8X0jCUtqxn878p$9165693d989823b45c3285753348f16f78d4880feec7a176f1bdc8e774d0e7d268381764f3ab2be62749e4509425ae0f1902c53e976f56a0f4de088393436716'),
-(11, 'fieldcoordinator', 'scrypt:32768:8:1$twKBjsHFyEkyMzta$da7564fb8dac6e7e8df7da0648dc72af33831a095593b996938390f9df95b1736985da42f0a01353064ee4a1b802806e4b41c1739118f72125f72cad32d67df0'),
-(12, 'communications', 'scrypt:32768:8:1$yebUoG5m8KeK4cxP$c1ced8f25ef67053ea2e6c3c6f6f910a71f75f8967e889f39a191ac3750ab8f89ea1b3242c6841a6b4d71c14aa9b62dc478d6fbe61e4faf3344e6de5c6fcd747'),
-(13, 'dataadmin', 'scrypt:32768:8:1$cAHm9xVkdsBJOd0G$8c41fbf9d19f1755caa8eafcdab43a4f8126e67fb6f8f9f294fc7966b889caf37eb4c025a0884e5e6bc8cd40b8406b788db220e6eea7c0cbaa48def5bafaf46f'),
-(14, 'regionaladmin', 'scrypt:32768:8:1$Zp3kRTnqBzwFo8qw$49dfab62081bf838c10af27406a31c8c28a35e787b20f6b4f0e3922d59c1776d82b17c101837720a8125bbe3562b00f4d66d53127445f49d59d3fd0dd3a16e4d'),
-(15, 'citylead', 'scrypt:32768:8:1$Y6kSxQ43hbQRhMfH$1d31139ec586fb772e5ce9943a942d1d968529ee119719dfe954175a7b5c4d72585503cf1112816a44be9d80de4138fb2c09920b996ffc09705ef802a254f85e');
+    (15, 'Volunteer Orientation Day', 4400.00, 'Welcome kits and presentation setup', '2026-04-15 12:00:00');
