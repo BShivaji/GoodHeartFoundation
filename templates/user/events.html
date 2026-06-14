@@ -1,57 +1,180 @@
 {% extends "base.html" %}
 
 {% block title %}Events | Good Heart Foundation{% endblock %}
-{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/events.css') }}?v=2">{% endblock %}
+{% block styles %}<link rel="stylesheet" href="{{ url_for('static', filename='css/events.css') }}?v=5">{% endblock %}
 {% block body %}
 {% include "user/navbar.html" %}
 
-<!-- INTERNAL HERO -->
-<header class="hero-premium hero-premium--internal" style="background-image: linear-gradient(to right, rgba(26, 46, 31, 0.9), rgba(26, 46, 31, 0.6)), url('{{ url_for('static', filename='images/volunteer_hero.png') }}');">
-    <div class="container hero-premium__container">
-        <div class="hero-premium__content">
-            <span class="hero-premium__eyebrow">Calendar</span>
-            <h1 class="hero-premium__title">Upcoming Events</h1>
-            <p class="hero-premium__desc">Browse current drives, awareness programs, camps, and local community gatherings organized by the foundation.</p>
+<!-- 1. HERO SECTION -->
+<header class="ev-hero">
+    <div class="ev-hero-overlay"></div>
+    <div class="container ev-hero-content">
+        <span class="ev-hero-badge">EVENTS</span>
+        <h1>Together We<br><span>Create Impact</span></h1>
+        <p>Join our upcoming events, drives, and community programs to be part of meaningful change.</p>
+    </div>
+
+    <!-- 2. STATS BAR -->
+    <div class="container">
+        <div class="ev-stats-wrapper">
+            <div class="ev-stats-bar float-in">
+                <div class="ev-stat">
+                    <div class="ev-stat-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                    <div class="ev-stat-text">
+                        <strong>50+</strong>
+                        <span>Events Organized</span>
+                    </div>
+                </div>
+                <div class="ev-stat">
+                    <div class="ev-stat-icon"><i class="fa-solid fa-users"></i></div>
+                    <div class="ev-stat-text">
+                        <strong>5000+</strong>
+                        <span>Volunteers Engaged</span>
+                    </div>
+                </div>
+                <div class="ev-stat">
+                    <div class="ev-stat-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="ev-stat-text">
+                        <strong>30+</strong>
+                        <span>Areas Reached</span>
+                    </div>
+                </div>
+                <div class="ev-stat">
+                    <div class="ev-stat-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <div class="ev-stat-text">
+                        <strong>Countless</strong>
+                        <span>Lives Impacted</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </header>
 
-<section class="section-premium">
+<!-- 3. FILTER BAR -->
+<div class="container">
+    <div class="ev-filter-bar float-in">
+        <div class="ev-filter-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search events...">
+        </div>
+        <select class="ev-filter-select">
+            <option>All Categories</option>
+            <option>Health</option>
+            <option>Education</option>
+            <option>Environment</option>
+        </select>
+        <select class="ev-filter-select">
+            <option>All Locations</option>
+        </select>
+        <select class="ev-filter-select">
+            <option>Upcoming</option>
+            <option>Past</option>
+        </select>
+        <div class="ev-filter-views">
+            <button class="ev-view-btn active"><i class="fa-solid fa-border-all"></i></button>
+            <button class="ev-view-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- 4. FEATURED EVENT -->
+<section class="ev-featured-section">
     <div class="container">
-        <div class="events-grid">
-            {% for event in events %}
-            <div class="premium-feature-card event-card" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-                <!-- Abstract Premium Header -->
-                <div class="event-card__header" style="background-image: url('{{ url_for('static', filename=event.image_path) if event.image_path else url_for('static', filename='images/event_placeholder.png') }}'); background-size: cover; background-position: center;">
-                    <!-- Sleek Dark Gradient Overlay -->
-                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to top, rgba(26,46,31,0.85), rgba(26,46,31,0.2)); border-radius: 12px 12px 0 0;"></div>
-                    <!-- Floating Date Badge -->
-                    <div class="event-card__date-badge">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        {{ event.event_date }}
-                    </div>
-                </div>
-                
-                <div class="event-card__body" style="padding: 2.5rem 2.5rem 2.5rem 2.5rem; display: flex; flex-direction: column; flex-grow: 1;">
-                    <h3 style="font-size: 1.7rem; color: #1a2e1f; margin-bottom: 1.25rem; line-height: 1.3; text-align: left;">{{ event.title }}</h3>
-                    
-                    <p style="color: #444; font-size: 1.1rem; line-height: 1.7; margin-bottom: 2.5rem; flex-grow: 1; text-align: left;">{{ event.description }}</p>
-                    
-                    <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="button button--secondary" style="width: 100%; text-align: center; justify-content: center; padding: 1rem; font-size: 1.05rem;">Register to Help</a>
+        <div class="ev-featured-header float-in">
+            <div class="ev-featured-title">
+                <i class="fa-solid fa-star"></i> FEATURED EVENT
+            </div>
+            <div class="ev-featured-nav">
+                <button><i class="fa-solid fa-angle-left"></i></button>
+                <button><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+        </div>
+        
+        <div class="ev-featured-card float-in">
+            <div class="ev-featured-image">
+                <img src="{{ url_for('static', filename='images/events/medical_camp.jpg') }}" alt="Featured Event">
+                <div class="ev-featured-date">
+                    <span>25</span> JUN<br>2026
                 </div>
             </div>
-            {% else %}
-            <div class="premium-feature-card" style="grid-column: 1 / -1; text-align: center;">
-                <div class="volunteer-area-icon" style="margin: 0 auto 1.5rem auto;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <div class="ev-featured-content">
+                <h2>Free Medical Checkup Camp</h2>
+                <div class="ev-featured-meta">
+                    <div><i class="fa-solid fa-location-dot"></i> Hyderabad, India</div>
+                    <div><i class="fa-regular fa-clock"></i> 9:00 AM - 2:00 PM</div>
                 </div>
-                <h3 style="font-size: 1.8rem; color: #1a2e1f; margin-bottom: 0.5rem;">No Scheduled Events Yet</h3>
-                <p>The admin team has not published any events yet. Check back soon or volunteer to stay updated.</p>
+                <p class="ev-featured-desc">A free health screening camp with volunteer doctors, providing checkups, medicines, and health awareness.</p>
+                <div class="ev-featured-tags">
+                    <span>Health</span>
+                    <span>Community</span>
+                </div>
+                <div>
+                    <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="button button--primary" style="padding: 1rem 2rem; border-radius: 50px;">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
             </div>
-            {% endfor %}
         </div>
     </div>
 </section>
+
+<!-- 5. UPCOMING EVENTS GRID -->
+<section class="ev-grid-section">
+    <div class="container">
+        <div class="ev-grid-header float-in">
+            <h2>Upcoming Events</h2>
+            <a href="#">View All Events <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+        
+        <div class="ev-grid">
+            {% if events %}
+                {% for event in events %}
+                <div class="ev-card float-in" style="animation-delay: {{ loop.index0 * 0.1 }}s;">
+                    <div class="ev-card-image">
+                        <img src="{{ url_for('static', filename=event.image_path) if event.image_path else url_for('static', filename='images/event_placeholder.png') }}" alt="{{ event.title }}">
+                        <div class="ev-card-date">
+                            <span>{{ event.event_date.split('-')[2][:2] if event.event_date and '-' in event.event_date else '05' }}</span>
+                            {{ ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'][(event.event_date.split('-')[1]|int) - 1] if event.event_date and '-' in event.event_date else 'JUN' }}<br>
+                            {{ event.event_date.split('-')[0] if event.event_date and '-' in event.event_date else '2026' }}
+                        </div>
+                    </div>
+                    <div class="ev-card-content">
+                        <div class="ev-card-category">Community</div>
+                        <h3 class="ev-card-title">{{ event.title }}</h3>
+                        <div class="ev-card-meta">
+                            <div><i class="fa-solid fa-location-dot"></i> Hyderabad, India</div>
+                            <div><i class="fa-regular fa-clock"></i> 10:00 AM - 1:00 PM</div>
+                        </div>
+                        <p class="ev-card-desc">{{ event.description[:90] + '...' if event.description|length > 90 else event.description }}</p>
+                        <a href="{{ url_for('volunteer.show_volunteer_form') }}" class="ev-card-btn">Register to Help <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 0; color: #555;">
+                    <i class="fa-regular fa-calendar-xmark" style="font-size: 3rem; margin-bottom: 1rem; color: #ccc;"></i>
+                    <h3 style="font-size: 1.5rem; color: #1a2e1f;">No Events Scheduled</h3>
+                    <p>Check back soon for upcoming events and drives.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- 6. BOTTOM BANNER -->
+<div class="container float-in">
+    <div class="ev-bottom-banner">
+        <div class="ev-bb-left">
+            <div class="ev-bb-icon">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <div class="ev-bb-text">
+                <h3>Want to organize an event with us?</h3>
+                <p>Partner with us to create meaningful impact in your community.</p>
+            </div>
+        </div>
+        <a href="{{ url_for('user.contact') }}" class="ev-bb-btn">Partner With Us <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</div>
 
 {% include "user/footer.html" %}
 {% endblock %}

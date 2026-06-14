@@ -1,51 +1,478 @@
-/* ─── EVENTS PAGE SPECIFIC STYLES ──────────────────────────── */
+/* ─── EVENTS PAGE NEW STYLES ──────────────────────────── */
 
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
-}
-
-@media (min-width: 1024px) {
-    .events-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Event Card (Overrides on premium-feature-card) */
-.event-card {
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-}
-
-.event-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-}
-
-.event-card__header {
-    height: 220px;
-    background-color: #1a2e1f;
+/* 1. HERO SECTION */
+.ev-hero {
     position: relative;
-    border-radius: 12px 12px 0 0;
+    padding: 5rem 0 3rem;
+    background: url('../images/volunteer_hero.png') no-repeat center center/cover;
+    color: white;
+}
+.ev-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(26, 46, 31, 0.95) 0%, rgba(26, 46, 31, 0.5) 100%);
+    z-index: 1;
+}
+.ev-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin-bottom: 4rem;
+}
+.ev-hero-badge {
+    display: inline-block;
+    background: rgba(131, 211, 82, 0.2);
+    color: #83d352;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(131, 211, 82, 0.4);
+}
+.ev-hero h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+.ev-hero h1 span {
+    color: #83d352;
+}
+.ev-hero p {
+    font-size: 1.1rem;
+    opacity: 0.9;
 }
 
-.event-card__date-badge {
+/* 2. STATS BAR */
+.ev-stats-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.ev-stats-bar {
+    background: #1a2e1f;
+    border-radius: 16px;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.ev-stat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+}
+.ev-stat-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(131, 211, 82, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #83d352;
+    font-size: 1.2rem;
+}
+.ev-stat-text strong {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.2;
+}
+.ev-stat-text span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* 3. FILTER BAR */
+.ev-filter-bar {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #e0e0e0;
+}
+.ev-filter-search {
+    flex-grow: 1;
+    position: relative;
+}
+.ev-filter-search i {
     position: absolute;
-    bottom: -20px;
-    left: 2rem;
-    background: #ffffff;
-    padding: 0.6rem 1.2rem;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+.ev-filter-search input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    font-weight: 800;
-    color: #1a2e1f;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    border: 2px solid #83d352;
+    outline: none;
+    font-family: inherit;
+}
+.ev-filter-select {
+    padding: 0.8rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    font-family: inherit;
+    color: #555;
+    min-width: 150px;
+}
+.ev-filter-views {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+    border-left: 1px solid #e0e0e0;
+    padding-left: 1rem;
+}
+.ev-view-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #555;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.ev-view-btn.active {
+    background: #edf7e9;
+    color: #4f7c2f;
+}
+
+/* 4. FEATURED EVENT */
+.ev-featured-section {
+    padding: 4rem 0;
+}
+.ev-featured-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.ev-featured-title {
+    color: #83d352;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.95rem;
+}
+.ev-featured-nav {
+    display: flex;
+    gap: 0.5rem;
+}
+.ev-featured-nav button {
+    background: transparent;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.ev-featured-card {
+    background: white;
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+.ev-featured-image {
+    position: relative;
+    min-height: 300px;
+}
+.ev-featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ev-featured-date {
+    position: absolute;
+    top: 1.5rem;
+    right: -2rem; /* Overlap right column */
+    background: #edf7e9;
+    color: #1a2e1f;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.2;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+.ev-featured-date span {
+    display: block;
+    font-size: 1.5rem;
+}
+.ev-featured-content {
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.ev-featured-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a2e1f;
+}
+.ev-featured-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+.ev-featured-meta i {
+    color: #888;
+    margin-right: 0.4rem;
+}
+.ev-featured-desc {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+.ev-featured-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+.ev-featured-tags span {
+    background: #f5f5f5;
+    color: #555;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
-.event-card__date-badge svg {
+/* 5. UPCOMING EVENTS GRID */
+.ev-grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.ev-grid-header h2 {
+    font-size: 2rem;
+    color: #1a2e1f;
+    margin: 0;
+}
+.ev-grid-header a {
     color: #4f7c2f;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+.ev-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+.ev-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.ev-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+.ev-card-image {
+    height: 200px;
+    position: relative;
+}
+.ev-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ev-card-date {
+    position: absolute;
+    bottom: -1rem;
+    left: 1.5rem;
+    background: white;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #1a2e1f;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+}
+.ev-card-date span {
+    display: block;
+    font-size: 1.3rem;
+}
+.ev-card-content {
+    padding: 2.5rem 1.5rem 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.ev-card-category {
+    color: #4f7c2f;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.ev-card-title {
+    font-size: 1.25rem;
+    color: #1a2e1f;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+.ev-card-meta {
+    display: flex;
+    gap: 1rem;
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+.ev-card-meta i {
+    color: #999;
+    margin-right: 0.3rem;
+}
+.ev-card-desc {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+.ev-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    color: #1a2e1f;
+    font-weight: 600;
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+.ev-card-btn:hover {
+    background: #edf7e9;
+    border-color: #83d352;
+    color: #4f7c2f;
+}
+
+/* 6. BOTTOM BANNER */
+.ev-bottom-banner {
+    background: #edf7e9;
+    border-radius: 16px;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+.ev-bb-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+.ev-bb-icon {
+    width: 64px;
+    height: 64px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4f7c2f;
+    font-size: 2rem;
+}
+.ev-bb-text h3 {
+    font-size: 1.5rem;
+    color: #1a2e1f;
+    margin-bottom: 0.3rem;
+}
+.ev-bb-text p {
+    color: #555;
+    margin: 0;
+}
+.ev-bb-btn {
+    background: #1a2e1f;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.ev-bb-btn:hover {
+    background: #2a4730;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+    .ev-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 992px) {
+    .ev-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ev-featured-card {
+        grid-template-columns: 1fr;
+    }
+    .ev-featured-date {
+        right: auto;
+        left: 2rem;
+        bottom: -2rem;
+        top: auto;
+    }
+    .ev-stats-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+@media (max-width: 768px) {
+    .ev-grid {
+        grid-template-columns: 1fr;
+    }
+    .ev-filter-bar {
+        flex-direction: column;
+    }
+    .ev-filter-search {
+        width: 100%;
+    }
+    .ev-bottom-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+    .ev-bb-left {
+        flex-direction: column;
+    }
 }
